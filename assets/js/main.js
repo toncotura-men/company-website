@@ -30,7 +30,7 @@
     const canvas = document.getElementById("hero-canvas");
     if (!canvas || reduced) return;
     const ctx = canvas.getContext("2d");
-    const srcs = ["bat", "throw", "run"].map((n) => `assets/img/silhouette-${n}.svg`);
+    const srcs = ["bat", "throw", "run"].map((n) => `assets/img/silhouette-${n}.png`);
     const sprites = [];
     let ready = 0;
 
@@ -40,15 +40,16 @@
       img.src = src;
     });
 
-    // Recolor black SVG into a faint blue sprite so it reads on the dark hero
+    // Recolor the black silhouette into a faint blue sprite (preserve aspect ratio)
     function tint(img) {
+      const w = 220, h = Math.round(220 * (img.naturalHeight / img.naturalWidth));
       const off = document.createElement("canvas");
-      off.width = 200; off.height = 300;
+      off.width = w; off.height = h;
       const o = off.getContext("2d");
-      o.drawImage(img, 0, 0, 200, 300);
+      o.drawImage(img, 0, 0, w, h);
       o.globalCompositeOperation = "source-in";
       o.fillStyle = "rgba(120,180,255,1)";
-      o.fillRect(0, 0, 200, 300);
+      o.fillRect(0, 0, w, h);
       return off;
     }
 
@@ -87,7 +88,8 @@
         p.y -= p.speed;
         p.rot += p.vr;
         const x = p.x + Math.sin(t * 0.0006 + p.phase) * p.sway;
-        const w = 200 * p.s, h = 300 * p.s;
+        const spr = sprites[p.spr];
+        const w = spr.width * p.s, h = spr.height * p.s;
         ctx.save();
         ctx.globalAlpha = p.alpha;
         ctx.translate(x, p.y);
@@ -133,7 +135,7 @@
       });
     }
 
-    /* Pinned recycle process: scroll spins the 3D ball + advances steps */
+    /* Pinned recycle process: scroll spins the real baseball + advances steps */
     const steps = gsap.utils.toArray(".process-step");
     const fill = document.getElementById("process-fill");
     const sticky = document.querySelector(".process-sticky");
@@ -147,7 +149,7 @@
         scrub: 0.6,
         onUpdate: (self) => {
           const p = self.progress;
-          if (window.PUMPSBaseball) window.PUMPSBaseball.setProgress(p);
+          window.PUMPSBall && window.PUMPSBall.setScroll(p);
           if (fill) fill.style.width = (p * 100).toFixed(1) + "%";
           const active = Math.min(steps.length - 1, Math.floor(p * steps.length));
           steps.forEach((s, i) => s.classList.toggle("active", i === active));
@@ -156,6 +158,28 @@
     }
     ScrollTrigger.refresh();
   }
+
+  /* ---------- Real baseball: idle spin + scroll spin + drag ---------- */
+  (function baseballSpin() {
+    const img = document.getElementById("baseball-img");
+    if (!img) return;
+    let idle = 0, scrollA = 0, dragA = 0;
+    let dragging = false, lastX = 0;
+    const pt = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+    img.addEventListener("mousedown", (e) => { dragging = true; lastX = pt(e); });
+    img.addEventListener("touchstart", (e) => { dragging = true; lastX = pt(e); }, { passive: true });
+    window.addEventListener("mousemove", (e) => { if (dragging) { dragA += (pt(e) - lastX) * 0.6; lastX = pt(e); } });
+    window.addEventListener("touchmove", (e) => { if (dragging) { dragA += (pt(e) - lastX) * 0.6; lastX = pt(e); } }, { passive: true });
+    window.addEventListener("mouseup", () => { dragging = false; });
+    window.addEventListener("touchend", () => { dragging = false; });
+    window.PUMPSBall = { setScroll(p) { scrollA = p * 540; } };
+    function loop() {
+      requestAnimationFrame(loop);
+      if (!dragging && !reduced) idle += 0.12;
+      img.style.transform = `rotate(${idle + scrollA + dragA}deg)`;
+    }
+    loop();
+  })();
 
   if (document.readyState === "complete") initGSAP();
   else window.addEventListener("load", initGSAP);

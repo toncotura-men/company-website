@@ -97,21 +97,21 @@
       <h2 class="section-title reveal">3つの事業</h2>
       <div class="biz-grid">
         <article class="biz-card reveal">
-          <div class="biz-figure"><img src="assets/img/silhouette-bat.svg" alt="打つ" /></div>
+          <div class="biz-figure"><img src="assets/img/silhouette-bat.png" alt="打つ" /></div>
           <span class="biz-no">01 / 打つ</span>
           <h3>健康経営事業</h3>
           <p>スポーツの知見を活かし、企業と人の健康を「打ち返す力」へ。運動プログラム・健康セミナー・データに基づく職場改善を提供します。</p>
           <ul class="biz-tags"><li>運動指導</li><li>健康セミナー</li><li>データ分析</li></ul>
         </article>
         <article class="biz-card reveal">
-          <div class="biz-figure"><img src="assets/img/silhouette-throw.svg" alt="投げる" /></div>
+          <div class="biz-figure"><img src="assets/img/silhouette-throw.png" alt="投げる" /></div>
           <span class="biz-no">02 / 投げる</span>
           <h3>野球スクール事業</h3>
           <p>「投げる」を科学する。少人数制・データ計測・一人ひとりに合わせた育成で、技術と考える力を未来へ送り込みます。</p>
           <ul class="biz-tags"><li>少人数制</li><li>動作解析</li><li>育成プログラム</li></ul>
         </article>
         <article class="biz-card reveal">
-          <div class="biz-figure"><img src="assets/img/silhouette-run.svg" alt="走る" /></div>
+          <div class="biz-figure"><img src="assets/img/silhouette-run.png" alt="走る" /></div>
           <span class="biz-no">03 / 走る</span>
           <h3>硬式球再生事業</h3>
           <p>役目を終えた硬式球を「走り続けさせる」。回収・再生・再供給の循環で、資源とコストとサステナビリティを同時に前へ。</p>
@@ -126,8 +126,10 @@
     <div class="process-sticky">
       <div class="container process-inner">
         <div class="process-stage">
-          <canvas id="baseball-canvas" aria-hidden="true"></canvas>
-          <span class="drag-hint">⟲ DRAG TO ROTATE</span>
+          <div class="baseball-wrap">
+            <img id="baseball-img" src="assets/img/baseball.png" alt="硬式球" draggable="false" />
+          </div>
+          <span class="drag-hint">⟲ SCROLL / DRAG TO SPIN</span>
         </div>
         <div class="process-panel">
           <p class="section-eyebrow">RECYCLE PROCESS</p>
@@ -214,7 +216,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <!-- App -->
-  <script src="assets/js/baseball.js" defer></script>
   <script src="assets/js/earth.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
