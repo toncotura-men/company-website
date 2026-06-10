@@ -164,10 +164,15 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px dashed var(--line-strong);
 }
 .biz-figure img {
-  height: 110px; width: auto;
-  /* black silhouettes -> render as cyan accent on dark theme */
-  filter: brightness(0) saturate(100%) invert(72%) sepia(40%) saturate(900%) hue-rotate(170deg) brightness(102%) contrast(96%);
-  opacity: 0.92;
+  height: 124px; width: auto;
+  /* black silhouettes -> clean cool-white on the dark card, with soft cyan glow */
+  filter: brightness(0) invert(0.92) drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
+  opacity: 0.96;
+  transition: filter 0.25s, transform 0.25s;
+}
+.biz-card:hover .biz-figure img {
+  filter: brightness(0) invert(1) drop-shadow(0 0 14px rgba(56, 189, 248, 0.6));
+  transform: translateY(-3px) scale(1.03);
 }
 .biz-no { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--cyan); }
 .biz-card h3 { font-family: var(--mono); font-size: 1.3rem; margin: 8px 0 12px; }
