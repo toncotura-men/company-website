@@ -6,7 +6,6 @@
   if (!window.THREE) { console.warn("[earth] THREE not loaded"); return; }
   const mount = document.getElementById("earth-canvas");
   if (!mount) return;
-  const label = document.getElementById("earth-label");
   const sizeOf = () => ({ w: mount.clientWidth || 360, h: mount.clientHeight || 360 });
 
   const scene = new THREE.Scene();
@@ -75,8 +74,6 @@
         vec3 color = day * (0.10 + 1.15 * dayAmt);
         color += vec3(0.40, 0.50, 0.58) * spec;                       // sun glint on oceans
         color += night * vec3(1.0, 0.82, 0.55) * 1.5 * pow(1.0 - dayAmt, 1.5); // city lights
-        float fres = pow(1.0 - max(dot(n, viewDir), 0.0), 2.4);
-        color += vec3(0.18, 0.42, 0.95) * fres * (0.45 + 0.55 * dayAmt);       // electric-blue limb
         gl_FragColor = vec4(color, 1.0);
       }`,
   });
@@ -89,17 +86,6 @@
   });
   const clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 96, 96), cloudMat);
   globe.add(clouds);
-
-  /* ---- atmosphere glow (fresnel rim) ---- */
-  scene.add(new THREE.Mesh(
-    new THREE.SphereGeometry(1.17, 64, 64),
-    new THREE.ShaderMaterial({
-      uniforms: { glowColor: { value: new THREE.Color(0x46aaff) } },
-      vertexShader: "varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
-      fragmentShader: "varying vec3 vN; uniform vec3 glowColor; void main(){ float i = pow(1.0 - abs(vN.z), 2.8); gl_FragColor = vec4(glowColor, i * 1.1); }",
-      blending: THREE.AdditiveBlending, transparent: true, side: THREE.BackSide, depthWrite: false,
-    })
-  ));
 
   /* ---- Hiroshima marker ---- */
   function dirFromLatLon(lat, lon) {
@@ -184,7 +170,6 @@
 
     cloudMat.opacity = 0.3 * (1 - 0.85 * zoomE);          // break through the clouds
     marker.scale.setScalar(1 - 0.5 * zoomE);              // keep pin proportional
-    if (label) label.style.opacity = String(phase(progress, 0.66, 0.9));
 
     const s = 1 + 0.3 * Math.sin(t * 0.004);
     ring.scale.setScalar(s); ring.material.opacity = (0.9 - 1.4 * (s - 1)) * (0.35 + 0.65 * rotE);

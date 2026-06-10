@@ -80,17 +80,18 @@ img { display: block; max-width: 100%; }
 .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .hero-inner { position: relative; z-index: 1; }
 .hero-tag {
-  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.18em;
+  font-family: var(--mono); font-size: 0.92rem; font-weight: 700; letter-spacing: 0.2em;
   color: var(--cyan); margin-bottom: 26px;
 }
 .blink { color: var(--red); animation: blink 1.4s steps(2) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .hero-title {
-  font-family: var(--mono); font-weight: 800;
-  font-size: clamp(2.2rem, 6.4vw, 4.6rem); letter-spacing: 0.01em;
+  font-family: var(--jp); font-weight: 900;
+  font-size: clamp(2.5rem, 7.4vw, 5.4rem); letter-spacing: 0.02em; line-height: 1.16;
 }
 .hero-title span { display: block; }
-.hero-lead { margin-top: 26px; color: var(--ink-soft); max-width: 40em; font-size: 1.02rem; }
+.hero-title .accent { text-shadow: 0 0 36px rgba(56, 189, 248, 0.5); }
+.hero-lead { margin-top: 28px; color: #b9cadd; max-width: 40em; font-size: 1.12rem; font-weight: 500; }
 .hero-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-stats {
   margin: 56px 0 0; display: flex; gap: 0; flex-wrap: wrap;
@@ -100,7 +101,7 @@ img { display: block; max-width: 100%; }
 .hero-stats > div { flex: 1; padding: 16px 20px; border-right: 1px solid var(--line); }
 .hero-stats > div:last-child { border-right: 0; }
 .hero-stats dt { font-size: 0.68rem; letter-spacing: 0.14em; color: var(--ink-soft); }
-.hero-stats dd { margin: 6px 0 0; font-size: 1.5rem; font-weight: 700; color: var(--cyan); }
+.hero-stats dd { margin: 6px 0 0; font-size: 1.7rem; font-weight: 800; color: var(--cyan); }
 .scroll-hint {
   position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--ink-soft);
@@ -124,44 +125,29 @@ img { display: block; max-width: 100%; }
 /* ===== Sections ===== */
 .section { padding: clamp(72px, 10vw, 120px) 0; position: relative; }
 .section-eyebrow {
-  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.2em;
+  font-family: var(--mono); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.24em;
   color: var(--cyan); margin-bottom: 14px;
 }
 .section-eyebrow::before { content: "// "; opacity: 0.6; }
 .section-title {
-  font-family: var(--mono); font-weight: 800;
-  font-size: clamp(1.6rem, 4vw, 2.6rem); margin-bottom: 18px;
+  font-family: var(--jp); font-weight: 900;
+  font-size: clamp(1.9rem, 5vw, 3.4rem); margin-bottom: 20px;
+  letter-spacing: 0.015em; line-height: 1.25;
 }
-.section-lead { color: var(--ink-soft); max-width: 46em; margin-bottom: 44px; }
+.section-lead { color: #b9cadd; max-width: 46em; margin-bottom: 44px; font-size: 1.08rem; }
 
 /* ===== Concept / Earth ===== */
 .concept-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
 .concept-globe { position: relative; aspect-ratio: 1; min-height: 360px; }
 #earth-canvas { width: 100%; height: 100%; cursor: crosshair; }
-.globe-label {
-  position: absolute; bottom: 8px; left: 8px; font-family: var(--mono);
-  font-size: 0.72rem; letter-spacing: 0.14em; color: var(--ink-soft);
-}
-.scroll-zoom-hint {
-  position: absolute; top: 8px; right: 8px; font-family: var(--mono);
-  font-size: 0.7rem; letter-spacing: 0.12em; color: var(--cyan); opacity: 0.8;
-}
-.earth-marker-label {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  font-family: var(--mono); text-align: center; pointer-events: none;
-  opacity: 0; transition: opacity 0.2s; text-shadow: 0 0 12px rgba(5,8,15,0.9);
-}
-.earth-marker-label .eml-pin { color: var(--red); font-size: 1.1rem; line-height: 1; }
-.earth-marker-label .eml-name { color: #fff; font-weight: 700; letter-spacing: 0.18em; font-size: 1rem; margin-top: 4px; }
-.earth-marker-label .eml-coord { color: var(--cyan); font-size: 0.72rem; letter-spacing: 0.08em; }
 .concept-list { list-style: none; padding: 0; margin: 32px 0 0; font-family: var(--mono); }
 .concept-list li {
-  display: flex; align-items: center; gap: 14px; padding: 14px 0;
+  display: flex; align-items: center; gap: 14px; padding: 16px 0;
   border-top: 1px solid var(--line); color: var(--ink);
+  font-size: 1.05rem; font-weight: 700;
 }
 .concept-list li:last-child { border-bottom: 1px solid var(--line); }
-.concept-list span { color: var(--cyan); font-weight: 700; }
+.concept-list span { color: var(--cyan); font-weight: 800; }
 .concept-list em { font-style: normal; color: var(--ink-soft); margin-left: auto; }
 
 /* ===== Business ===== */
@@ -187,9 +173,9 @@ img { display: block; max-width: 100%; }
   filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));
   transform: translateY(-4px) scale(1.04);
 }
-.biz-no { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--cyan); }
-.biz-card h3 { font-family: var(--mono); font-size: 1.3rem; margin: 8px 0 12px; }
-.biz-card p { color: var(--ink-soft); font-size: 0.95rem; }
+.biz-no { font-family: var(--mono); font-size: 0.88rem; font-weight: 700; letter-spacing: 0.12em; color: var(--cyan); }
+.biz-card h3 { font-family: var(--jp); font-weight: 900; font-size: 1.6rem; margin: 8px 0 12px; }
+.biz-card p { color: var(--ink-soft); font-size: 0.98rem; }
 .biz-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 18px 0 0; }
 .biz-tags li {
   font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft);
@@ -223,7 +209,7 @@ img { display: block; max-width: 100%; }
   opacity: 0.4; transition: opacity 0.3s, border-color 0.3s;
 }
 .process-step span { color: var(--ink-soft); font-size: 0.85rem; }
-.process-step strong { display: block; font-size: 1rem; }
+.process-step strong { display: block; font-size: 1.18rem; font-weight: 800; }
 .process-step em { font-style: normal; color: var(--ink-soft); font-size: 0.85rem; }
 .process-step.active { opacity: 1; border-color: var(--cyan); }
 .process-step.active strong { color: var(--cyan); }
