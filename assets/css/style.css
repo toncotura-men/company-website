@@ -166,15 +166,6 @@ img { display: block; max-width: 100%; }
   filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));
   transform: translateY(-4px) scale(1.04);
 }
-.biz-anim {
-  height: 150px; width: auto;
-  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.4));
-  transition: filter 0.25s, transform 0.25s;
-}
-.biz-card:hover .biz-anim {
-  filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.7));
-  transform: translateY(-4px) scale(1.04);
-}
 .biz-no { font-family: var(--mono); font-size: 0.88rem; font-weight: 700; letter-spacing: 0.12em; color: var(--cyan); }
 .biz-card h3 { font-family: var(--jp); font-weight: 900; font-size: 1.6rem; margin: 8px 0 12px; }
 .biz-card p { color: var(--ink-soft); font-size: 0.98rem; }
