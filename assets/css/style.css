@@ -102,13 +102,6 @@ img { display: block; max-width: 100%; }
 .hero-stats > div:last-child { border-right: 0; }
 .hero-stats dt { font-size: 0.68rem; letter-spacing: 0.14em; color: var(--ink-soft); }
 .hero-stats dd { margin: 6px 0 0; font-size: 1.7rem; font-weight: 800; color: var(--cyan); }
-.scroll-hint {
-  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--ink-soft);
-  animation: float-y 2s ease-in-out infinite;
-}
-@keyframes float-y { 50% { transform: translate(-50%, 8px); } }
-
 /* ===== Buttons ===== */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -198,10 +191,6 @@ img { display: block; max-width: 100%; }
   will-change: transform;
 }
 #baseball-img:active { cursor: grabbing; }
-.drag-hint {
-  position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--ink-soft);
-}
 .process-steps { list-style: none; padding: 0; margin: 28px 0 0; font-family: var(--mono); }
 .process-step {
   display: flex; gap: 16px; align-items: baseline; padding: 12px 0;
