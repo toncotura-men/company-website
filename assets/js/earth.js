@@ -168,8 +168,9 @@
 
     /* phase 1: rotate to face Hiroshima / phase 2: dive toward the city.
        Manual spin (cursor drag) blends out as the dive takes over. */
-    const rotE = easeInOut(phase(progress, 0.0, 0.62));
-    const zoomE = easeInOut(phase(progress, 0.28, 1.0));
+    /* hold the full Earth for the first 15% of the pin, then rotate & dive */
+    const rotE = easeInOut(phase(progress, 0.15, 0.68));
+    const zoomE = easeInOut(phase(progress, 0.34, 1.0));
     userQuat.setFromEuler(new THREE.Euler(userPitch * (1 - rotE), userYaw * (1 - rotE), 0));
     globe.quaternion.copy(userQuat).multiply(fromQuat.slerp(targetQuat, rotE));
     const farEff = CAM_FAR * fitMult;

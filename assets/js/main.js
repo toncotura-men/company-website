@@ -25,6 +25,23 @@
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* Always land on the hero: without this, reloading mid-page restores the
+     scroll position and the globe appears already zoomed into Hiroshima. */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) {
+    window.scrollTo(0, 0);
+    // some browsers restore scroll after script evaluation — reset again until
+    // the page is fully loaded, but never fight the user's own scrolling
+    let userScrolled = false;
+    ["wheel", "touchstart", "keydown"].forEach((ev) =>
+      window.addEventListener(ev, () => { userScrolled = true; }, { once: true, passive: true })
+    );
+    const resetTop = () => { if (!userScrolled) window.scrollTo(0, 0); };
+    window.addEventListener("DOMContentLoaded", resetTop);
+    window.addEventListener("load", () => requestAnimationFrame(resetTop));
+    window.addEventListener("pageshow", (e) => { if (e.persisted) resetTop(); });
+  }
+
   /* ---------- Hero floating silhouettes (requestAnimationFrame) ---------- */
   (function heroFloat() {
     const canvas = document.getElementById("hero-canvas");
@@ -133,7 +150,7 @@
         ScrollTrigger.create({
           trigger: concept,
           start: "top top",
-          end: "+=160%",
+          end: "+=260%",
           pin: true,
           anticipatePin: 1,
           scrub: 0.7,
@@ -144,7 +161,7 @@
         ScrollTrigger.create({
           trigger: ".concept-globe",
           start: "top 80px",
-          end: "+=120%",
+          end: "+=220%",
           pin: true,
           anticipatePin: 1,
           scrub: 0.7,
