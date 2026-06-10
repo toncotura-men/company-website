@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - claude/hopeful-mccarthy-w3gjs3
+      - claude/website-globe-animation-9gqx1g
       - main
   workflow_dispatch:
 
