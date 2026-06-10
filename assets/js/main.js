@@ -119,6 +119,57 @@
     requestAnimationFrame(frame);
   })();
 
+  /* ---------- Program cards: real baseball motion (Muybridge-derived sprite sheets) ---------- */
+  (function bizAnimations() {
+    if (reduced) return;
+    const CELL = 320;
+    const defs = [
+      { n: 1, src: "assets/img/anim-bat.png",   frames: 28, mode: "once", fps: 16, rest: 2600 },
+      { n: 2, src: "assets/img/anim-pitch.png", frames: 26, mode: "once", fps: 14, rest: 2800 },
+      { n: 3, src: "assets/img/anim-run.png",   frames: 24, mode: "loop", fps: 15 },
+    ];
+    defs.forEach((def) => {
+      const fig = document.querySelector(`.biz-card:nth-child(${def.n}) .biz-figure`);
+      if (!fig) return;
+      const sheet = new Image();
+      sheet.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = CELL; canvas.height = CELL;
+        canvas.className = "biz-anim";
+        const ctx = canvas.getContext("2d");
+        const still = fig.querySelector("img");
+        if (still) still.replaceWith(canvas);
+        const draw = (i) => {
+          ctx.clearRect(0, 0, CELL, CELL);
+          ctx.drawImage(sheet, (i % 6) * CELL, Math.floor(i / 6) * CELL, CELL, CELL, 0, 0, CELL, CELL);
+        };
+        draw(0);
+        let frame = 0, playing = def.mode === "loop", last = 0, waitUntil = 0, visible = false;
+        new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(canvas);
+        function tick(t) {
+          requestAnimationFrame(tick);
+          if (!visible) return;
+          if (def.mode === "loop") {
+            if (t - last > 1000 / def.fps) { last = t; frame = (frame + 1) % def.frames; draw(frame); }
+            return;
+          }
+          if (playing) {
+            if (t - last > 1000 / def.fps) {
+              last = t; frame++;
+              if (frame >= def.frames) { playing = false; waitUntil = t + def.rest; frame = def.frames - 1; }
+              else draw(frame);
+            }
+          } else if (t > waitUntil) {
+            if (frame !== 0) { frame = 0; draw(0); waitUntil = t + 900; }
+            else { playing = true; last = t; }
+          }
+        }
+        requestAnimationFrame(tick);
+      };
+      sheet.src = def.src;
+    });
+  })();
+
   /* ---------- GSAP ScrollTrigger ---------- */
   function initGSAP() {
     if (!window.gsap || !window.ScrollTrigger) return;
