@@ -143,8 +143,8 @@
       mm.add("(max-width: 920px)", () => {
         ScrollTrigger.create({
           trigger: ".concept-globe",
-          start: "top 90px",
-          end: "+=140%",
+          start: "top 80px",
+          end: "+=120%",
           pin: true,
           anticipatePin: 1,
           scrub: 0.7,

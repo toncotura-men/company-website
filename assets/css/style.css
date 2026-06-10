@@ -273,6 +273,8 @@ img { display: block; max-width: 100%; }
 /* ===== Responsive ===== */
 @media (max-width: 920px) {
   .concept-grid { grid-template-columns: 1fr; gap: 36px; }
+  /* fill the viewport while the globe is pinned — no dead space below the canvas */
+  .concept-globe { aspect-ratio: auto; height: min(76vh, 640px); min-height: 380px; }
   .process-inner { grid-template-columns: 1fr; gap: 32px; }
   .process-sticky { min-height: auto; padding: 80px 0; }
   .biz-grid { grid-template-columns: 1fr; }

@@ -28,16 +28,18 @@
   const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xcfe0ff, size: 0.045, sizeAttenuation: true, transparent: true, opacity: 0.9 }));
   scene.add(stars);
 
-  /* ---- textures (NASA Blue Marble day / city lights night / ocean specular / clouds) ---- */
+  /* ---- textures (NASA Blue Marble day / city lights night / ocean specular / clouds)
+         day map: 8K (8192x4096) when the GPU allows it, 4K fallback ---- */
   const loader = new THREE.TextureLoader();
   const maxAniso = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 8;
+  const maxTexSize = renderer.capabilities.maxTextureSize || 4096;
   const tex = (p) => { const t = loader.load(p); t.anisotropy = maxAniso; return t; };
-  const dayTex = tex("assets/img/earth-day.jpg");
+  const dayTex = tex(maxTexSize >= 8192 ? "assets/img/earth-day-8k.jpg" : "assets/img/earth-day.jpg");
   const nightTex = tex("assets/img/earth-night.jpg");
   const specTex = tex("assets/img/earth-spec.jpg");
   const cloudTex = tex("assets/img/earth-clouds.jpg");
 
-  const SUN_DIR = new THREE.Vector3(-2.2, 0.9, 3.2).normalize();
+  const SUN_DIR = new THREE.Vector3(-1.1, 0.55, 3.6).normalize();
 
   /* ---- Earth: custom day/night shader with ocean specular & limb scattering ---- */
   const earthMat = new THREE.ShaderMaterial({
@@ -63,18 +65,18 @@
       void main() {
         vec3 n = normalize(vNormal);
         float ndl = dot(n, sunDir);
-        float dayAmt = smoothstep(-0.15, 0.30, ndl);
+        float dayAmt = smoothstep(-0.08, 0.22, ndl);
         vec3 day = texture2D(dayMap, vUv).rgb;
         vec3 night = texture2D(nightMap, vUv).rgb;
         float ocean = texture2D(specMap, vUv).r;
         vec3 viewDir = normalize(cameraPosition - vWorldPos);
         vec3 halfDir = normalize(sunDir + viewDir);
         float spec = pow(max(dot(n, halfDir), 0.0), 36.0) * ocean * dayAmt;
-        vec3 color = day * (0.07 + 1.08 * dayAmt);
-        color += vec3(0.42, 0.52, 0.60) * spec;                       // sun glint on oceans
+        vec3 color = day * (0.10 + 1.15 * dayAmt);
+        color += vec3(0.40, 0.50, 0.58) * spec;                       // sun glint on oceans
         color += night * vec3(1.0, 0.82, 0.55) * 1.5 * pow(1.0 - dayAmt, 1.5); // city lights
-        float fres = pow(1.0 - max(dot(n, viewDir), 0.0), 2.6);
-        color += vec3(0.16, 0.34, 0.62) * fres * (0.25 + 0.55 * dayAmt);       // atmospheric limb
+        float fres = pow(1.0 - max(dot(n, viewDir), 0.0), 2.4);
+        color += vec3(0.18, 0.42, 0.95) * fres * (0.45 + 0.55 * dayAmt);       // electric-blue limb
         gl_FragColor = vec4(color, 1.0);
       }`,
   });
@@ -83,18 +85,18 @@
 
   /* ---- cloud layer (drifts independently, fades on approach) ---- */
   const cloudMat = new THREE.MeshBasicMaterial({
-    map: cloudTex, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.3, depthWrite: false,
+    map: cloudTex, blending: THREE.AdditiveBlending, transparent: true, opacity: 0.55, depthWrite: false,
   });
   const clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 96, 96), cloudMat);
   globe.add(clouds);
 
   /* ---- atmosphere glow (fresnel rim) ---- */
   scene.add(new THREE.Mesh(
-    new THREE.SphereGeometry(1.15, 64, 64),
+    new THREE.SphereGeometry(1.17, 64, 64),
     new THREE.ShaderMaterial({
-      uniforms: { glowColor: { value: new THREE.Color(0x3aa0ff) } },
+      uniforms: { glowColor: { value: new THREE.Color(0x46aaff) } },
       vertexShader: "varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }",
-      fragmentShader: "varying vec3 vN; uniform vec3 glowColor; void main(){ float i = pow(1.0 - abs(vN.z), 3.2); gl_FragColor = vec4(glowColor, i * 0.9); }",
+      fragmentShader: "varying vec3 vN; uniform vec3 glowColor; void main(){ float i = pow(1.0 - abs(vN.z), 2.8); gl_FragColor = vec4(glowColor, i * 1.1); }",
       blending: THREE.AdditiveBlending, transparent: true, side: THREE.BackSide, depthWrite: false,
     })
   ));
@@ -112,11 +114,39 @@
   const ring = new THREE.Mesh(new THREE.RingGeometry(0.024, 0.034, 32), new THREE.MeshBasicMaterial({ color: 0xff5a5a, transparent: true, opacity: 0.9, side: THREE.DoubleSide }));
   marker.add(ring); globe.add(marker);
 
-  const startQuat = new THREE.Quaternion().setFromEuler(new THREE.Euler(0.32, 0.9, 0));
+  /* start framed like the reference photo: Japan / western Pacific facing the camera */
+  const startQuat = new THREE.Quaternion()
+    .setFromUnitVectors(dirFromLatLon(12, 133), new THREE.Vector3(0, 0, 1))
+    .premultiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.08, 0, 0)));
   const targetQuat = new THREE.Quaternion().setFromUnitVectors(HIRO, new THREE.Vector3(0, 0, 1));
 
-  function resize() { const { w, h } = sizeOf(); renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  let fitMult = 1; // portrait canvases pull the camera back so the full globe stays in frame
+  function resize() {
+    const { w, h } = sizeOf();
+    renderer.setSize(w, h, false);
+    cam.aspect = w / h; cam.updateProjectionMatrix();
+    fitMult = Math.min(2.2, Math.max(1, h / w));
+  }
   window.addEventListener("resize", resize); resize();
+
+  /* ---- cursor / touch drag spins the globe (with flick inertia) ---- */
+  let dragging = false, lastX = 0, lastY = 0, velYaw = 0, userYaw = 0, userPitch = 0;
+  mount.style.touchAction = "pan-y"; // vertical swipes keep scrolling the page
+  mount.addEventListener("pointerdown", (e) => {
+    dragging = true; lastX = e.clientX; lastY = e.clientY; velYaw = 0;
+    if (mount.setPointerCapture) mount.setPointerCapture(e.pointerId);
+  });
+  mount.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    lastX = e.clientX; lastY = e.clientY;
+    velYaw = dx * 0.005;
+    userYaw += velYaw;
+    userPitch = Math.max(-0.7, Math.min(0.7, userPitch + dy * 0.003));
+  });
+  ["pointerup", "pointercancel", "pointerleave"].forEach((ev) =>
+    mount.addEventListener(ev, () => { dragging = false; })
+  );
 
   let progress = 0, controlled = false, idleY = 0;
   const easeInOut = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
@@ -128,22 +158,28 @@
     },
   };
 
-  const yQuat = new THREE.Quaternion(), fromQuat = new THREE.Quaternion();
+  const yQuat = new THREE.Quaternion(), fromQuat = new THREE.Quaternion(), userQuat = new THREE.Quaternion();
   function loop() {
     requestAnimationFrame(loop);
     const t = performance.now();
     stars.rotation.y += 0.00035;
     clouds.rotation.y += 0.00022;
 
-    idleY += controlled && progress > 0.001 ? 0.0004 : 0.0018;
+    if (!dragging) {
+      idleY += controlled && progress > 0.001 ? 0.0004 : 0.0018;
+      userYaw += velYaw; velYaw *= 0.94; // flick inertia
+    }
     yQuat.setFromEuler(new THREE.Euler(0, idleY, 0));
     fromQuat.copy(startQuat).multiply(yQuat);
 
-    /* phase 1: rotate to face Hiroshima / phase 2: dive toward the city */
+    /* phase 1: rotate to face Hiroshima / phase 2: dive toward the city.
+       Manual spin (cursor drag) blends out as the dive takes over. */
     const rotE = easeInOut(phase(progress, 0.0, 0.62));
     const zoomE = easeInOut(phase(progress, 0.28, 1.0));
-    globe.quaternion.copy(fromQuat).slerp(targetQuat, rotE);
-    cam.position.z = CAM_FAR + (CAM_NEAR - CAM_FAR) * zoomE;
+    userQuat.setFromEuler(new THREE.Euler(userPitch * (1 - rotE), userYaw * (1 - rotE), 0));
+    globe.quaternion.copy(userQuat).multiply(fromQuat.slerp(targetQuat, rotE));
+    const farEff = CAM_FAR * fitMult;
+    cam.position.z = farEff + (CAM_NEAR - farEff) * zoomE;
     cam.fov = 36 - 6 * zoomE; cam.updateProjectionMatrix();
 
     cloudMat.opacity = 0.3 * (1 - 0.85 * zoomE);          // break through the clouds
