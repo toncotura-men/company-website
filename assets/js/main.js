@@ -108,7 +108,9 @@
     gsap.registerPlugin(ScrollTrigger);
 
     if (!reduced) {
+      /* .biz-card has its own staggered tween below — double from-tweens freeze at opacity 0 */
       gsap.utils.toArray(".reveal").forEach((el) => {
+        if (el.classList.contains("biz-card")) return;
         gsap.from(el, {
           opacity: 0, y: 36, duration: 0.8, ease: "power2.out",
           scrollTrigger: { trigger: el, start: "top 85%" },
@@ -123,15 +125,31 @@
       });
     }
 
-    /* Concept globe: scroll rotates & zooms the Earth toward Hiroshima */
+    /* Concept globe: scroll pins the section and dives from space to Hiroshima */
     const concept = document.getElementById("concept");
     if (concept && window.PUMPSEarth) {
-      ScrollTrigger.create({
-        trigger: concept,
-        start: "top 75%",
-        end: "bottom 55%",
-        scrub: 0.6,
-        onUpdate: (self) => window.PUMPSEarth.setProgress(self.progress),
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 921px)", () => {
+        ScrollTrigger.create({
+          trigger: concept,
+          start: "top top",
+          end: "+=160%",
+          pin: true,
+          anticipatePin: 1,
+          scrub: 0.7,
+          onUpdate: (self) => window.PUMPSEarth.setProgress(self.progress),
+        });
+      });
+      mm.add("(max-width: 920px)", () => {
+        ScrollTrigger.create({
+          trigger: ".concept-globe",
+          start: "top 90px",
+          end: "+=140%",
+          pin: true,
+          anticipatePin: 1,
+          scrub: 0.7,
+          onUpdate: (self) => window.PUMPSEarth.setProgress(self.progress),
+        });
       });
     }
 
