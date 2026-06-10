@@ -14,7 +14,7 @@
   cam.position.set(0, 0, CAM_FAR);
 
   const renderer = new THREE.WebGLRenderer({ canvas: mount, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 3));
 
   /* ---- starfield ---- */
   const starGeo = new THREE.BufferGeometry();
@@ -38,7 +38,7 @@
   const specTex = tex("assets/img/earth-spec.jpg");
   const cloudTex = tex("assets/img/earth-clouds.jpg");
   // high-res Seto/Hiroshima region patch (lon 124-142E, lat 25.5-43.5N), blended in on approach
-  const detailTex = tex("assets/img/earth-detail-seto.jpg");
+  const detailTex = tex(maxTexSize >= 8192 ? "assets/img/earth-detail-seto-6k.jpg" : "assets/img/earth-detail-seto.jpg");
 
   const SUN_DIR = new THREE.Vector3(-1.1, 0.55, 3.6).normalize();
 
