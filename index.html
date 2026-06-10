@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>株式会社PUMPS｜広島の野球スクール — 打つ・投げる・走る、その先へ。</title>
-  <meta name="description" content="株式会社PUMPSは広島発の野球スクールです。データ計測と少人数指導で「打つ・投げる・走る」を科学し、考えて動ける選手を育てます。無料体験受付中。" />
+  <title>株式会社PUMPS｜広島の野球スクール — 才能を、科学する。</title>
+  <meta name="description" content="株式会社PUMPSは広島発の野球スクール。スポーツ科学で「打つ・投げる・走る」を測定・分析・評価し、考えて動ける選手を育てます。無料体験受付中。" />
   <link rel="icon" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=3" />
 </head>
 <body>
-  <!-- Blueprint grid background (CSS) -->
-  <div class="blueprint" aria-hidden="true"></div>
 
   <!-- ===== Header ===== -->
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="#top" class="brand">
-        <img src="assets/img/logo.png" alt="HAKI pro / 株式会社PUMPS" class="brand-logo" />
+        <img src="assets/img/logo.png" alt="株式会社PUMPS" class="brand-logo" />
+        <span class="brand-text">PUMPS</span>
       </a>
       <nav class="nav" aria-label="メインナビゲーション">
-        <a href="#concept">CONCEPT</a>
-        <a href="#business">PROGRAM</a>
-        <a href="#process">METHOD</a>
-        <a href="#partners">PARTNERS</a>
-        <a href="#company">COMPANY</a>
+        <a href="#concept">Concept</a>
+        <a href="#abilities">Measure</a>
+        <a href="#program">Program</a>
+        <a href="#flow">Flow</a>
+        <a href="#company">Company</a>
         <a href="#contact" class="nav-cta">無料体験</a>
       </nav>
       <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
@@ -39,136 +38,184 @@
   <section class="hero">
     <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
     <div class="container hero-inner">
-      <p class="hero-tag"><span class="blink">●</span> BASEBALL SCHOOL / HIROSHIMA</p>
+      <p class="hero-tag"><span class="blink"></span> BASEBALL SCIENCE LAB / HIROSHIMA</p>
       <h1 class="hero-title">
-        <span>打つ・投げる・走る、</span>
-        <span class="accent">その先へ。</span>
+        <span>才能を、</span>
+        <span class="accent">科学する。</span>
       </h1>
       <p class="hero-lead">
-        株式会社PUMPSは、広島発の野球スクールです。<br />
-        データ計測 × 少人数指導で「打つ・投げる・走る」を科学し、自分の頭で考えて動ける選手を育てます。
+        株式会社PUMPSは、広島発の野球スクール。<br />
+        一人ひとりの動きを<strong>測定・分析・評価</strong>し、データで「打つ・投げる・走る」を伸ばす。考えて動ける選手を、科学の力で育てます。
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">無料体験を申し込む</a>
-        <a href="#business" class="btn btn-ghost">プログラムを見る</a>
+        <a href="#contact" class="btn btn-primary">無料体験を申し込む <span class="arr">→</span></a>
+        <a href="#abilities" class="btn btn-ghost" style="border-color:#fff;color:#fff">測定メニューを見る</a>
       </div>
       <dl class="hero-stats">
-        <div><dt>PROGRAM</dt><dd>03</dd></div>
-        <div><dt>BASE</dt><dd>広島</dd></div>
-        <div><dt>STYLE</dt><dd>少人数</dd></div>
+        <div><dt>Measure</dt><dd>5<span class="accent">項目</span></dd></div>
+        <div><dt>Program</dt><dd>03</dd></div>
+        <div><dt>Base</dt><dd>広島</dd></div>
+        <div><dt>Style</dt><dd>少人数</dd></div>
       </dl>
     </div>
   </section>
 
-  <!-- ===== Concept (Earth globe) ===== -->
-  <section class="section concept" id="concept">
+  <!-- ===== Marquee ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>MEASURE</span><span>ANALYZE</span><span>EVALUATE</span><span>TRAIN</span><span>打つ</span><span>投げる</span><span>走る</span>
+      <span>MEASURE</span><span>ANALYZE</span><span>EVALUATE</span><span>TRAIN</span><span>打つ</span><span>投げる</span><span>走る</span>
+    </div>
+  </div>
+
+  <!-- ===== Concept ===== -->
+  <section class="section" id="concept">
+    <span class="section-wm">01</span>
     <div class="container concept-grid">
-      <div class="concept-globe">
-        <canvas id="earth-canvas" aria-hidden="true"></canvas>
-      </div>
       <div class="concept-text reveal">
-        <p class="section-eyebrow">CONCEPT</p>
-        <h2 class="section-title">広島から、<br /><span class="accent">世界基準</span>の育成を。</h2>
-        <p class="section-lead">
-          野球は、感覚だけでは強くなれない。
-          PUMPSは一人ひとりの動きを計測・分析し、技術も思考も身体も鍛える。
-          広島のグラウンドから、世界で通用する選手を送り出します。
+        <div class="head">
+          <span class="eyebrow">Concept</span>
+          <h2 class="title">感覚に、<span class="accent-red">データ</span>という根拠を。<span class="en">Science the talent</span></h2>
+        </div>
+        <p class="lead">
+          野球は、感覚だけでは強くなれない。PUMPSは、まるでスポーツ版の人間ドックのように一人ひとりの身体能力と動作を計測。
+          強みと伸びしろを「見える化」し、技術・思考・身体を科学的に鍛えます。
         </p>
-        <ul class="concept-list">
-          <li><span>01</span> 技術を磨く — <em>動作解析・データ計測</em></li>
-          <li><span>02</span> 思考を鍛える — <em>野球IQ・判断力</em></li>
-          <li><span>03</span> 身体をつくる — <em>フィジカル・障害予防</em></li>
+        <ul class="concept-points">
+          <li><span class="no">01</span><div><strong>技術を磨く</strong><em>動作解析・データ計測でフォームを最適化</em></div></li>
+          <li><span class="no">02</span><div><strong>思考を鍛える</strong><em>野球IQ・判断力で「考えて動ける」を育てる</em></div></li>
+          <li><span class="no">03</span><div><strong>身体をつくる</strong><em>フィジカル強化と障害予防を両立</em></div></li>
         </ul>
+      </div>
+      <div class="concept-visual reveal d1">
+        <div class="concept-card">
+          <span class="eyebrow">Live signal</span>
+          <h3 style="font-weight:900;font-size:1.4rem;margin:8px 0 6px">身体は、データを語る。</h3>
+          <p style="color:var(--ink-soft);font-size:.95rem;margin-bottom:14px">スイング・球速・走力 — すべては数値で捉えられる。</p>
+          <canvas id="pulse-canvas" aria-hidden="true"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Abilities / Radar ===== -->
+  <section class="section abilities" id="abilities">
+    <span class="section-wm">02</span>
+    <div class="container">
+      <div class="head center reveal">
+        <span class="eyebrow">Measurement</span>
+        <h2 class="title">5つの基礎能力を、測る。<span class="en">5 fundamental abilities</span></h2>
+        <p class="lead">PUMPS式スポーツドックでは、選手の土台となる5つの能力を計測。レーダーチャートで強みと課題が一目でわかります。</p>
+      </div>
+      <div class="radar-grid">
+        <div class="radar-stage reveal">
+          <canvas id="radar-canvas" aria-hidden="true"></canvas>
+        </div>
+        <div class="ability-list reveal d1">
+          <div class="ability-item"><span class="ano">A-01</span><h4>打力 / POWER</h4><p>スイング速度と打球初速。ミート力と飛距離の源泉を計測します。</p></div>
+          <div class="ability-item"><span class="ano">A-02</span><h4>球速 / VELOCITY</h4><p>球速・回転数・リリースを数値化し、投球の質を可視化します。</p></div>
+          <div class="ability-item"><span class="ano">A-03</span><h4>走力 / SPEED</h4><p>スプリントタイムと一歩目の加速。試合を動かす脚を測ります。</p></div>
+          <div class="ability-item"><span class="ano">A-04</span><h4>敏捷性 / AGILITY</h4><p>反応・方向転換の速さ。守備と走塁を支える俊敏性を評価します。</p></div>
+          <div class="ability-item"><span class="ano">A-05</span><h4>体幹 / CORE</h4><p>下半身と体幹の安定。すべての動作を支える土台の強さを測定します。</p></div>
+          <div class="ability-item" style="background:var(--navy);color:#fff;border-color:var(--navy)"><span class="ano">REPORT</span><h4 style="color:#fff">個別レポート</h4><p style="color:#aeb8c6">5項目を1枚にまとめ、次のトレーニングへ繋げます。</p></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== Program ===== -->
-  <section class="section business" id="business">
+  <section class="section" id="program">
+    <span class="section-wm">03</span>
     <div class="container">
-      <p class="section-eyebrow reveal">PROGRAM</p>
-      <h2 class="section-title reveal">3つの指導領域</h2>
-      <div class="biz-grid">
-        <article class="biz-card reveal">
-          <div class="biz-figure"><img src="assets/img/silhouette-bat.png" alt="打つ" /></div>
-          <span class="biz-no">01 / 打つ</span>
-          <h3>バッティング</h3>
-          <p>スイングを計測し、データで分解。ミート力・飛距離・再現性を一人ひとりのフォームに合わせて引き上げます。</p>
-          <ul class="biz-tags"><li>スイング解析</li><li>打球速度計測</li><li>個別フォーム設計</li></ul>
-        </article>
-        <article class="biz-card reveal">
-          <div class="biz-figure"><img src="assets/img/silhouette-throw.png" alt="投げる" /></div>
-          <span class="biz-no">02 / 投げる</span>
-          <h3>ピッチング</h3>
-          <p>球速・回転数・フォームを科学する。肩肘に優しい投げ方を身につけながら、球速アップとコントロールを両立します。</p>
-          <ul class="biz-tags"><li>フォーム解析</li><li>球速・回転数</li><li>障害予防</li></ul>
-        </article>
-        <article class="biz-card reveal">
-          <div class="biz-figure"><img src="assets/img/silhouette-run.png" alt="走る" /></div>
-          <span class="biz-no">03 / 走る</span>
-          <h3>走塁・フィジカル</h3>
-          <p>一歩目の速さと判断力は、練習でつくれる。スプリント技術・走塁判断・体幹強化で、試合を動かす脚をつくります。</p>
-          <ul class="biz-tags"><li>スプリント</li><li>走塁判断</li><li>体幹・下半身</li></ul>
-        </article>
+      <div class="head center reveal">
+        <span class="eyebrow">Program</span>
+        <h2 class="title">3つの指導領域<span class="en">Hit · Throw · Run</span></h2>
+        <p class="lead">計測データをもとに、一人ひとりに最適化したメニューを設計。「打つ・投げる・走る」を個別に伸ばします。</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== Method (pinned, spinning baseball + ScrollTrigger) ===== -->
-  <section class="process" id="process">
-    <div class="process-sticky">
-      <div class="container process-inner">
-        <div class="process-stage">
-          <div class="baseball-wrap">
-            <img id="baseball-img" src="assets/img/baseball.png" alt="硬式球" draggable="false" />
+      <div class="prog-grid">
+        <article class="prog-card reveal">
+          <div class="prog-figure"><span class="prog-no">01 / 打つ</span><img src="assets/img/silhouette-bat.png" alt="打つ" /></div>
+          <div class="prog-body">
+            <h3>バッティング</h3>
+            <p>スイングを計測し、データで分解。ミート力・飛距離・再現性を、一人ひとりのフォームに合わせて引き上げます。</p>
+            <ul class="prog-tags"><li>スイング解析</li><li>打球速度計測</li><li>個別フォーム設計</li></ul>
           </div>
-        </div>
-        <div class="process-panel">
-          <p class="section-eyebrow">METHOD</p>
-          <h2 class="section-title">うまくなる仕組みを、回す。</h2>
-          <p class="section-lead">スクロールでボールが回転し、PUMPS式・育成サイクルが一周します。</p>
-          <ol class="process-steps">
-            <li class="process-step" data-step="0"><span>01</span><div><strong>体験 / TRIAL</strong><em>無料体験で、今の実力と課題を知る。</em></div></li>
-            <li class="process-step" data-step="1"><span>02</span><div><strong>計測 / MEASURE</strong><em>スイング・球速・走力をデータ化。</em></div></li>
-            <li class="process-step" data-step="2"><span>03</span><div><strong>分析 / ANALYZE</strong><em>強みと伸びしろを見える化。</em></div></li>
-            <li class="process-step" data-step="3"><span>04</span><div><strong>設計 / PLAN</strong><em>一人ひとりの個別メニューを設計。</em></div></li>
-            <li class="process-step" data-step="4"><span>05</span><div><strong>実践 / TRAIN</strong><em>少人数指導で反復し、技術を習得。</em></div></li>
-            <li class="process-step" data-step="5"><span>06</span><div><strong>検証 / REVIEW</strong><em>再計測で成長を確認し、次の目標へ。</em></div></li>
-          </ol>
-          <div class="process-bar"><i id="process-fill"></i></div>
-        </div>
+        </article>
+        <article class="prog-card reveal d1">
+          <div class="prog-figure"><span class="prog-no">02 / 投げる</span><img src="assets/img/silhouette-throw.png" alt="投げる" /></div>
+          <div class="prog-body">
+            <h3>ピッチング</h3>
+            <p>球速・回転数・フォームを科学する。肩肘に優しい投げ方を身につけながら、球速アップとコントロールを両立します。</p>
+            <ul class="prog-tags"><li>フォーム解析</li><li>球速・回転数</li><li>障害予防</li></ul>
+          </div>
+        </article>
+        <article class="prog-card reveal d2">
+          <div class="prog-figure"><span class="prog-no">03 / 走る</span><img src="assets/img/silhouette-run.png" alt="走る" /></div>
+          <div class="prog-body">
+            <h3>走塁・フィジカル</h3>
+            <p>一歩目の速さと判断力は、練習でつくれる。スプリント技術・走塁判断・体幹強化で、試合を動かす脚をつくります。</p>
+            <ul class="prog-tags"><li>スプリント</li><li>走塁判断</li><li>体幹・下半身</li></ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Partners (CSS grid auto-fit) ===== -->
-  <section class="section partners" id="partners">
+  <!-- ===== Flow ===== -->
+  <section class="section flow" id="flow">
+    <span class="section-wm" style="color:rgba(255,255,255,.04)">04</span>
     <div class="container">
-      <p class="section-eyebrow reveal">PARTNERS</p>
-      <h2 class="section-title reveal">共に育てるパートナー</h2>
-      <div class="partner-grid">
-        <div class="partner-logo">CLUB / 01</div>
-        <div class="partner-logo">SCHOOL / 02</div>
-        <div class="partner-logo">TEAM / 03</div>
-        <div class="partner-logo">GYM / 04</div>
-        <div class="partner-logo">LEAGUE / 05</div>
-        <div class="partner-logo">SHOP / 06</div>
-        <div class="partner-logo">CITY / 07</div>
-        <div class="partner-logo">LAB / 08</div>
+      <div class="head center reveal">
+        <span class="eyebrow">Flow</span>
+        <h2 class="title">うまくなる仕組み<span class="en">Measure → Analyze → Evaluate → Train</span></h2>
+        <p class="lead">PUMPS式・育成サイクル。測って終わりではなく、分析・評価し、トレーニングへ繋げ、再計測で成長を確認します。</p>
       </div>
-      <p class="partner-note">// ロゴはプレースホルダです。実ロゴデータで差し替え可能。</p>
+      <div class="flow-grid">
+        <div class="flow-step reveal"><div class="fno">01</div><span class="en">Measure</span><h4>測定</h4><p>スイング・球速・走力・敏捷性・体幹を計測しデータ化。</p></div>
+        <div class="flow-step reveal d1"><div class="fno">02</div><span class="en">Analyze</span><h4>分析</h4><p>データベースと比較し、強みと伸びしろを抽出。</p></div>
+        <div class="flow-step reveal d2"><div class="fno">03</div><span class="en">Evaluate</span><h4>評価</h4><p>5項目のレーダーで現在地を可視化し、目標を設計。</p></div>
+        <div class="flow-step reveal d3"><div class="fno">04</div><span class="en">Train</span><h4>実践</h4><p>少人数指導で反復。再計測で成長を確認し次へ。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Target ===== -->
+  <section class="section" id="target">
+    <span class="section-wm">05</span>
+    <div class="container">
+      <div class="head center reveal">
+        <span class="eyebrow">For</span>
+        <h2 class="title">対象<span class="en">Individuals & Teams</span></h2>
+      </div>
+      <div class="target-grid">
+        <div class="target-card indiv reveal">
+          <span class="t-num">01</span>
+          <span class="t-en">Individuals</span>
+          <h3>個人</h3>
+          <p>「もっとうまくなりたい」小学生〜高校生まで。自分の課題をデータで知り、少人数で集中的に伸ばします。見学だけでも歓迎です。</p>
+        </div>
+        <div class="target-card team reveal d1">
+          <span class="t-num">02</span>
+          <span class="t-en">Teams & Groups</span>
+          <h3>チーム・団体</h3>
+          <p>チーム単位での測定・分析にも対応。選手全員の身体能力を可視化し、勝てるチームづくりを科学でサポートします。</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===== Company ===== -->
-  <section class="section company" id="company">
+  <section class="section" id="company">
+    <span class="section-wm">06</span>
     <div class="container">
-      <p class="section-eyebrow reveal">COMPANY</p>
-      <h2 class="section-title reveal">会社概要</h2>
-      <dl class="company-table reveal">
+      <div class="head reveal">
+        <span class="eyebrow">Company</span>
+        <h2 class="title">会社概要<span class="en">Company profile</span></h2>
+      </div>
+      <dl class="company-table reveal d1">
         <div><dt>商号</dt><dd>株式会社PUMPS</dd></div>
-        <div><dt>事業内容</dt><dd>野球スクール事業</dd></div>
-        <div><dt>コンセプト</dt><dd>打つ・投げる・走る、その先へ</dd></div>
+        <div><dt>事業内容</dt><dd>野球スクール事業 / スポーツ科学による測定・分析</dd></div>
+        <div><dt>コンセプト</dt><dd>才能を、科学する。打つ・投げる・走る、その先へ。</dd></div>
         <div><dt>所在地</dt><dd>広島県（詳細住所を後で設定）</dd></div>
         <div><dt>設立</dt><dd>＜設立年月を後で設定＞</dd></div>
         <div><dt>連絡先</dt><dd>info@example.com</dd></div>
@@ -176,39 +223,40 @@
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
-  <section class="section contact" id="contact">
-    <div class="container contact-inner reveal">
-      <p class="section-eyebrow">CONTACT</p>
-      <h2 class="section-title">まずは、無料体験から。</h2>
-      <p class="section-lead">体験・入会・お問い合わせはこちらから。見学だけでも歓迎です。</p>
+  <!-- ===== CTA ===== -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h2>まずは、無料体験から。</h2>
+      <p>あなたの「今の実力」をデータで測定。体験・入会・お問い合わせはこちらから。見学だけでも歓迎です。</p>
       <div class="hero-actions">
-        <a href="mailto:info@example.com" class="btn btn-primary">無料体験を申し込む</a>
-        <a href="tel:000-0000-0000" class="btn btn-ghost">000-0000-0000</a>
+        <a href="mailto:info@example.com" class="btn btn-light">無料体験を申し込む <span class="arr">→</span></a>
+        <a href="tel:000-0000-0000" class="btn btn-ghost" style="border-color:#fff;color:#fff">000-0000-0000</a>
       </div>
     </div>
   </section>
 
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <img src="assets/img/logo.png" alt="HAKI pro / 株式会社PUMPS" class="footer-logo" />
-      <nav class="footer-nav" aria-label="フッターナビ">
-        <a href="#concept">CONCEPT</a>
-        <a href="#business">PROGRAM</a>
-        <a href="#process">METHOD</a>
-        <a href="#contact">CONTACT</a>
-      </nav>
-      <p class="copyright">&copy; <span id="year"></span> PUMPS Inc. — 打つ・投げる・走る、その先へ。</p>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/img/logo.png" alt="株式会社PUMPS" class="footer-logo" />
+          <p>広島発の野球スクール。スポーツ科学で「打つ・投げる・走る」を測定・分析・評価し、考えて動ける選手を育てます。</p>
+        </div>
+        <nav class="footer-nav" aria-label="フッターナビ">
+          <a href="#concept">Concept</a>
+          <a href="#abilities">Measure</a>
+          <a href="#program">Program</a>
+          <a href="#flow">Flow</a>
+          <a href="#company">Company</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <p class="footer-bottom">&copy; <span id="year"></span> PUMPS Inc. — 才能を、科学する。</p>
     </div>
   </footer>
 
-  <!-- Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <!-- App -->
-  <script src="assets/js/earth.js?v=3" defer></script>
-  <script src="assets/js/main.js?v=2" defer></script>
+  <script src="assets/js/main.js?v=3" defer></script>
 </body>
 </html>
