@@ -30,49 +30,15 @@
   const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xbfd8ff, size: 0.05, sizeAttenuation: true, transparent: true, opacity: 0.9 }));
   scene.add(stars);
 
-  // ---- continents [lon,lat] ----
-  const CONT = [
-    [[-165,62],[-150,70],[-95,72],[-82,63],[-60,60],[-52,48],[-66,44],[-80,42],[-75,35],[-81,25],[-97,18],[-105,23],[-115,30],[-124,40],[-128,50],[-150,58]],
-    [[-80,8],[-62,10],[-50,0],[-35,-8],[-40,-23],[-58,-35],[-70,-52],[-73,-40],[-72,-20],[-78,-5]],
-    [[-10,36],[0,44],[3,52],[-5,58],[5,62],[28,70],[40,66],[30,55],[40,46],[28,40],[10,38]],
-    [[-16,16],[10,34],[24,32],[34,30],[44,12],[52,12],[40,-5],[38,-18],[26,-34],[18,-34],[12,-16],[8,4],[-8,6]],
-    [[40,66],[60,72],[100,76],[140,72],[160,68],[178,66],[180,60],[140,52],[135,46],[142,40],[122,40],[120,22],[105,10],[95,16],[88,22],[70,26],[58,40],[48,48],[44,58]],
-    [[68,24],[78,30],[88,24],[92,22],[80,8],[76,16]],
-    [[114,-22],[130,-12],[142,-12],[150,-24],[146,-38],[130,-32],[116,-34]],
-    [[131,31],[134,34],[138,37],[141,40],[139,41],[136,36],[133,33]],
-  ];
-  const TW = 2048, TH = 1024;
-  const lon2x = (lon) => (lon + 180) / 360 * TW;
-  const lat2y = (lat) => (90 - lat) / 180 * TH;
-
-  function makeEarthTexture() {
-    const c = document.createElement("canvas"); c.width = TW; c.height = TH;
-    const x = c.getContext("2d");
-    const g = x.createLinearGradient(0, 0, 0, TH);
-    g.addColorStop(0, "#0a2747"); g.addColorStop(0.5, "#0e3e6e"); g.addColorStop(1, "#081f3c");
-    x.fillStyle = g; x.fillRect(0, 0, TW, TH);
-    // subtle ocean ripples
-    for (let i = 0; i < 9000; i++) { x.fillStyle = "rgba(120,180,240," + (Math.random() * 0.04) + ")"; x.fillRect(Math.random() * TW, Math.random() * TH, 2, 2); }
-    CONT.forEach((poly) => {
-      x.beginPath();
-      poly.forEach((p, i) => { const px = lon2x(p[0]), py = lat2y(p[1]); i ? x.lineTo(px, py) : x.moveTo(px, py); });
-      x.closePath();
-      const lg = x.createLinearGradient(0, 0, 0, TH);
-      lg.addColorStop(0, "#2f7d4a"); lg.addColorStop(0.6, "#1f6b39"); lg.addColorStop(1, "#155233");
-      x.fillStyle = lg; x.fill();
-      x.shadowColor = "rgba(120,235,200,0.8)"; x.shadowBlur = 12;
-      x.strokeStyle = "rgba(150,240,210,0.85)"; x.lineWidth = 2; x.stroke(); x.shadowBlur = 0;
-    });
-    const t = new THREE.CanvasTexture(c);
-    t.anisotropy = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 8;
-    if ("colorSpace" in t) t.colorSpace = THREE.SRGBColorSpace;
-    return t;
-  }
+  // ---- real Earth texture (Natural Earth equirectangular) ----
+  const earthTex = new THREE.TextureLoader().load("assets/img/earth-texture.jpg");
+  if ("colorSpace" in earthTex) earthTex.colorSpace = THREE.SRGBColorSpace;
+  earthTex.anisotropy = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 8;
 
   const globe = new THREE.Group(); scene.add(globe);
   globe.add(new THREE.Mesh(
     new THREE.SphereGeometry(1, 128, 128),
-    new THREE.MeshStandardMaterial({ map: makeEarthTexture(), roughness: 0.82, metalness: 0.08, emissive: 0x0a2036, emissiveIntensity: 0.35 })
+    new THREE.MeshStandardMaterial({ map: earthTex, roughness: 0.88, metalness: 0.05, emissive: 0x0a1a30, emissiveIntensity: 0.25 })
   ));
 
   // ---- atmosphere glow (fresnel rim) ----
