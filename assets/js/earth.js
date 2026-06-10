@@ -10,7 +10,7 @@
 
   const scene = new THREE.Scene();
   const cam = new THREE.PerspectiveCamera(36, 1, 0.05, 100);
-  const CAM_FAR = 3.5, CAM_NEAR = 1.30;
+  const CAM_FAR = 3.5, CAM_NEAR = 1.22;
   cam.position.set(0, 0, CAM_FAR);
 
   const renderer = new THREE.WebGLRenderer({ canvas: mount, antialias: true, alpha: true });
@@ -37,6 +37,8 @@
   const nightTex = tex("assets/img/earth-night.jpg");
   const specTex = tex("assets/img/earth-spec.jpg");
   const cloudTex = tex("assets/img/earth-clouds.jpg");
+  // high-res Seto/Hiroshima region patch (lon 124-142E, lat 25.5-43.5N), blended in on approach
+  const detailTex = tex("assets/img/earth-detail-seto.jpg");
 
   const SUN_DIR = new THREE.Vector3(-1.1, 0.55, 3.6).normalize();
 
@@ -46,6 +48,8 @@
       dayMap: { value: dayTex },
       nightMap: { value: nightTex },
       specMap: { value: specTex },
+      detailMap: { value: detailTex },
+      detailAmt: { value: 0 },
       sunDir: { value: SUN_DIR },
     },
     vertexShader: `
@@ -59,6 +63,7 @@
       }`,
     fragmentShader: `
       uniform sampler2D dayMap; uniform sampler2D nightMap; uniform sampler2D specMap;
+      uniform sampler2D detailMap; uniform float detailAmt;
       uniform vec3 sunDir;
       varying vec2 vUv; varying vec3 vNormal; varying vec3 vWorldPos;
       void main() {
@@ -66,6 +71,11 @@
         float ndl = dot(n, sunDir);
         float dayAmt = smoothstep(-0.08, 0.22, ndl);
         vec3 day = texture2D(dayMap, vUv).rgb;
+        // regional high-res patch: uv rect lon 124..142E -> u 0.844444..0.894444, lat 25.5..43.5N -> v 0.641666..0.741666
+        vec2 dUv = vec2((vUv.x - 0.8444444) / 0.05, (vUv.y - 0.6416667) / 0.1);
+        float inX = smoothstep(0.0, 0.08, dUv.x) * (1.0 - smoothstep(0.92, 1.0, dUv.x));
+        float inY = smoothstep(0.0, 0.08, dUv.y) * (1.0 - smoothstep(0.92, 1.0, dUv.y));
+        day = mix(day, texture2D(detailMap, clamp(dUv, 0.0, 1.0)).rgb, detailAmt * inX * inY);
         vec3 night = texture2D(nightMap, vUv).rgb;
         float ocean = texture2D(specMap, vUv).r;
         vec3 viewDir = normalize(cameraPosition - vWorldPos);
@@ -175,9 +185,10 @@
     globe.quaternion.copy(userQuat).multiply(fromQuat.slerp(targetQuat, rotE));
     const farEff = CAM_FAR * fitMult;
     cam.position.z = farEff + (CAM_NEAR - farEff) * zoomE;
-    cam.fov = 36 - 12 * zoomE; cam.updateProjectionMatrix();
+    cam.fov = 36 - 15 * zoomE; cam.updateProjectionMatrix();
 
     cloudMat.opacity = 0.3 * (1 - 0.85 * zoomE);          // break through the clouds
+    earthMat.uniforms.detailAmt.value = Math.min(1, zoomE * 1.6);
     marker.scale.setScalar(1 - 0.78 * zoomE);             // keep pin proportional at close range
 
     const s = 1 + 0.3 * Math.sin(t * 0.004);
