@@ -121,6 +121,18 @@
       });
     }
 
+    /* Concept globe: scroll rotates & zooms the Earth toward Hiroshima */
+    const concept = document.getElementById("concept");
+    if (concept && window.PUMPSEarth) {
+      ScrollTrigger.create({
+        trigger: concept,
+        start: "top 75%",
+        end: "bottom 55%",
+        scrub: 0.6,
+        onUpdate: (self) => window.PUMPSEarth.setProgress(self.progress),
+      });
+    }
+
     /* Pinned recycle process: scroll spins the 3D ball + advances steps */
     const steps = gsap.utils.toArray(".process-step");
     const fill = document.getElementById("process-fill");
