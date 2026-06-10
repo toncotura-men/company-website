@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PUMPS スクール｜未来を動かす学びの場</title>
-  <meta name="description" content="PUMPS は、一人ひとりの可能性を引き出すスクール事業です。少人数制・実践重視のカリキュラムで、学ぶ力を育てます。" />
+  <title>株式会社PUMPS｜打つ・投げる・走る、その先へ</title>
+  <meta name="description" content="株式会社PUMPSは「野球の循環をデザインする」会社です。健康経営事業・野球スクール事業・硬式球再生事業を通じて、打つ・投げる・走る、その先の価値を創造します。" />
+  <link rel="icon" href="assets/img/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+  <!-- Blueprint grid background (CSS) -->
+  <div class="blueprint" aria-hidden="true"></div>
+
   <!-- ===== Header ===== -->
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="#top" class="brand">
-        <span class="brand-mark">PUMPS</span>
-        <span class="brand-sub">SCHOOL</span>
+        <img src="assets/img/logo.svg" alt="株式会社PUMPS / HAKI pro" class="brand-logo" />
       </a>
       <nav class="nav" aria-label="メインナビゲーション">
-        <a href="#about">PUMPSとは</a>
-        <a href="#courses">コース</a>
-        <a href="#features">特長</a>
-        <a href="#voice">受講者の声</a>
-        <a href="#access">アクセス</a>
-        <a href="#contact" class="nav-cta">お問い合わせ</a>
+        <a href="#concept">CONCEPT</a>
+        <a href="#business">BUSINESS</a>
+        <a href="#process">RECYCLE</a>
+        <a href="#partners">PARTNERS</a>
+        <a href="#company">COMPANY</a>
+        <a href="#contact" class="nav-cta">CONTACT</a>
       </nav>
-      <button class="nav-toggle" aria-label="メニューを開く" aria-expanded="false">
+      <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -34,165 +37,154 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero">
+    <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
     <div class="container hero-inner">
-      <p class="hero-eyebrow">未来を動かす学びの場</p>
-      <h1 class="hero-title">学ぶ力を、<br />一生の力に。</h1>
+      <p class="hero-tag"><span class="blink">●</span> BASEBALL CIRCULATION DESIGN</p>
+      <h1 class="hero-title">
+        <span>打つ・投げる・走る、</span>
+        <span class="accent">その先へ。</span>
+      </h1>
       <p class="hero-lead">
-        PUMPS は、一人ひとりの「やってみたい」を起点にする少人数制スクールです。<br />
-        知識を詰め込むのではなく、自ら考え、動き、やり抜く力を育てます。
+        株式会社PUMPSは、野球というフィールドで生まれる価値を循環させ、再設計する会社です。<br />
+        健康経営・育成・資源再生——3つの事業で「野球のその先」をデザインします。
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">無料体験を申し込む</a>
-        <a href="#courses" class="btn btn-ghost">コースを見る</a>
+        <a href="#business" class="btn btn-primary">事業を見る</a>
+        <a href="#process" class="btn btn-ghost">再生プロセス</a>
+      </div>
+      <dl class="hero-stats">
+        <div><dt>BUSINESS</dt><dd>03</dd></div>
+        <div><dt>CONCEPT</dt><dd>循環</dd></div>
+        <div><dt>SINCE</dt><dd>20XX</dd></div>
+      </dl>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">SCROLL ↓</div>
+  </section>
+
+  <!-- ===== Concept (Earth globe) ===== -->
+  <section class="section concept" id="concept">
+    <div class="container concept-grid">
+      <div class="concept-globe">
+        <canvas id="earth-canvas" aria-hidden="true"></canvas>
+        <span class="globe-label">// CIRCULATION_SYSTEM</span>
+      </div>
+      <div class="concept-text reveal">
+        <p class="section-eyebrow">CONCEPT</p>
+        <h2 class="section-title">野球の<span class="accent">循環</span>をデザインする。</h2>
+        <p class="section-lead">
+          一球は、打たれ、投げられ、走られ、やがて役目を終える。
+          PUMPSはその一球の旅路を止めずに、人の健康へ、次世代の育成へ、そして資源の再生へとつなぎ直します。
+        </p>
+        <ul class="concept-list">
+          <li><span>01</span> 人を動かす — <em>健康経営</em></li>
+          <li><span>02</span> 技を伝える — <em>野球スクール</em></li>
+          <li><span>03</span> 球を還す — <em>硬式球再生</em></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ===== About ===== -->
-  <section class="section" id="about">
+  <!-- ===== Business ===== -->
+  <section class="section business" id="business">
     <div class="container">
-      <p class="section-eyebrow">ABOUT</p>
-      <h2 class="section-title">PUMPSとは</h2>
-      <p class="section-lead">
-        PUMPS（パンプス）は、「学びを通じて人の可能性をくみ上げる（pump up）」をコンセプトにしたスクール事業です。
-        年齢や経験を問わず、それぞれのペースで成長できる環境を提供します。
-      </p>
-      <div class="grid grid-3">
-        <div class="card">
-          <h3>一人ひとりに向き合う</h3>
-          <p>少人数制だからこそ、理解度や目標に合わせて伴走します。</p>
-        </div>
-        <div class="card">
-          <h3>実践からはじめる</h3>
-          <p>手を動かしながら学ぶことで、知識が「使える力」に変わります。</p>
-        </div>
-        <div class="card">
-          <h3>続けられる仕組み</h3>
-          <p>無理のないステップ設計とサポートで、学びを習慣にします。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Courses ===== -->
-  <section class="section section-alt" id="courses">
-    <div class="container">
-      <p class="section-eyebrow">COURSES</p>
-      <h2 class="section-title">コース紹介</h2>
-      <p class="section-lead">目的やレベルに合わせて選べるコースをご用意しています。</p>
-      <div class="grid grid-3">
-        <article class="course-card">
-          <span class="course-tag">ビギナー</span>
-          <h3>ベーシックコース</h3>
-          <p>はじめての方向け。基礎をていねいに、安心して学べます。</p>
-          <p class="course-meta">全8回 / 週1回 / 少人数制</p>
+      <p class="section-eyebrow reveal">BUSINESS</p>
+      <h2 class="section-title reveal">3つの事業</h2>
+      <div class="biz-grid">
+        <article class="biz-card reveal">
+          <div class="biz-figure"><img src="assets/img/silhouette-bat.svg" alt="打つ" /></div>
+          <span class="biz-no">01 / 打つ</span>
+          <h3>健康経営事業</h3>
+          <p>スポーツの知見を活かし、企業と人の健康を「打ち返す力」へ。運動プログラム・健康セミナー・データに基づく職場改善を提供します。</p>
+          <ul class="biz-tags"><li>運動指導</li><li>健康セミナー</li><li>データ分析</li></ul>
         </article>
-        <article class="course-card">
-          <span class="course-tag">スタンダード</span>
-          <h3>ステップアップコース</h3>
-          <p>基礎を終えた方が、実践的なスキルを身につけます。</p>
-          <p class="course-meta">全12回 / 週1〜2回 / 個別課題</p>
+        <article class="biz-card reveal">
+          <div class="biz-figure"><img src="assets/img/silhouette-throw.svg" alt="投げる" /></div>
+          <span class="biz-no">02 / 投げる</span>
+          <h3>野球スクール事業</h3>
+          <p>「投げる」を科学する。少人数制・データ計測・一人ひとりに合わせた育成で、技術と考える力を未来へ送り込みます。</p>
+          <ul class="biz-tags"><li>少人数制</li><li>動作解析</li><li>育成プログラム</li></ul>
         </article>
-        <article class="course-card">
-          <span class="course-tag">アドバンス</span>
-          <h3>マスターコース</h3>
-          <p>目標達成に向けて、専門的に深く学びたい方へ。</p>
-          <p class="course-meta">全16回 / 個別メンタリング付き</p>
+        <article class="biz-card reveal">
+          <div class="biz-figure"><img src="assets/img/silhouette-run.svg" alt="走る" /></div>
+          <span class="biz-no">03 / 走る</span>
+          <h3>硬式球再生事業</h3>
+          <p>役目を終えた硬式球を「走り続けさせる」。回収・再生・再供給の循環で、資源とコストとサステナビリティを同時に前へ。</p>
+          <ul class="biz-tags"><li>回収</li><li>再生</li><li>再供給</li></ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Features ===== -->
-  <section class="section" id="features">
-    <div class="container">
-      <p class="section-eyebrow">FEATURES</p>
-      <h2 class="section-title">PUMPSの特長</h2>
-      <div class="features">
-        <div class="feature">
-          <span class="feature-num">01</span>
-          <div>
-            <h3>少人数制クラス</h3>
-            <p>1クラス少人数だから、質問しやすく、置いていかれません。</p>
-          </div>
+  <!-- ===== Recycle process (pinned, 3D baseball + ScrollTrigger) ===== -->
+  <section class="process" id="process">
+    <div class="process-sticky">
+      <div class="container process-inner">
+        <div class="process-stage">
+          <canvas id="baseball-canvas" aria-hidden="true"></canvas>
+          <span class="drag-hint">⟲ DRAG TO ROTATE</span>
         </div>
-        <div class="feature">
-          <span class="feature-num">02</span>
-          <div>
-            <h3>経験豊富な講師陣</h3>
-            <p>現場を知る講師が、実例を交えてわかりやすく指導します。</p>
-          </div>
-        </div>
-        <div class="feature">
-          <span class="feature-num">03</span>
-          <div>
-            <h3>柔軟なスケジュール</h3>
-            <p>振替制度や録画フォローで、忙しい方も続けられます。</p>
-          </div>
-        </div>
-        <div class="feature">
-          <span class="feature-num">04</span>
-          <div>
-            <h3>安心のサポート体制</h3>
-            <p>受講中も卒業後も、学びと挑戦をサポートします。</p>
-          </div>
+        <div class="process-panel">
+          <p class="section-eyebrow">RECYCLE PROCESS</p>
+          <h2 class="section-title">一球が、また走り出すまで。</h2>
+          <p class="section-lead">スクロールでボールが回転し、硬式球再生の全工程を一周します。</p>
+          <ol class="process-steps">
+            <li class="process-step" data-step="0"><span>01</span><div><strong>回収 / COLLECT</strong><em>使用済みの硬式球を全国から回収。</em></div></li>
+            <li class="process-step" data-step="1"><span>02</span><div><strong>分解 / DISASSEMBLE</strong><em>表皮・芯・糸を丁寧に分離。</em></div></li>
+            <li class="process-step" data-step="2"><span>03</span><div><strong>洗浄 / CLEAN</strong><em>素材を洗浄し状態を検査。</em></div></li>
+            <li class="process-step" data-step="3"><span>04</span><div><strong>再縫製 / RESTITCH</strong><em>規格に合わせ再び縫い上げる。</em></div></li>
+            <li class="process-step" data-step="4"><span>05</span><div><strong>検品 / INSPECT</strong><em>反発・重量・真円度を測定。</em></div></li>
+            <li class="process-step" data-step="5"><span>06</span><div><strong>出荷 / SHIP</strong><em>再生球として再びグラウンドへ。</em></div></li>
+          </ol>
+          <div class="process-bar"><i id="process-fill"></i></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Voice ===== -->
-  <section class="section section-alt" id="voice">
+  <!-- ===== Partners (CSS grid auto-fit) ===== -->
+  <section class="section partners" id="partners">
     <div class="container">
-      <p class="section-eyebrow">VOICE</p>
-      <h2 class="section-title">受講者の声</h2>
-      <div class="grid grid-3">
-        <blockquote class="voice-card">
-          <p>「少人数なので質問しやすく、確実に力がつきました。」</p>
-          <footer>— ベーシックコース 受講者</footer>
-        </blockquote>
-        <blockquote class="voice-card">
-          <p>「実践中心の授業で、学んだことをすぐに活かせています。」</p>
-          <footer>— ステップアップコース 受講者</footer>
-        </blockquote>
-        <blockquote class="voice-card">
-          <p>「目標に合わせた指導のおかげで、挑戦を続けられています。」</p>
-          <footer>— マスターコース 受講者</footer>
-        </blockquote>
+      <p class="section-eyebrow reveal">PARTNERS</p>
+      <h2 class="section-title reveal">循環を支えるパートナー</h2>
+      <div class="partner-grid">
+        <div class="partner-logo">CLUB / 01</div>
+        <div class="partner-logo">SCHOOL / 02</div>
+        <div class="partner-logo">FACTORY / 03</div>
+        <div class="partner-logo">CORP / 04</div>
+        <div class="partner-logo">LEAGUE / 05</div>
+        <div class="partner-logo">SUPPLY / 06</div>
+        <div class="partner-logo">CITY / 07</div>
+        <div class="partner-logo">LAB / 08</div>
       </div>
+      <p class="partner-note">// ロゴはプレースホルダです。実ロゴデータで差し替え可能。</p>
     </div>
   </section>
 
-  <!-- ===== Access ===== -->
-  <section class="section" id="access">
+  <!-- ===== Company ===== -->
+  <section class="section company" id="company">
     <div class="container">
-      <p class="section-eyebrow">ACCESS</p>
-      <h2 class="section-title">アクセス</h2>
-      <div class="access">
-        <dl class="access-info">
-          <div><dt>スクール名</dt><dd>PUMPS スクール</dd></div>
-          <div><dt>所在地</dt><dd>〒000-0000 ＜住所を後で設定＞</dd></div>
-          <div><dt>開講時間</dt><dd>平日 10:00–21:00 / 土日 10:00–18:00</dd></div>
-          <div><dt>定休日</dt><dd>＜定休日を後で設定＞</dd></div>
-        </dl>
-        <div class="access-map" aria-hidden="true">
-          <p>地図はこちらに表示予定<br />（Google マップ埋め込みを後で設定）</p>
-        </div>
-      </div>
+      <p class="section-eyebrow reveal">COMPANY</p>
+      <h2 class="section-title reveal">会社概要</h2>
+      <dl class="company-table reveal">
+        <div><dt>商号</dt><dd>株式会社PUMPS</dd></div>
+        <div><dt>事業内容</dt><dd>健康経営事業 / 野球スクール事業 / 硬式球再生事業</dd></div>
+        <div><dt>コンセプト</dt><dd>打つ・投げる・走る、その先へ — 野球の循環をデザインする</dd></div>
+        <div><dt>所在地</dt><dd>＜住所を後で設定＞</dd></div>
+        <div><dt>設立</dt><dd>＜設立年月を後で設定＞</dd></div>
+        <div><dt>連絡先</dt><dd>info@example.com</dd></div>
+      </dl>
     </div>
   </section>
 
   <!-- ===== Contact ===== -->
-  <section class="section section-cta" id="contact">
-    <div class="container">
-      <p class="section-eyebrow light">CONTACT</p>
-      <h2 class="section-title light">まずは無料体験から</h2>
-      <p class="section-lead light">
-        ご相談・ご見学はいつでも歓迎です。お気軽にお問い合わせください。
-      </p>
+  <section class="section contact" id="contact">
+    <div class="container contact-inner reveal">
+      <p class="section-eyebrow">CONTACT</p>
+      <h2 class="section-title">その先を、一緒に。</h2>
+      <p class="section-lead">事業連携・取材・採用などのお問い合わせはこちらから。</p>
       <div class="hero-actions">
         <a href="mailto:info@example.com" class="btn btn-primary">メールで問い合わせる</a>
-        <a href="tel:000-0000-0000" class="btn btn-ghost light">お電話：000-0000-0000</a>
+        <a href="tel:000-0000-0000" class="btn btn-ghost">000-0000-0000</a>
       </div>
     </div>
   </section>
@@ -200,20 +192,24 @@
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="brand">
-        <span class="brand-mark">PUMPS</span>
-        <span class="brand-sub">SCHOOL</span>
-      </div>
-      <nav class="footer-nav" aria-label="フッターナビゲーション">
-        <a href="#about">PUMPSとは</a>
-        <a href="#courses">コース</a>
-        <a href="#features">特長</a>
-        <a href="#contact">お問い合わせ</a>
+      <img src="assets/img/logo.svg" alt="株式会社PUMPS" class="footer-logo" />
+      <nav class="footer-nav" aria-label="フッターナビ">
+        <a href="#concept">CONCEPT</a>
+        <a href="#business">BUSINESS</a>
+        <a href="#process">RECYCLE</a>
+        <a href="#contact">CONTACT</a>
       </nav>
-      <p class="copyright">&copy; <span id="year"></span> PUMPS School. All rights reserved.</p>
+      <p class="copyright">&copy; <span id="year"></span> PUMPS Inc. — 打つ・投げる・走る、その先へ。</p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- App -->
+  <script src="assets/js/baseball.js" defer></script>
+  <script src="assets/js/earth.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" fill="none">
+  <g fill="#000000">
+    <!-- head -->
+    <circle cx="104" cy="46" r="17"/>
+    <!-- cap brim -->
+    <path d="M120 42 q14 -2 20 4 q-12 2 -20 4 z"/>
+    <!-- torso leaning into pitch -->
+    <path d="M92 62 q24 -4 32 18 q6 20 -2 40 q-6 16 -22 18 q-16 2 -24 -12 q-6 -14 2 -30 q6 -26 14 -34 z"/>
+    <!-- throwing arm cocked back high -->
+    <path d="M118 78 q18 -12 24 -34 q3 -12 2 -24 l13 -1 q2 16 -2 32 q-7 28 -27 42 z"/>
+    <!-- glove arm forward -->
+    <path d="M96 92 q-22 -2 -42 8 q-10 5 -18 13 l8 12 q9 -8 20 -12 q20 -8 38 -8 z"/>
+    <!-- stride leg forward -->
+    <path d="M82 134 q-10 28 -30 44 q-12 10 -24 14 l-4 -16 q12 -5 24 -16 q16 -16 22 -38 z"/>
+    <!-- drive leg back -->
+    <path d="M108 138 q10 28 26 44 q10 10 22 16 l8 -14 q-12 -7 -22 -18 q-14 -16 -20 -38 z"/>
+    <!-- ball in hand -->
+    <circle cx="158" cy="20" r="8"/>
+  </g>
+</svg>

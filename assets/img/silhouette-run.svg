@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" fill="none">
+  <g fill="#000000">
+    <!-- head -->
+    <circle cx="118" cy="44" r="16"/>
+    <!-- cap brim -->
+    <path d="M133 40 q14 0 19 6 q-12 1 -20 3 z"/>
+    <!-- torso leaning forward in sprint -->
+    <path d="M104 60 q22 -2 28 18 q4 18 -4 34 q-8 16 -24 16 q-14 0 -20 -14 q-4 -14 4 -28 q6 -22 16 -26 z"/>
+    <!-- front driving arm -->
+    <path d="M126 78 q16 -10 22 -28 l13 4 q-6 22 -24 36 z"/>
+    <!-- back arm bent -->
+    <path d="M100 92 q-18 4 -30 22 q-6 9 -8 18 l13 4 q3 -12 11 -22 q10 -12 22 -16 z"/>
+    <!-- front leg high knee -->
+    <path d="M112 124 q-2 24 -14 40 q-8 11 -20 16 l-8 -12 q12 -7 20 -18 q10 -16 12 -36 z"/>
+    <!-- back leg extended -->
+    <path d="M120 128 q14 22 36 30 q12 4 24 3 l0 14 q-16 2 -32 -4 q-26 -10 -40 -30 z"/>
+  </g>
+</svg>
