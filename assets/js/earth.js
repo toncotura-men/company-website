@@ -10,7 +10,7 @@
 
   const scene = new THREE.Scene();
   const cam = new THREE.PerspectiveCamera(36, 1, 0.05, 100);
-  const CAM_FAR = 3.5, CAM_NEAR = 1.52;
+  const CAM_FAR = 3.5, CAM_NEAR = 1.30;
   cam.position.set(0, 0, CAM_FAR);
 
   const renderer = new THREE.WebGLRenderer({ canvas: mount, antialias: true, alpha: true });
@@ -104,7 +104,15 @@
   const startQuat = new THREE.Quaternion()
     .setFromUnitVectors(dirFromLatLon(12, 133), new THREE.Vector3(0, 0, 1))
     .premultiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.08, 0, 0)));
-  const targetQuat = new THREE.Quaternion().setFromUnitVectors(HIRO, new THREE.Vector3(0, 0, 1));
+  /* end pose: Hiroshima centered AND north pointing up on screen */
+  const targetQuat = (() => {
+    const north = new THREE.Vector3(0, 1, 0);
+    const t = north.clone().sub(HIRO.clone().multiplyScalar(north.dot(HIRO))).normalize();
+    const b = new THREE.Vector3().crossVectors(t, HIRO);
+    return new THREE.Quaternion()
+      .setFromRotationMatrix(new THREE.Matrix4().makeBasis(b, t, HIRO))
+      .invert();
+  })();
 
   let fitMult = 1; // portrait canvases pull the camera back so the full globe stays in frame
   function resize() {
@@ -166,10 +174,10 @@
     globe.quaternion.copy(userQuat).multiply(fromQuat.slerp(targetQuat, rotE));
     const farEff = CAM_FAR * fitMult;
     cam.position.z = farEff + (CAM_NEAR - farEff) * zoomE;
-    cam.fov = 36 - 6 * zoomE; cam.updateProjectionMatrix();
+    cam.fov = 36 - 12 * zoomE; cam.updateProjectionMatrix();
 
     cloudMat.opacity = 0.3 * (1 - 0.85 * zoomE);          // break through the clouds
-    marker.scale.setScalar(1 - 0.5 * zoomE);              // keep pin proportional
+    marker.scale.setScalar(1 - 0.78 * zoomE);             // keep pin proportional at close range
 
     const s = 1 + 0.3 * Math.sin(t * 0.004);
     ring.scale.setScalar(s); ring.material.opacity = (0.9 - 1.4 * (s - 1)) * (0.35 + 0.65 * rotE);
