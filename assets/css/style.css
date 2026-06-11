@@ -160,12 +160,13 @@ ul, ol { margin: 0; }
 /* metallic PUMPS wordmark on right hex panel */
 .hero-mark { text-align: center; }
 .hero-mark .mark {
-  width: clamp(260px, 36vw, 540px); aspect-ratio: 1027 / 186; margin-inline: auto;
+  width: clamp(220px, 30vw, 440px); aspect-ratio: 1230 / 483; margin-inline: auto;
+  max-width: 100%;
   /* metallic fill */
   background: linear-gradient(176deg, #ffffff 0%, #d4def0 24%, #93a7cb 44%, #5a73a4 54%, #f0f5ff 66%, #7f95bf 84%, #b3c3e0 100%);
-  /* shaped by the HAKI pro logo */
-  -webkit-mask: url("../img/logo-haki.png") center / contain no-repeat;
-          mask: url("../img/logo-haki.png") center / contain no-repeat;
+  /* shaped by the PUMPS logo */
+  -webkit-mask: url("../img/pumps-logo.png") center / contain no-repeat;
+          mask: url("../img/pumps-logo.png") center / contain no-repeat;
   /* 3D depth: lift + bevel highlight + cast shadow */
   filter:
     drop-shadow(0 1px 0 rgba(255,255,255,.45))
