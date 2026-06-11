@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=21" />
+  <link rel="stylesheet" href="assets/css/style.css?v=22" />
 </head>
 <body>
 
@@ -30,7 +30,7 @@
         <a href="#audience">個人の方</a>
         <a href="#menu">プログラム<span class="caret">▼</span></a>
         <a href="#contact">施設・アクセス<span class="caret">▼</span></a>
-        <a href="#hero-news">お知らせ</a>
+        <a href="#news">お知らせ</a>
         <a href="#contact" class="nav-cta"><span>無料体験</span><span>お問い合わせ</span></a>
       </nav>
       <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
@@ -42,8 +42,8 @@
   <!-- ===== Floating reserve button ===== -->
   <a href="#contact" class="reserve" aria-label="無料体験 受付中">無料体験<small>受付中 ≫</small></a>
 
-  <!-- ===== Hero (NEWS-style main visual) ===== -->
-  <section class="hero" id="hero-news">
+  <!-- ===== Hero (corporate message) ===== -->
+  <section class="hero" id="top-hero">
     <div class="hero-bg" aria-hidden="true">
       <div class="panel-left"></div>
       <div class="panel-right"></div>
@@ -51,24 +51,13 @@
     </div>
     <canvas class="net-canvas" data-color="180,150,255" aria-hidden="true"></canvas>
     <div class="hero-inner">
-      <div class="hero-news">
-        <div class="en">NEWS</div>
-        <div class="rule"></div>
-        <div class="jp">お知らせ</div>
-        <a href="#hero-news" class="btn btn-violet seeall"><span>一覧を見る</span><span class="arr">→</span></a>
-        <div class="news-list">
-          <article class="news-card">
-            <div class="news-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M3 13a9 9 0 0 1 18 0"/><path d="M3 13l6 6M21 13l-6 6"/><circle cx="12" cy="13" r="2"/></svg></div>
-            <div><div class="news-meta">2025.12.11<span class="tag">［ニュース］</span></div><p>冬季データ計測会を開催。スイング・球速の測定枠を増設しました。</p></div>
-          </article>
-          <article class="news-card">
-            <div class="news-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M4 19V5M4 19h16"/><path d="M8 16l3-5 3 3 4-7"/></svg></div>
-            <div><div class="news-meta">2025.11.02<span class="tag">［ニュース］</span></div><p>個別レポートを刷新。5項目のレーダー評価がより見やすくなりました。</p></div>
-          </article>
-          <article class="news-card">
-            <div class="news-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg></div>
-            <div><div class="news-meta">2025.10.09<span class="tag">［ニュース］</span></div><p>無料体験の受付を開始しました。チーム単位の測定も承ります。</p></div>
-          </article>
+      <div class="hero-msg">
+        <p class="hero-eyebrow">BASEBALL SCIENCE LAB / HIROSHIMA</p>
+        <h1 class="hero-message">才能を<br /><span class="accent">科学する</span></h1>
+        <p class="hero-lead">広島発の野球スクール。データと科学で「打つ・投げる・走る」を測定・分析・評価し、考えて動ける選手を育てます。</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-violet"><span>無料体験を申し込む</span><span class="arr">→</span></a>
+          <a href="#menu" class="btn btn-ghost-light"><span>プログラムを見る</span><span class="arr">→</span></a>
         </div>
       </div>
       <div class="hero-mark">
@@ -211,6 +200,22 @@
     </div>
   </section>
 
+  <!-- ===== NEWS (bottom) ===== -->
+  <section class="news-section" id="news">
+    <div class="container">
+      <div class="bighead reveal">
+        <div class="en">NEWS</div>
+        <div class="rule"></div>
+        <div class="jp">お知らせ</div>
+      </div>
+      <div class="news-rows reveal d1">
+        <a href="#news" class="news-row"><span class="nd">2025.12.11</span><span class="nt">ニュース</span><span class="nx">冬季データ計測会を開催。スイング・球速の測定枠を増設しました。</span></a>
+        <a href="#news" class="news-row"><span class="nd">2025.11.02</span><span class="nt">ニュース</span><span class="nx">個別レポートを刷新。5項目のレーダー評価がより見やすくなりました。</span></a>
+        <a href="#news" class="news-row"><span class="nd">2025.10.09</span><span class="nt">ニュース</span><span class="nx">無料体験の受付を開始しました。チーム単位の測定も承ります。</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
     <div class="container">
@@ -226,7 +231,7 @@
           <a href="#audience">チーム・団体の方</a>
           <a href="#menu">プログラム</a>
           <a href="#audience">個人の方</a>
-          <a href="#hero-news">お知らせ</a>
+          <a href="#news">お知らせ</a>
           <a href="#contact">お問い合わせ</a>
         </nav>
       </div>
@@ -234,6 +239,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=21" defer></script>
+  <script src="assets/js/main.js?v=22" defer></script>
 </body>
 </html>
