@@ -379,6 +379,12 @@ ul, ol { margin: 0; }
   transition: border-color .25s, box-shadow .25s, transform .25s;
 }
 .phil-card:hover { border-color: rgba(25,212,255,.6); box-shadow: 0 14px 34px rgba(0,0,0,.4); transform: translateY(-5px); }
+.phil-card .phil-wm {
+  position: absolute; left: 18px; bottom: -8px; z-index: 0; pointer-events: none; white-space: nowrap;
+  font-family: var(--disp); font-weight: 700; text-transform: uppercase; letter-spacing: .02em;
+  font-size: clamp(3rem, 6.5vw, 5rem); line-height: .8; color: rgba(255,255,255,.06);
+}
+.phil-card .pn, .phil-card h3, .phil-card p, .phil-card .more { position: relative; z-index: 1; }
 .phil-card .pn { font-family: var(--disp); font-weight: 600; letter-spacing: .2em; font-size: .76rem; color: var(--cyan); text-transform: uppercase; }
 .phil-card h3 { font-size: 1.42rem; font-weight: 900; margin: 8px 0 10px; }
 .phil-card p { color: #cdc7e6; font-size: .95rem; line-height: 1.8; }
