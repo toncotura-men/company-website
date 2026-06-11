@@ -171,4 +171,30 @@
     } else { started = true; animate(); }
   })();
 
+  /* =======================================================
+     Apply / inquiry forms -> compose a prefilled email
+     ======================================================= */
+  document.querySelectorAll("form.apply-form").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var to = form.getAttribute("data-mailto") || "info@example.com";
+      var subject = form.getAttribute("data-subject") || "お問い合わせ";
+      var groups = {}; var order = [];
+      form.querySelectorAll("input[name], select[name], textarea[name]").forEach(function (el) {
+        var key = el.getAttribute("name");
+        if (order.indexOf(key) === -1) order.push(key);
+        if (el.type === "checkbox") { if (el.checked) (groups[key] = groups[key] || []).push(el.value); }
+        else if (el.value.trim() !== "") { groups[key] = [el.value.trim()]; }
+      });
+      var lines = order.filter(function (k) { return groups[k]; })
+        .map(function (k) { return "■ " + k + "\n" + groups[k].join("、"); });
+      var body = "PUMPS お申し込み・お問い合わせ\n\n" + lines.join("\n\n") +
+        "\n\n----------------------------------------\nこのメールをそのまま送信してください。";
+      window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      var sent = form.querySelector(".form-sent");
+      if (sent) sent.style.display = "block";
+    });
+  });
+
 })();
