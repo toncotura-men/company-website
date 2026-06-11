@@ -179,8 +179,14 @@ ul, ol { margin: 0; }
 .hero-msg { color: #fff; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-family: var(--disp); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: .9rem; color: var(--cyan); margin-bottom: 24px; }
 .hero-eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--cyan); }
-.hero-message { font-family: var(--jp); font-weight: 900; font-size: clamp(2.8rem, 7vw, 5.4rem); line-height: 1.12; letter-spacing: .03em; }
-.hero-message .accent { color: var(--cyan); text-shadow: 0 6px 34px rgba(25,212,255,.45); }
+.hero-message {
+  font-family: "Dela Gothic One", "Noto Sans JP", sans-serif; font-weight: 400;
+  font-size: clamp(2.6rem, 6.2vw, 5.2rem); line-height: 1.3; letter-spacing: .05em;
+  background: linear-gradient(180deg, #ffffff 0%, #dde8ff 48%, #9fb6e6 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.45));
+}
+.hero-message .accent { -webkit-text-fill-color: var(--cyan); color: var(--cyan); text-shadow: 0 0 32px rgba(25,212,255,.55); }
 .hero-lead { margin-top: 26px; max-width: 32em; color: #cdd4e2; font-size: 1.1rem; font-weight: 500; line-height: 1.9; }
 .hero-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; }
 
