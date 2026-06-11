@@ -615,7 +615,7 @@ ul, ol { margin: 0; }
 /* ===== Representative message ===== */
 .rep-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(36px, 5vw, 70px); align-items: start; }
 .rep-frame {
-  position: relative; overflow: hidden; aspect-ratio: 5/6; max-width: 380px;
+  position: relative; overflow: hidden; aspect-ratio: 5/4; max-width: 420px;
   background: linear-gradient(150deg, var(--pp-800), var(--bl-800));
   border: 1px solid rgba(123,92,255,.35);
   clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
