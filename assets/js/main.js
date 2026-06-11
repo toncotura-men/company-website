@@ -110,7 +110,7 @@
     var target = [0.86, 0.72, 0.8, 0.66, 0.78];
     var N = 5, started = false, progress = reduce ? 1 : 0;
 
-    function init() { var f = fit(canvas); ctx = f.ctx; W = f.w; H = f.h; cx = W / 2; cy = H / 2; R = Math.min(W, H) * 0.30; }
+    function init() { var f = fit(canvas); ctx = f.ctx; W = f.w; H = f.h; cx = W / 2; cy = H / 2; R = Math.min(W, H) * 0.29; }
     function pt(i, rad) { var a = -Math.PI / 2 + (i / N) * Math.PI * 2; return [cx + Math.cos(a) * rad, cy + Math.sin(a) * rad]; }
     function draw(prog) {
       ctx.clearRect(0, 0, W, H);
@@ -122,7 +122,7 @@
       ctx.fillStyle = "#fff"; ctx.font = "700 12px 'Noto Sans JP',sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
       for (var s = 0; s < N; s++) {
         var e = pt(s, R); ctx.strokeStyle = "rgba(255,255,255,0.2)"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]); ctx.stroke();
-        var lp = pt(s, R + 18); ctx.fillText(labels[s], lp[0], lp[1]);
+        var lp = pt(s, R + 15); ctx.fillText(labels[s], lp[0], lp[1]);
       }
       ctx.beginPath();
       for (var d = 0; d <= N; d++) { var idx = d % N, dp = pt(idx, R * target[idx] * prog); d ? ctx.lineTo(dp[0], dp[1]) : ctx.moveTo(dp[0], dp[1]); }
