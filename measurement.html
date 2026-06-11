@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=4" />
+  <link rel="stylesheet" href="assets/css/style.css?v=5" />
 </head>
 <body>
 
@@ -37,6 +37,7 @@
   <section class="page-hero">
     <div class="panel diag" aria-hidden="true"></div>
     <canvas class="net-canvas" data-color="180,150,255" aria-hidden="true"></canvas>
+    
     <div class="container page-hero-inner">
       <div class="breadcrumb"><a href="index.html">HOME</a><span>/</span><a href="index.html#menu">PROGRAM</a><span>/</span>MEASUREMENT</div>
       <div class="en">MEASUREMENT</div>
@@ -46,6 +47,17 @@
       <div class="chips"><span class="chip">5項目測定</span><span class="chip">レーダー評価</span><span class="chip">個別レポート</span></div>
     </div>
   </section>
+
+  <div class="prog-tabs-wrap">
+    <div class="container">
+      <nav class="prog-tabs" aria-label="プログラム切り替え">
+        <a href="batting.html">バッティング<span class="tn">BATTING</span></a>
+        <a href="pitching.html">ピッチング<span class="tn">PITCHING</span></a>
+        <a href="running.html">走塁・フィジカル<span class="tn">RUNNING</span></a>
+        <a href="measurement.html" class="active">測定・分析<span class="tn">MEASUREMENT</span></a>
+      </nav>
+    </div>
+  </div>
 
   <section class="page-section">
     <div class="container">
@@ -58,11 +70,11 @@
     </div>
   </section>
 
-  <section class="page-section alt">
+  <section class="page-section">
     <div class="container about-grid">
       <div class="about-copy reveal">
         <div class="sec-head"><div class="en">REPORT</div><h2>5項目を、1枚のレーダーに。</h2><p>計測した5つの基礎能力をレーダーチャートに集約。強みと伸びしろが一目でわかり、次のトレーニングの指針になります。</p></div>
-        <a href="index.html#contact" class="btn btn-dark"><span>無料体験で測ってみる</span><span class="arr">→</span></a>
+        <a href="index.html#contact" class="btn btn-dark"><span>無料体験で測ってみる</span><span class="arr">&rarr;</span></a>
       </div>
       <div class="about-visual reveal d1">
         <div class="tag-chip">DATA REPORT</div>
@@ -84,7 +96,7 @@
     </div>
   </section>
 
-  <section class="page-section">
+  <section class="page-section alt">
     <div class="container">
       <div class="sec-head reveal"><div class="en">FLOW</div><h2>うまくなる仕組み</h2><p>測って終わりではなく、分析・評価し、トレーニングへ繋げ、再計測で成長を確認します。</p></div>
       <div class="flow-row reveal">
@@ -102,8 +114,8 @@
       <h2>まずは、無料体験から。</h2>
       <p>測定・分析の体験・お問い合わせはこちら。あなたの「今の実力」をデータで測定します。見学だけでも歓迎です。</p>
       <div class="actions">
-        <a href="mailto:info@example.com" class="btn btn-lime"><span>無料体験を申し込む</span><span class="arr">→</span></a>
-        <a href="index.html#menu" class="btn btn-ghost-light"><span>他のプログラムを見る</span><span class="arr">→</span></a>
+        <a href="mailto:info@example.com" class="btn btn-lime"><span>無料体験を申し込む</span><span class="arr">&rarr;</span></a>
+        <a href="index.html#menu" class="btn btn-ghost-light"><span>他のプログラムを見る</span><span class="arr">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -129,6 +141,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=4" defer></script>
+  <script src="assets/js/main.js?v=5" defer></script>
 </body>
 </html>
