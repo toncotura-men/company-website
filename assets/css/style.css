@@ -189,7 +189,8 @@ ul, ol { margin: 0; }
 }
 .hero-message .accent { -webkit-text-fill-color: var(--cyan); color: var(--cyan); text-shadow: 0 0 32px rgba(25,212,255,.55); }
 .hero-lead { margin-top: 26px; max-width: 32em; color: #cdd4e2; font-size: 1.1rem; font-weight: 500; line-height: 1.9; }
-.hero-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; max-width: 32em; font-size: 1.1rem; }
+.hero-actions .btn { padding: 14px 18px; gap: 12px; font-size: .9rem; }
 
 /* bottom news section */
 .news-section { padding: clamp(72px, 9vw, 110px) 0; background: var(--paper-2); }
