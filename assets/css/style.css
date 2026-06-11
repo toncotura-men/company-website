@@ -96,7 +96,7 @@ ul, ol { margin: 0; }
 .nav-cta {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   background: var(--lime); color: var(--ink); padding: 0 24px; margin-left: 8px;
-  font-weight: 700; font-size: .76rem; line-height: 1.45; letter-spacing: .02em;
+  font-weight: 700; font-size: .68rem; line-height: 1.45; letter-spacing: .02em;
   text-align: center; white-space: nowrap; transition: background .2s;
 }
 .nav-cta:hover { background: var(--lime-bright); }
@@ -158,7 +158,8 @@ ul, ol { margin: 0; }
 .news-meta .tag { color: rgba(255,255,255,.7); margin-left: 8px; }
 .news-card p { font-size: .92rem; margin-top: 4px; line-height: 1.6; }
 /* metallic PUMPS wordmark on right hex panel */
-.hero-mark { text-align: center; transform: translateX(7%); }
+/* centered inside the blue diagonal band (57.5%–100% at mid height) */
+.hero-mark { position: absolute; top: 50%; transform: translateY(-50%); left: 57.5%; right: 0; z-index: 2; text-align: center; }
 .hero-mark .mark {
   width: clamp(220px, 30vw, 440px); aspect-ratio: 1230 / 483; margin-inline: auto;
   max-width: 100%;
