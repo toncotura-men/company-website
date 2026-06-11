@@ -122,13 +122,13 @@ ul, ol { margin: 0; }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
 /* right blue hex panel via clip-path diagonal */
 .hero-bg .panel-right {
-  position: absolute; inset: 0; left: 52%;
+  position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--bl-700), var(--bl-800));
-  clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(70.5% 0, 100% 0, 100% 100%, 54.5% 100%);
 }
 .hero-bg .hex {
-  position: absolute; inset: 0; left: 52%; opacity: .5;
-  clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
+  position: absolute; inset: 0; opacity: .5;
+  clip-path: polygon(70.5% 0, 100% 0, 100% 100%, 54.5% 100%);
   background-image:
     repeating-linear-gradient(60deg, rgba(255,255,255,.06) 0 1px, transparent 1px 26px),
     repeating-linear-gradient(-60deg, rgba(255,255,255,.06) 0 1px, transparent 1px 26px),
@@ -189,8 +189,9 @@ ul, ol { margin: 0; }
 }
 .hero-message .accent { -webkit-text-fill-color: var(--cyan); color: var(--cyan); text-shadow: 0 0 32px rgba(25,212,255,.55); }
 .hero-lead { margin-top: 26px; max-width: 32em; color: #cdd4e2; font-size: 1.1rem; font-weight: 500; line-height: 1.9; }
-.hero-actions { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; max-width: 32em; font-size: 1.1rem; }
-.hero-actions .btn { padding: 14px 18px; gap: 12px; font-size: .9rem; }
+.hero-actions { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 30em; }
+.hero-actions .btn { padding: 14px 18px; gap: 12px; font-size: .9rem; width: 100%; justify-content: space-between; }
+@media (max-width: 560px) { .hero-actions { grid-template-columns: 1fr; } }
 
 /* bottom news section */
 .news-section { padding: clamp(72px, 9vw, 110px) 0; background: var(--paper-2); }
