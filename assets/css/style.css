@@ -85,10 +85,10 @@ ul, ol { margin: 0; }
 .header-inner { display: flex; align-items: stretch; justify-content: space-between; height: 88px; }
 .brand { display: flex; align-items: center; gap: clamp(22px, 4vw, 52px); padding: 14px 0; margin-left: -10px; }
 .brand-logo { height: 42px; width: auto; }
-.brand-txt { line-height: 1.1; }
-.brand-txt .small { display: block; font-family: var(--disp); font-size: .64rem; letter-spacing: .18em; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
+.brand-txt { display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.brand-txt .small { font-family: var(--disp); font-size: .54rem; letter-spacing: .16em; color: var(--ink-soft); font-weight: 600; white-space: nowrap; text-align: center; }
 .brand-txt .big { display: block; font-family: var(--disp); font-weight: 700; font-style: italic; font-size: 1.5rem; letter-spacing: .02em; color: var(--ink); }
-.brand-pumps { display: block; height: 44px; width: auto; margin-top: 5px; }
+.brand-pumps { display: block; height: 56px; width: auto; margin-top: 5px; }
 .nav { display: flex; align-items: center; gap: 26px; font-family: var(--jp); font-weight: 700; font-size: .9rem; }
 .nav > a { position: relative; color: var(--ink); padding: 6px 0; transition: color .2s; }
 .nav > a:hover { color: var(--violet); }
@@ -360,10 +360,10 @@ ul, ol { margin: 0; }
   .nav > a { padding: 14px 0; border-bottom: 1px solid var(--line); }
   .nav-cta { margin: 10px 0 0; padding: 14px; }
   .nav-toggle { display: flex; }
-  .brand { gap: 14px; margin-left: -4px; }
-  .brand-logo { height: 32px; }
-  .brand-pumps { height: 32px; }
-  .brand-txt .small { font-size: .54rem; letter-spacing: .12em; }
+  .brand { gap: 12px; margin-left: -4px; }
+  .brand-logo { height: 30px; }
+  .brand-pumps { height: 42px; }
+  .brand-txt .small { font-size: .5rem; letter-spacing: .12em; }
   .diamonds { grid-template-columns: 1fr 1fr; gap: 26px; padding: 10px 6px 26px; }
   .diamond:nth-child(2n) { transform: rotate(45deg); }
   .reserve { width: 104px; height: 104px; font-size: .9rem; right: 14px; bottom: 14px; }
