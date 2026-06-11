@@ -88,6 +88,7 @@ ul, ol { margin: 0; }
 .brand-txt { line-height: 1.1; }
 .brand-txt .small { display: block; font-size: .62rem; letter-spacing: .12em; color: var(--ink-soft); font-weight: 700; }
 .brand-txt .big { display: block; font-family: var(--disp); font-weight: 700; font-style: italic; font-size: 1.5rem; letter-spacing: .02em; color: var(--ink); }
+.brand-pumps { display: block; height: 30px; width: auto; margin-top: 3px; }
 .nav { display: flex; align-items: center; gap: 26px; font-family: var(--jp); font-weight: 700; font-size: .9rem; }
 .nav > a { position: relative; color: var(--ink); padding: 6px 0; transition: color .2s; }
 .nav > a:hover { color: var(--violet); }
