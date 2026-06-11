@@ -380,9 +380,9 @@ ul, ol { margin: 0; }
 }
 .phil-card:hover { border-color: rgba(25,212,255,.6); box-shadow: 0 14px 34px rgba(0,0,0,.4); transform: translateY(-5px); }
 .phil-card .phil-wm {
-  position: absolute; left: 12px; bottom: -12px; z-index: 0; pointer-events: none; white-space: nowrap;
-  font-family: var(--disp); font-weight: 700; text-transform: uppercase; letter-spacing: .01em;
-  font-size: clamp(4.2rem, 9vw, 7rem); line-height: .78; color: rgba(255,255,255,.09);
+  position: absolute; left: 26px; bottom: 16px; z-index: 0; pointer-events: none; white-space: nowrap;
+  font-family: var(--disp); font-weight: 700; text-transform: uppercase; letter-spacing: 0;
+  font-size: clamp(3rem, 6.4vw, 5rem); line-height: .9; color: rgba(255,255,255,.09);
 }
 .phil-card .pn, .phil-card h3, .phil-card p, .phil-card .more { position: relative; z-index: 1; }
 .phil-card .pn { font-family: var(--disp); font-weight: 600; letter-spacing: .2em; font-size: 1.02rem; color: var(--cyan); text-transform: uppercase; }
