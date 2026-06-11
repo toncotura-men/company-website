@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=4" />
+  <link rel="stylesheet" href="assets/css/style.css?v=5" />
 </head>
 <body>
 
@@ -37,6 +37,7 @@
   <section class="page-hero">
     <div class="panel diag" aria-hidden="true"></div>
     <canvas class="net-canvas" data-color="180,150,255" aria-hidden="true"></canvas>
+    <img class="hero-silhouette" src="assets/img/silhouette-bat.png" alt="" aria-hidden="true" />
     <div class="container page-hero-inner">
       <div class="breadcrumb"><a href="index.html">HOME</a><span>/</span><a href="index.html#menu">PROGRAM</a><span>/</span>BATTING</div>
       <div class="en">BATTING</div>
@@ -46,6 +47,17 @@
       <div class="chips"><span class="chip">スイング解析</span><span class="chip">打球速度計測</span><span class="chip">個別フォーム設計</span></div>
     </div>
   </section>
+
+  <div class="prog-tabs-wrap">
+    <div class="container">
+      <nav class="prog-tabs" aria-label="プログラム切り替え">
+        <a href="batting.html" class="active">バッティング<span class="tn">BATTING</span></a>
+        <a href="pitching.html">ピッチング<span class="tn">PITCHING</span></a>
+        <a href="running.html">走塁・フィジカル<span class="tn">RUNNING</span></a>
+        <a href="measurement.html">測定・分析<span class="tn">MEASUREMENT</span></a>
+      </nav>
+    </div>
+  </div>
 
   <section class="page-section">
     <div class="container">
@@ -62,7 +74,7 @@
     <div class="container">
       <div class="sec-head reveal"><div class="en">MEASURE</div><h2>主な測定項目</h2><p>専門の計測で動きを数値化し、データに基づいて指導します。</p></div>
       <div class="spec-grid">
-        <div class="spec-item"><div class="sn">M-01</div><h4>スイングスピード</h4><p>ヘッドの速さを計測</p></div>
+        <div class="spec-item"><div class="sn">M-01</div><h4>スイングスピード</h4><p>ヘッドの速さ</p></div>
         <div class="spec-item"><div class="sn">M-02</div><h4>打球初速</h4><p>インパクトの強さ</p></div>
         <div class="spec-item"><div class="sn">M-03</div><h4>打ち出し角度</h4><p>飛距離を決める角度</p></div>
         <div class="spec-item"><div class="sn">M-04</div><h4>インパクト位置</h4><p>芯で捉える精度</p></div>
@@ -89,8 +101,8 @@
       <h2>まずは、無料体験から。</h2>
       <p>バッティングの体験・お問い合わせはこちら。あなたの「今の実力」をデータで測定します。見学だけでも歓迎です。</p>
       <div class="actions">
-        <a href="mailto:info@example.com" class="btn btn-lime"><span>無料体験を申し込む</span><span class="arr">→</span></a>
-        <a href="index.html#menu" class="btn btn-ghost-light"><span>他のプログラムを見る</span><span class="arr">→</span></a>
+        <a href="mailto:info@example.com" class="btn btn-lime"><span>無料体験を申し込む</span><span class="arr">&rarr;</span></a>
+        <a href="index.html#menu" class="btn btn-ghost-light"><span>他のプログラムを見る</span><span class="arr">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -116,6 +128,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=4" defer></script>
+  <script src="assets/js/main.js?v=5" defer></script>
 </body>
 </html>
