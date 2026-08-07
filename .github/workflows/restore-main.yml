@@ -1,0 +1,35 @@
+name: Restore site content
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: restore-main
+  cancel-in-progress: false
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore site from work branch, apply latest changes, clean up
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          # 作業ブランチの全ファイルを取り込む（CNAMEはブランチに無いのでmainのものが残る）
+          git checkout origin/claude/admiring-ritchie-sn26z3 -- .
+          git add -A
+          git commit -m "比治山大学連携スクール・代表メッセージなどのサイト内容をmainに復元（CNAMEは維持）"
+          # 料金改定と無料体験フォームリンクのパッチを適用
+          git am restore/changes.patch
+          # 復元用の一時ファイルを削除
+          git rm -q restore/changes.patch .github/workflows/restore-main.yml
+          git commit -m "復元用の一時ファイルを削除"
+          git push origin HEAD:main
+          git push origin --delete claude/img-test || true
