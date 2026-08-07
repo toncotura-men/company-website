@@ -1,0 +1,22 @@
+name: Fix address typo
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix 牛田新田 -> 牛田新町 and clean up
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          sed -i 's/牛田新田/牛田新町/g' index.html
+          git rm -q restore/fix-address.patch .github/workflows/fix-address.yml
+          git add -A
+          git commit -m "住所の誤記を修正（牛田新田→牛田新町）と一時ファイル削除"
+          git push origin HEAD:main
