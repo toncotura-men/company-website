@@ -1,0 +1,4 @@
+--- a/index.html
++++ b/index.html
+@@ FIX @@
+s/牛田新田/牛田新町/g
