@@ -115,48 +115,48 @@
     function draw(prog) {
       ctx.clearRect(0, 0, W, H);
       var M = Math.min(W, H);
-      // concentric guide rings (light, for white background)
+      // concentric guide rings (light, for dark background)
       for (var ring = 1; ring <= 5; ring++) {
-        ctx.strokeStyle = ring === 5 ? "rgba(20,18,31,0.22)" : "rgba(20,18,31,0.08)";
+        ctx.strokeStyle = ring === 5 ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)";
         ctx.lineWidth = 1; ctx.beginPath();
         for (var i = 0; i <= N; i++) { var p = pt(i % N, R * ring / 5); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }
         ctx.stroke();
       }
       // ring scale ticks along the top spoke (20..100)
-      ctx.fillStyle = "rgba(20,18,31,0.32)"; ctx.font = "500 " + (M*0.026) + "px 'Oswald',sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,0.45)"; ctx.font = "500 " + (M*0.026) + "px 'Oswald',sans-serif";
       ctx.textAlign = "left"; ctx.textBaseline = "middle";
       for (var t = 1; t <= 5; t++) { ctx.fillText(String(t*20), cx + 4, cy - R*t/5); }
       // spokes
       for (var s = 0; s < N; s++) {
-        var e = pt(s, R); ctx.strokeStyle = "rgba(20,18,31,0.12)"; ctx.lineWidth = 1;
+        var e = pt(s, R); ctx.strokeStyle = "rgba(255,255,255,0.15)"; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]); ctx.stroke();
       }
       // data polygon
       ctx.beginPath();
       for (var d = 0; d <= N; d++) { var idx = d % N, dp = pt(idx, R * target[idx] * prog); d ? ctx.lineTo(dp[0], dp[1]) : ctx.moveTo(dp[0], dp[1]); }
       ctx.closePath();
-      ctx.fillStyle = "rgba(25,160,233,0.16)"; ctx.fill();
-      ctx.strokeStyle = "#19a0e9"; ctx.lineWidth = 2.4; ctx.shadowColor = "rgba(25,160,233,0.5)"; ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0;
+      ctx.fillStyle = "rgba(25,212,255,0.18)"; ctx.fill();
+      ctx.strokeStyle = "#19d4ff"; ctx.lineWidth = 2.4; ctx.shadowColor = "rgba(25,212,255,0.6)"; ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0;
       // vertices + per-axis value chips
       for (var v = 0; v < N; v++) {
         var vp = pt(v, R * target[v] * prog);
-        ctx.fillStyle = "#19a0e9"; ctx.beginPath(); ctx.arc(vp[0], vp[1], M*0.012, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(vp[0], vp[1], M*0.005, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = "#19d4ff"; ctx.beginPath(); ctx.arc(vp[0], vp[1], M*0.012, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = "#1a0a42"; ctx.beginPath(); ctx.arc(vp[0], vp[1], M*0.005, 0, Math.PI*2); ctx.fill();
       }
       // axis names (dark) + score value (cyan) just outside each vertex
       ctx.textAlign = "center";
       for (var n = 0; n < N; n++) {
         var lp = pt(n, R + M*0.085);
-        ctx.fillStyle = "#15121f"; ctx.font = "900 " + (M*0.036) + "px 'Noto Sans JP',sans-serif";
+        ctx.fillStyle = "#ffffff"; ctx.font = "900 " + (M*0.036) + "px 'Noto Sans JP',sans-serif";
         ctx.fillText(labels[n], lp[0], lp[1]);
-        ctx.fillStyle = "#0f86c4"; ctx.font = "700 " + (M*0.034) + "px 'Oswald',sans-serif";
+        ctx.fillStyle = "#19d4ff"; ctx.font = "700 " + (M*0.034) + "px 'Oswald',sans-serif";
         ctx.fillText(Math.round(target[n]*100*prog), lp[0], lp[1] + M*0.046);
       }
       // center overall score
       var tot = 0; for (var k = 0; k < N; k++) tot += target[k];
-      ctx.fillStyle = "rgba(15,18,31,0.42)"; ctx.font = "500 " + (M*0.03) + "px 'Oswald',sans-serif";
+      ctx.fillStyle = "rgba(255,255,255,0.55)"; ctx.font = "500 " + (M*0.03) + "px 'Oswald',sans-serif";
       ctx.fillText("OVERALL", cx, cy - M*0.055);
-      ctx.fillStyle = "#15121f"; ctx.font = "700 " + (M*0.085) + "px 'Oswald',sans-serif";
+      ctx.fillStyle = "#ffffff"; ctx.font = "700 " + (M*0.085) + "px 'Oswald',sans-serif";
       ctx.fillText(Math.round(tot / N * 100 * prog), cx, cy + M*0.01);
     }
     function animate() { progress += (1 - progress) * 0.06; draw(progress); if (progress < 0.995) requestAnimationFrame(animate); else draw(1); }
@@ -189,7 +189,7 @@
       });
       var lines = order.filter(function (k) { return groups[k]; })
         .map(function (k) { return "■ " + k + "\n" + groups[k].join("、"); });
-      var body = "PUMPS お申し込み・お問い合わせ\n\n" + lines.join("\n\n") +
+      var body = "HAKI pro お申し込み・お問い合わせ\n\n" + lines.join("\n\n") +
         "\n\n----------------------------------------\nこのメールをそのまま送信してください。";
       window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       var sent = form.querySelector(".form-sent");
