@@ -1,0 +1,22 @@
+name: Remove Hiroshima-hatsu phrase
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove 広島発の野球スクール。 from hero and footer copy
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          sed -i 's/広島発の野球スクール。比治山大学の教授/比治山大学の教授/g' *.html
+          git rm -q .github/workflows/update-copy2.yml
+          git add -A
+          git commit -m "紹介文から「広島発の野球スクール。」を削除"
+          git push origin HEAD:main
