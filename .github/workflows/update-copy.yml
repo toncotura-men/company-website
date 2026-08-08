@@ -1,0 +1,35 @@
+name: Update site copy
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Weave program-design message into hero lead and footers
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          python3 - <<'PYEOF'
+          import glob
+          HERO_OLD = "広島発の野球スクール。データと科学で「打つ・投げる・走る」を測定・分析・評価し、考えて動ける選手を育てます。<strong>"
+          HERO_NEW = "広島発の野球スクール。比治山大学の教授と共同で、スポーツ力学の理論に基づく年間プログラムを設計。数値で見える化し、力学的な根拠で動きを磨き、また数値で確かめる——このサイクルが、走攻守すべての土台と野球IQを育てます。<strong>"
+          FOOT_NEW = "広島発の野球スクール。比治山大学の教授と共同開発した、スポーツ力学に基づく一貫した年間プログラムで「打つ・投げる・走る」を測定・分析・改善。『なぜこの数値なのか』を自分で考える指導で、野球IQと判断力も育てます。"
+          FOOT_OLD1 = "広島発の野球スクール。比治山大学と連携し、スポーツ科学で「打つ・投げる・走る」を測定・分析・評価。考えて動ける選手を育てます。"
+          FOOT_OLD2 = "広島発の野球スクール。スポーツ科学で「打つ・投げる・走る」を測定・分析・評価し、考えて動ける選手を育てます。"
+          for f in glob.glob("*.html"):
+              s = open(f, encoding="utf-8").read()
+              s = s.replace(HERO_OLD, HERO_NEW)
+              s = s.replace("<p>" + FOOT_OLD1 + "</p>", "<p>" + FOOT_NEW + "</p>")
+              s = s.replace("<p>" + FOOT_OLD2 + "</p>", "<p>" + FOOT_NEW + "</p>")
+              open(f, "w", encoding="utf-8").write(s)
+          PYEOF
+          git rm -q .github/workflows/update-copy.yml
+          git add -A
+          git commit -m "比治山大学教授との共同プログラム設計の紹介文をヒーローとフッターに反映"
+          git push origin HEAD:main
