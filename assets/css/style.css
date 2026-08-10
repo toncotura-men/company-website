@@ -680,3 +680,14 @@ ul, ol { margin: 0; }
 .dark-section .info-row { border-bottom-color: rgba(255,255,255,.14); }
 .dark-section .info-row dt { color: #fff; }
 .dark-section .info-row dd { color: #cdc7e6; }
+
+
+/* ===== campaign pricing ===== */
+.price-campaign { display: inline-block; font-family: var(--jp); font-weight: 900; font-size: .78rem; letter-spacing: .08em; color: var(--ink); background: var(--lime); padding: 4px 14px; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+.price-row { line-height: 1; }
+.price-old { display: inline-flex; align-items: baseline; gap: 8px; font-family: var(--disp); font-weight: 600; font-size: 1.35rem; color: rgba(255,255,255,.55); }
+.price-old .p { position: relative; padding: 0 2px; }
+.price-old .p::after { content: ""; position: absolute; left: -6%; right: -6%; top: 52%; height: 2.5px; background: #ff5d7a; transform: rotate(-10deg); box-shadow: 0 0 10px rgba(255,93,122,.85); border-radius: 2px; }
+.price-old .lbl { font-family: var(--jp); font-weight: 700; font-size: .72rem; color: rgba(255,255,255,.6); }
+.price-note { font-size: .8rem; color: rgba(255,255,255,.75); }
+.cmp-old { color: var(--ink-soft); font-size: .85em; text-decoration: line-through; text-decoration-color: #e0556f; text-decoration-thickness: 2px; }
