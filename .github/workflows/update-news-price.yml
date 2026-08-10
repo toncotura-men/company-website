@@ -1,0 +1,75 @@
+name: Update news and campaign pricing
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite news + campaign pricing layout
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          python3 - <<'PYEOF'
+          import glob, re
+
+          # ---- index.html: news = 協定締結のみ ----
+          s = open("index.html", encoding="utf-8").read()
+          s = s.replace("比治山大学と連携した野球スクールを開講。ベーシック／アドバンスの2クラス、毎週金曜・月4回。",
+                        "比治山大学と連携協定を締結しました。")
+          s = re.sub(r'\s*<a href="#news" class="news-row"><span class="nd">2025\.[^<]*</span><span class="nt">[^<]*</span><span class="nx">[^<]*</span></a>', "", s)
+          open("index.html", "w", encoding="utf-8").write(s)
+
+          # ---- 料金カード（index.html / school.html 共通の price div を差し替え） ----
+          BASIC_OLD = '<div class="price"><span class="yen">¥</span>16,000<span class="unit">/月（税別）</span></div>'
+          BASIC_NEW = ('<div class="price-campaign">2026年内入会 限定価格</div>\n'
+                       '          <div class="price-row"><span class="price-old"><span class="p">¥20,000</span><span class="lbl">2027年1月〜</span></span></div>\n'
+                       '          <div class="price"><span class="yen">¥</span>16,000<span class="unit">/月（税別）</span></div>\n'
+                       '          <p class="price-note">2027年1月以降のご入会は月20,000円（税別）になります。</p>')
+          ADV_OLD = '<div class="price"><span class="yen">¥</span>22,000<span class="unit">/月（税別）</span></div>'
+          ADV_NEW = ('<div class="price-campaign">2026年内入会 限定価格</div>\n'
+                     '          <div class="price-row"><span class="price-old"><span class="p">¥25,000</span><span class="lbl">2027年1月〜</span></span></div>\n'
+                     '          <div class="price"><span class="yen">¥</span>22,000<span class="unit">/月（税別）</span></div>\n'
+                     '          <p class="price-note">2027年1月以降のご入会は月25,000円（税別）になります。</p>')
+          for f in ("index.html", "school.html"):
+              s = open(f, encoding="utf-8").read()
+              s = s.replace(BASIC_OLD, BASIC_NEW).replace(ADV_OLD, ADV_NEW)
+              open(f, "w", encoding="utf-8").write(s)
+
+          # ---- school.html: 比較表とmeta ----
+          s = open("school.html", encoding="utf-8").read()
+          s = s.replace('<tr><th>月会費（税別）</th><td>16,000円</td><td class="hl">22,000円</td></tr>',
+                        '<tr><th>月会費（税別）</th><td>16,000円（2026年内入会）<br /><span class="cmp-old">2027年1月〜 20,000円</span></td><td class="hl">22,000円（2026年内入会）<br /><span class="cmp-old">2027年1月〜 25,000円</span></td></tr>')
+          s = s.replace("ベーシッククラス月16,000円・アドバンスクラス月22,000円（税別）",
+                        "ベーシッククラス月16,000円・アドバンスクラス月22,000円（税別・2026年内入会価格）")
+          open("school.html", "w", encoding="utf-8").write(s)
+
+          # ---- CSS 追加 + バージョン更新 ----
+          css = open("assets/css/style.css", encoding="utf-8").read()
+          css += """
+
+          /* ===== campaign pricing ===== */
+          .price-campaign { display: inline-block; font-family: var(--jp); font-weight: 900; font-size: .78rem; letter-spacing: .08em; color: var(--ink); background: var(--lime); padding: 4px 14px; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+          .price-row { line-height: 1; }
+          .price-old { display: inline-flex; align-items: baseline; gap: 8px; font-family: var(--disp); font-weight: 600; font-size: 1.35rem; color: rgba(255,255,255,.55); }
+          .price-old .p { position: relative; padding: 0 2px; }
+          .price-old .p::after { content: ""; position: absolute; left: -6%; right: -6%; top: 52%; height: 2.5px; background: #ff5d7a; transform: rotate(-10deg); box-shadow: 0 0 10px rgba(255,93,122,.85); border-radius: 2px; }
+          .price-old .lbl { font-family: var(--jp); font-weight: 700; font-size: .72rem; color: rgba(255,255,255,.6); }
+          .price-note { font-size: .8rem; color: rgba(255,255,255,.75); }
+          .cmp-old { color: var(--ink-soft); font-size: .85em; text-decoration: line-through; text-decoration-color: #e0556f; text-decoration-thickness: 2px; }
+          """.replace("\n          ", "\n")
+          open("assets/css/style.css", "w", encoding="utf-8").write(css)
+          for f in glob.glob("*.html"):
+              s = open(f, encoding="utf-8").read()
+              s = s.replace("style.css?v=39", "style.css?v=40")
+              open(f, "w", encoding="utf-8").write(s)
+          PYEOF
+          git rm -q .github/workflows/update-news-price.yml
+          git add -A
+          git commit -m "ニュースを連携協定締結のみに整理し、2026年内入会の限定価格と2027年からの改定額を明記"
+          git push origin HEAD:main
