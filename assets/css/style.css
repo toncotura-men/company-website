@@ -224,6 +224,13 @@ ul, ol { margin: 0; }
 }
 .diamond-frame .inner { position: absolute; inset: 0; display: grid; place-items: center; padding: 6%; }
 .diamond-frame canvas { width: 100%; height: 100%; }
+/* radar placed on a light page section (measurement.html): dark data panel keeps it legible */
+.diamond-frame.panel-dark {
+  background: linear-gradient(150deg, var(--pp-800), var(--bl-800));
+  border: 1px solid rgba(123,92,255,.35);
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  box-shadow: 0 18px 44px rgba(40,16,86,.3);
+}
 .about-visual .tag-chip {
   position: absolute; z-index: 2; font-family: var(--disp); font-weight: 600; letter-spacing: .1em;
   background: var(--lime); color: var(--ink); padding: 6px 16px; border-radius: 2px; font-size: .82rem;
@@ -662,10 +669,12 @@ ul, ol { margin: 0; }
 .about > .container, .menu > .container { position: relative; z-index: 1; }
 .about .bighead .en, .menu .bighead .en { color: #fff; }
 .about .bighead .jp, .menu .bighead .jp { color: rgba(255,255,255,.8); }
-.about-copy h2 { color: #fff; }
-.about-copy h2 .em { color: var(--cyan); }
-.about-copy p { color: #cdc7e6; }
-.menu-copy p { color: #cdc7e6; }
+/* scoped to the dark home sections: .about-copy is also used on light page
+   sections (measurement.html), where white text would be invisible */
+.about .about-copy h2 { color: #fff; }
+.about .about-copy h2 .em { color: var(--cyan); }
+.about .about-copy p { color: #cdc7e6; }
+.menu .menu-copy p { color: #cdc7e6; }
 .diamond { box-shadow: 0 18px 36px rgba(0,0,0,.5); }
 
 /* ===== Home sections: light bands with purple animated net ===== */
