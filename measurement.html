@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>測定・分析｜株式会社HAKI pro — 広島の野球スクール</title>
-  <meta name="description" content="スイング・球速・走力・敏捷性・体幹の5項目を計測し、レーダーで可視化。強みと伸びしろを偏差値で示す、HAKI proの測定・分析。" />
+  <meta name="description" content="競技パフォーマンス5項目をレーダーで可視化し、比治山大学と連携した体力・身体組成の科学的測定8項目で身体の状態を把握。強みと伸びしろを数値で示す、HAKI proの測定・分析。" />
   <link rel="icon" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,8 +43,8 @@
       <div class="en">MEASUREMENT</div>
       <div class="rule"></div>
       <div class="jp">測定・分析</div>
-      <p class="lead">スイング・球速・走力・敏捷性・体幹の5項目を計測。データベースと照合し、強みと伸びしろを偏差値で可視化します。</p>
-      <div class="chips"><span class="chip">5項目測定</span><span class="chip">レーダー評価</span><span class="chip">個別レポート</span></div>
+      <p class="lead">スイング・球速・走力・敏捷性・体幹の5項目を計測し、データベースと照合して強みと伸びしろを可視化。さらに比治山大学と連携した体力・身体組成の科学的測定8項目で、身体そのものの状態も追跡します。</p>
+      <div class="chips"><span class="chip">競技測定 5項目</span><span class="chip">科学的測定 8項目</span><span class="chip">レーダー評価</span><span class="chip">個別レポート</span></div>
     </div>
   </section>
 
@@ -63,7 +63,7 @@
     <div class="container">
       <div class="sec-head reveal"><div class="en">POINT</div><h2>測定・分析の3つのポイント</h2><p>「なんとなく」を「数値」に。現在地がわかれば、何を伸ばせばいいかが見えてきます。</p></div>
       <div class="feature-grid">
-        <div class="feature-card reveal"><div class="fnum">01</div><h3>測る</h3><p>専門の計測で、5つの基礎能力を正確に数値化します。</p></div>
+        <div class="feature-card reveal"><div class="fnum">01</div><h3>測る</h3><p>競技パフォーマンスの5項目と、体力・身体組成の8項目を数値化します。</p></div>
         <div class="feature-card reveal"><div class="fnum">02</div><h3>比べる</h3><p>HAKI proのデータベースと照合し、偏差値で位置づけます。</p></div>
         <div class="feature-card reveal"><div class="fnum">03</div><h3>活かす</h3><p>レーダーで強み・課題を可視化し、次のメニューへ繋げます。</p></div>
       </div>
@@ -73,19 +73,19 @@
   <section class="page-section">
     <div class="container about-grid">
       <div class="about-copy reveal">
-        <div class="sec-head"><div class="en">REPORT</div><h2>5項目を、1枚のレーダーに。</h2><p>計測した5つの基礎能力をレーダーチャートに集約。強みと伸びしろが一目でわかり、次のトレーニングの指針になります。</p></div>
+        <div class="sec-head"><div class="en">REPORT</div><h2>競技の5項目を、1枚のレーダーに。</h2><p>計測した5つの基礎能力をレーダーチャートに集約。強みと伸びしろが一目でわかり、次のトレーニングの指針になります。</p></div>
         <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="btn btn-dark"><span>無料体験で測ってみる</span><span class="arr">&rarr;</span></a>
       </div>
       <div class="about-visual reveal d1">
         <div class="tag-chip">DATA REPORT</div>
-        <div class="diamond-frame"><div class="inner"><canvas id="radar-canvas" aria-hidden="true"></canvas></div></div>
+        <div class="diamond-frame"><div class="inner"><canvas id="radar-canvas" data-theme="light" aria-hidden="true"></canvas></div></div>
       </div>
     </div>
   </section>
 
   <section class="page-section">
     <div class="container">
-      <div class="sec-head reveal"><div class="en">MEASURE</div><h2>主な測定項目</h2><p>専門の計測で動きを数値化し、データに基づいて指導します。</p></div>
+      <div class="sec-head reveal"><div class="en">MEASURE</div><h2>競技パフォーマンスの測定項目</h2><p>「打つ・投げる・走る」の動きを専門の計測で数値化し、データに基づいて指導します。</p></div>
       <div class="spec-grid">
         <div class="spec-item"><div class="sn">M-01</div><h4>打力</h4><p>スイング・打球</p></div>
         <div class="spec-item"><div class="sn">M-02</div><h4>球速</h4><p>投球の速さ</p></div>
@@ -93,6 +93,37 @@
         <div class="spec-item"><div class="sn">M-04</div><h4>敏捷性</h4><p>反応・方向転換</p></div>
         <div class="spec-item"><div class="sn">M-05</div><h4>体幹</h4><p>土台の強さ</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- 体力・身体組成の科学的測定（比治山大学 連携） -->
+  <section class="page-section dark-section" id="science">
+    <canvas class="net-canvas" data-color="150,130,255" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="en">SCIENCE</div>
+        <h2 class="light">体力・身体組成の科学的測定 — 8項目</h2>
+        <p class="light-soft">競技の動きだけでなく、それを支える「身体そのもの」も測ります。比治山大学との連携のもと、大学の研究・教育の現場で用いられる測定手法をもとに設計し、野球少年・少女向けに実施している測定です。</p>
+      </div>
+      <div class="cmp-wrap reveal">
+        <table class="cmp-table">
+          <thead>
+            <tr><th>測定項目</th><th>測定する能力</th><th>分かること</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>身体組成</th><td>筋肉量・脂肪量</td><td>身体の「材料」がどう変化しているかを追跡。成長期の身体づくりが順調かどうかを考える判断材料になります。</td></tr>
+            <tr><th>全身持久力</th><td>心肺機能の強さ</td><td>試合終盤に足が止まる原因が、体力なのか技術なのかを切り分けて考えられます。</td></tr>
+            <tr><th>筋力・筋持久力</th><td>力を出す・出し続ける力</td><td>投げる・走るという動作を支える基礎体力が、年齢相応かどうかを把握できます。</td></tr>
+            <tr><th>筋パワー</th><td>瞬間的に力を発揮する能力</td><td>打球の伸びや盗塁のスタートに関わる爆発力の伸びしろを、数値で確認できます。</td></tr>
+            <tr><th>敏捷性</th><td>素早く動き出す能力</td><td>守備の一歩目や反応の速さ。「なんとなく遅い」を具体的な数値として改善の対象にできます。</td></tr>
+            <tr><th>平衡性</th><td>体幹の安定性</td><td>軸のブレやフォームの再現性に関わる、身体的な要因を確認できます。</td></tr>
+            <tr><th>柔軟性</th><td>関節の動く範囲</td><td>可動域の狭さに関係する不調を、早い段階で把握できます。</td></tr>
+            <tr><th>巧緻性</th><td>器用に身体を操作する能力</td><td>繊細なバット操作や捕球動作の土台を把握できます。</td></tr>
+            <tr><th>コンディション</th><td>体調・気分の変化</td><td>「やる気が出ない」「調子が悪そう」といった感覚的な変化も、可能な範囲で客観的に確認しながら指導に活かします。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tax-note reveal d1">※ 測定の内容・頻度はクラスや対象によって異なります。<a href="school.html">比治山スクール</a>ではベーシッククラスが月1回、アドバンスクラスが月2回の科学的測定を実施しています。</p>
     </div>
   </section>
 
@@ -141,6 +172,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=29" defer></script>
+  <script src="assets/js/main.js?v=30" defer></script>
 </body>
 </html>
