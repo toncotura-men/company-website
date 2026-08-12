@@ -735,3 +735,20 @@ p, .cls-list li, .info-row dd, .mvv-body, .phil-lead, .hero-lead, .lead { text-w
 .fee-banner .fb-main b { font-family: var(--disp); font-weight: 700; font-size: 1.35em; letter-spacing: .01em; }
 .fee-banner .fb-sub { font-weight: 700; font-size: .84rem; }
 @media (max-width: 560px) { .fee-banner { clip-path: none; } }
+
+
+/* ===== wrapping fine-tuning ===== */
+/* 金額の単位が「（税」「別）」で割れないように */
+.price .unit, .price .yen, .price-old .lbl, .entry-fee .ef-unit,
+.fee-banner .fb-main, .fee-banner .fb-sub, .fee-banner .fb-tag { white-space: nowrap; }
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 2px; }
+/* 強調語が行またぎで割れないように */
+.rep-band .q .em, .phil-statement .em, .mvv-headline .em, .about-copy h2 .em,
+.hero-message .accent, .rep-quote .em { display: inline-block; }
+/* 比較表：スマホでも各列に十分な幅を確保（横スクロール） */
+@media (max-width: 720px) {
+  .cmp-table { min-width: 720px; font-size: .9rem; }
+  .cmp-table tbody th { width: 150px; }
+  .cmp-table th, .cmp-table td { padding: 14px 14px; }
+  .cmp-wrap { -webkit-overflow-scrolling: touch; }
+}
