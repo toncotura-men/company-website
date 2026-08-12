@@ -1,0 +1,132 @@
+name: Polish site copy and layout
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix wrapping, titles, and entry-fee prominence
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          python3 - <<'PYEOF'
+          import glob, re
+
+          # ============ 1) 全ページ共通の文字列置換 ============
+          COMMON = [
+              # --- タイトル/メタから「広島」を削除（住所は残す） ---
+              ("｜株式会社HAKI pro — 広島の野球スクール", "｜株式会社HAKI pro — 野球スクール"),
+              ("株式会社HAKI pro｜広島の野球スクール", "株式会社HAKI pro｜野球スクール"),
+              ("株式会社HAKI proは広島発の野球スクール。", "株式会社HAKI proの野球スクール。"),
+              ("広島の野球スクールHAKI pro。", "野球スクールHAKI pro。"),
+              ("一生消えない自信を育てる広島の野球スクールの", "一生消えない自信を育てる野球スクールの"),
+              # --- 肩書きを「元プロ野球選手」に ---
+              ("代表 安部友裕 — 広島東洋カープで15年プレー", "代表 安部友裕 — 元プロ野球選手"),
+              ('<span class="chip">広島東洋カープで15年プレー</span>', '<span class="chip">元プロ野球選手</span>'),
+              ("広島東洋カープで15年プレーした経験をもとに", "元プロ野球選手としての経験をもとに"),
+              ("私は広島東洋カープで、15年間プレーしてきました。", "私はプロ野球の世界で、15年間プレーしてきました。"),
+              ("広島東洋カープに15年在籍し、プロ野球選手としてプレー。", "プロ野球選手として15年間プレー。"),
+          ]
+          for f in glob.glob("*.html"):
+              s = open(f, encoding="utf-8").read()
+              for a, b in COMMON:
+                  s = s.replace(a, b)
+              s = s.replace("style.css?v=41", "style.css?v=42")
+              open(f, "w", encoding="utf-8").write(s)
+
+          # ============ 2) 個別ページの文言・改行修正 ============
+          def sub(fn, pairs):
+              s = open(fn, encoding="utf-8").read()
+              for a, b in pairs:
+                  s = s.replace(a, b)
+              open(fn, "w", encoding="utf-8").write(s)
+
+          sub("index.html", [
+              # 代表の言葉：ハード改行をやめ、文節ごとに折り返す
+              ('<p class="q">「根性論ではなく、数字で寄り添う。<br />個性と才能を、<span class="em">一緒に解放</span>していきましょう。」</p>',
+               '<p class="q"><span class="nw">「根性論ではなく、数字で寄り添う。</span><span class="nw">個性と才能を、<span class="em">一緒に解放</span>していきましょう。」</span></p>'),
+              # 電話案内
+              ('<p>現在、お電話でのお問い合わせは受け付けておりません。<br />お手数ですが、お問い合わせフォームをご利用ください。</p>',
+               '<p><span class="nw">現在、お電話でのお問い合わせは受け付けておりません。</span><span class="nw">お手数ですが、お問い合わせフォームをご利用ください。</span></p>'),
+              # 理念カード
+              ("<p>広島から世界へ。野球を通して、", "<p>ここから、世界へ。野球を通して、"),
+          ])
+
+          sub("mvv.html", [
+              ('<h2 class="mvv-headline">広島から、世界へ。<br />そして、<span class="em">一生消えない自信</span>へ。</h2>',
+               '<h2 class="mvv-headline"><span class="nw">ここから、世界へ。</span><span class="nw">そして、<span class="em">一生消えない自信</span>へ。</span></h2>'),
+              ("<strong>広島のグラウンドから、未来を自分の手で切り拓ける人を</strong>",
+               "<strong>このグラウンドから、未来を自分の手で切り拓ける人を</strong>"),
+              ('<h2>その一歩の速さ、その打球の伸び。<br />根拠を持って、伸ばせていますか。</h2>',
+               '<h2><span class="nw">その一歩の速さ、その打球の伸び。</span><span class="nw">根拠を持って、伸ばせていますか。</span></h2>'),
+          ])
+
+          sub("school.html", [
+              ("<p class=\"lead\">広島の野球少年・少女へ。", "<p class=\"lead\">野球に打ち込むすべての少年・少女へ。"),
+              ("個人セッション・チームセッションは広島県内を中心に出張で承ります。",
+               "個人セッション・チームセッションは近郊を中心に出張で承ります。"),
+          ])
+
+          sub("team.html", [
+              ("例）広島ベースボールクラブ", "例）〇〇ベースボールクラブ"),
+              ("例）広島市〇〇区 △△グラウンド", "例）〇〇市△△町 ××グラウンド"),
+          ])
+
+          # ============ 3) 入会金を目立つ位置へ ============
+          FEE_OLD = '<div class="entry-fee"><span class="ef-label">入会金</span><span class="ef-amount">¥10,000</span><span class="ef-unit">（税別）／初回のみ</span></div>\n          '
+          BANNER = ('<div class="fee-banner reveal">'
+                    '<span class="fb-tag">全クラス共通</span>'
+                    '<span class="fb-main">入会金 <b>¥10,000</b></span>'
+                    '<span class="fb-sub">（税別）／ご入会時のみ</span>'
+                    '</div>\n      ')
+          for f in ("index.html", "school.html"):
+              s = open(f, encoding="utf-8").read()
+              # カード内の入会金ブロックはいったん削除
+              s = s.replace(FEE_OLD, "")
+              # 料金カードの直上に大きなバナーを設置
+              s = s.replace('<div class="price-grid">', BANNER + '<div class="price-grid">')
+              open(f, "w", encoding="utf-8").write(s)
+
+          # ============ 4) CSS：折り返し制御と入会金バナー ============
+          css = open("assets/css/style.css", encoding="utf-8").read()
+          css += """
+
+          /* ===== Japanese line-breaking (PC / tablet / phone) ===== */
+          body { line-break: strict; word-break: normal; overflow-wrap: break-word; }
+          h1, h2, h3, .hero-message, .phil-statement, .rep-quote, .mvv-headline,
+          .sec-head h2, .about-copy h2, .page-cta h2, .rep-band .q, .split-inner h3,
+          .price-card h3, .feature-card h3, .flow-cell h4, .page-hero .jp { text-wrap: balance; }
+          p, .cls-list li, .info-row dd, .mvv-body, .phil-lead, .hero-lead, .lead { text-wrap: pretty; }
+          /* 文節ごとに折り返す（語中で切れないようにする） */
+          .nw { display: inline-block; }
+          @media (max-width: 640px) {
+            .hero-message br, .about-copy h2 br { display: none; }
+          }
+
+          /* ===== entry fee banner ===== */
+          .fee-banner {
+            display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 16px;
+            margin: 0 0 24px; padding: 16px clamp(20px, 3vw, 32px);
+            background: linear-gradient(100deg, var(--lime), var(--lime-bright));
+            color: var(--ink);
+            clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+            box-shadow: 0 10px 26px rgba(196,214,0,.25);
+          }
+          .fee-banner .fb-tag { font-weight: 900; font-size: .74rem; letter-spacing: .1em; background: var(--ink); color: #fff; padding: 4px 12px; }
+          .fee-banner .fb-main { font-weight: 900; font-size: clamp(1.1rem, 2.4vw, 1.5rem); letter-spacing: .02em; }
+          .fee-banner .fb-main b { font-family: var(--disp); font-weight: 700; font-size: 1.35em; letter-spacing: .01em; }
+          .fee-banner .fb-sub { font-weight: 700; font-size: .84rem; }
+          @media (max-width: 560px) { .fee-banner { clip-path: none; } }
+          """.replace("\n          ", "\n")
+          open("assets/css/style.css", "w", encoding="utf-8").write(css)
+          PYEOF
+          git rm -q .github/workflows/polish-site.yml
+          git add -A
+          git commit -m "改行の最適化、肩書きを元プロ野球選手に変更、広島表記の整理、入会金バナーを新設"
+          git push origin HEAD:main
