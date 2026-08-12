@@ -700,3 +700,10 @@ ul, ol { margin: 0; }
 .price-old .lbl { font-family: var(--jp); font-weight: 700; font-size: .72rem; color: rgba(255,255,255,.6); }
 .price-note { font-size: .8rem; color: rgba(255,255,255,.75); }
 .cmp-old { color: var(--ink-soft); font-size: .85em; text-decoration: line-through; text-decoration-color: #e0556f; text-decoration-thickness: 2px; }
+
+
+/* ===== entry fee ===== */
+.entry-fee { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-top: 4px; padding: 10px 16px; border: 1px dashed rgba(25,212,255,.55); background: rgba(25,212,255,.07); }
+.entry-fee .ef-label { font-weight: 900; font-size: .82rem; letter-spacing: .06em; color: var(--cyan); }
+.entry-fee .ef-amount { font-family: var(--disp); font-weight: 600; font-size: 1.5rem; line-height: 1; color: #fff; }
+.entry-fee .ef-unit { font-size: .75rem; color: rgba(255,255,255,.7); }
