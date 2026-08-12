@@ -798,3 +798,8 @@ h1 .nw, h2 .nw, h3 .nw, h4 .nw, .mvv-headline .nw, .page-hero .jp .nw { vertical
   .fee-banner .fb-main { font-size: 1.05rem; }
   .fee-banner .fb-main b { font-size: 1.3em; }
 }
+
+
+/* 注記：金額と（税別）を必ず同じ行に、「になります。」の前で折り返す */
+.price-note .nw { white-space: nowrap; }
+.price-note { line-height: 1.9; }
