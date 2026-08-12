@@ -787,3 +787,14 @@ h1, h2, h3, h4, .phil-statement, .rep-band .q, .rep-quote, .mvv-headline,
 
 /* 見出しの文節ブロック：折り返さないときは詰めて表示 */
 h1 .nw, h2 .nw, h3 .nw, h4 .nw, .mvv-headline .nw, .page-hero .jp .nw { vertical-align: top; }
+
+
+/* 入会金バナー：金額と（税別）を必ず同じ行に */
+.fee-banner .fb-main { white-space: nowrap; display: inline-flex; align-items: baseline; gap: 6px; }
+.fee-banner .fb-main .tax { font-size: .62em; font-weight: 700; }
+.fee-banner .fb-sub { white-space: nowrap; }
+@media (max-width: 420px) {
+  .fee-banner { padding: 14px 18px; gap: 4px 10px; }
+  .fee-banner .fb-main { font-size: 1.05rem; }
+  .fee-banner .fb-main b { font-size: 1.3em; }
+}
