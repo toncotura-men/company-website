@@ -783,3 +783,7 @@ h1, h2, h3, h4, .phil-statement, .rep-band .q, .rep-quote, .mvv-headline,
 
 /* 代表の言葉：2カラムで幅が狭くなる 900-1180px 帯でも1行に収まるサイズ */
 .rep-quote { font-size: clamp(1.15rem, 2.05vw, 1.6rem); }
+
+
+/* 見出しの文節ブロック：折り返さないときは詰めて表示 */
+h1 .nw, h2 .nw, h3 .nw, h4 .nw, .mvv-headline .nw, .page-hero .jp .nw { vertical-align: top; }
