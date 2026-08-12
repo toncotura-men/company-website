@@ -707,3 +707,31 @@ ul, ol { margin: 0; }
 .entry-fee .ef-label { font-weight: 900; font-size: .82rem; letter-spacing: .06em; color: var(--cyan); }
 .entry-fee .ef-amount { font-family: var(--disp); font-weight: 600; font-size: 1.5rem; line-height: 1; color: #fff; }
 .entry-fee .ef-unit { font-size: .75rem; color: rgba(255,255,255,.7); }
+
+
+/* ===== Japanese line-breaking (PC / tablet / phone) ===== */
+body { line-break: strict; word-break: normal; overflow-wrap: break-word; }
+h1, h2, h3, .hero-message, .phil-statement, .rep-quote, .mvv-headline,
+.sec-head h2, .about-copy h2, .page-cta h2, .rep-band .q, .split-inner h3,
+.price-card h3, .feature-card h3, .flow-cell h4, .page-hero .jp { text-wrap: balance; }
+p, .cls-list li, .info-row dd, .mvv-body, .phil-lead, .hero-lead, .lead { text-wrap: pretty; }
+/* 文節ごとに折り返す（語中で切れないようにする） */
+.nw { display: inline-block; }
+@media (max-width: 640px) {
+  .hero-message br, .about-copy h2 br { display: none; }
+}
+
+/* ===== entry fee banner ===== */
+.fee-banner {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 16px;
+  margin: 0 0 24px; padding: 16px clamp(20px, 3vw, 32px);
+  background: linear-gradient(100deg, var(--lime), var(--lime-bright));
+  color: var(--ink);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+  box-shadow: 0 10px 26px rgba(196,214,0,.25);
+}
+.fee-banner .fb-tag { font-weight: 900; font-size: .74rem; letter-spacing: .1em; background: var(--ink); color: #fff; padding: 4px 12px; }
+.fee-banner .fb-main { font-weight: 900; font-size: clamp(1.1rem, 2.4vw, 1.5rem); letter-spacing: .02em; }
+.fee-banner .fb-main b { font-family: var(--disp); font-weight: 700; font-size: 1.35em; letter-spacing: .01em; }
+.fee-banner .fb-sub { font-weight: 700; font-size: .84rem; }
+@media (max-width: 560px) { .fee-banner { clip-path: none; } }
