@@ -1,0 +1,73 @@
+name: Add annual program wording
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mention the 1-year program design where relevant
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          python3 - <<'PYEOF'
+          # ===== school.html =====
+          s = open("school.html", encoding="utf-8").read()
+          # ヒーローのチップに追加
+          s = s.replace('<div class="chips"><span class="chip">毎週金曜 開講</span>',
+                        '<div class="chips"><span class="chip">1年設計のプログラム</span><span class="chip">毎週金曜 開講</span>')
+          # ヒーローのリード文
+          s = s.replace("舞台は比治山大学の野球グラウンド＆アリーナ。雨の日もアリーナでトレーニングを止めません。",
+                        "プログラムは1年単位で設計。日々のメニューは変わっても、1年を通して一貫した積み上げになるよう組み立てています。舞台は比治山大学の野球グラウンド＆アリーナ。雨の日もアリーナでトレーニングを止めません。")
+          # 連携の強み02
+          s = s.replace("<h3>カリキュラムを大学と共同開発</h3>\n          <p>「打つ・投げる・走る」のカリキュラムを、比治山大学と共同で設計。HAKI proの測定データ×大学の知見で、成長段階に合わせた科学的なメニューを毎週アップデートしていきます。感覚ではなく、根拠のある練習を。</p>",
+                        "<h3>1年設計のカリキュラムを大学と共同開発</h3>\n          <p>「打つ・投げる・走る」のカリキュラムを、比治山大学と共同で設計。<strong>基本は1年単位のプログラム設計</strong>で、日によってメニューは変わっても、1年を通して見ると一貫した積み上げになります。感覚ではなく、根拠のある練習を。</p>")
+          # クラスと料金のリード
+          s = s.replace("どちらのクラスも毎週金曜・月4回の開講。比治山大学と共同開発したカリキュラムで、測定→練習→振り返りのサイクルを回します。",
+                        "どちらのクラスも毎週金曜・月4回の開講。比治山大学と共同開発した1年設計のカリキュラムで、測定→練習→振り返りのサイクルを1年かけて回します。")
+          # 料金カードの箇条書き
+          s = s.replace("<li>比治山大学と共同開発のカリキュラム</li>",
+                        "<li>比治山大学と共同開発の1年設計カリキュラム</li>")
+          # 比較表
+          s = s.replace("<tr><th>カリキュラム</th><td>比治山大学と共同開発</td><td class=\"hl\">比治山大学と共同開発</td></tr>",
+                        "<tr><th>カリキュラム</th><td>比治山大学と共同開発（1年設計）</td><td class=\"hl\">比治山大学と共同開発（1年設計）</td></tr>")
+          # 金曜の流れ セクション見出し補足
+          s = s.replace("<p>週1回・金曜のスクールの流れ。測定がある日は、自分の「現在地」をデータで確認してから練習に入ります。</p>",
+                        "<p>週1回・金曜のスクールの流れ。測定がある日は、自分の「現在地」をデータで確認してから練習に入ります。この1回1回が、1年設計のプログラムの一歩になります。</p>")
+          # アクセス表にプログラム設計の行を追加
+          s = s.replace("<div class=\"info-row\"><dt>開講日</dt><dd>毎週金曜（月4回）</dd></div>",
+                        "<div class=\"info-row\"><dt>開講日</dt><dd>毎週金曜（月4回）</dd></div>\n        <div class=\"info-row\"><dt>プログラム</dt><dd>基本は1年単位で設計。日々のメニューは変わっても、1年を通して一貫した内容になるよう構成しています。</dd></div>")
+          # meta
+          s = s.replace("カリキュラムも共同開発。", "カリキュラムも1年設計で共同開発。")
+          open("school.html", "w", encoding="utf-8").write(s)
+
+          # ===== index.html =====
+          s = open("index.html", encoding="utf-8").read()
+          s = s.replace("元プロ野球選手と比治山大学が共同開発した、スポーツ力学の理論に基づく年間プログラム。",
+                        "元プロ野球選手と比治山大学が共同開発した、スポーツ力学の理論に基づく<strong>1年設計</strong>のプログラム。")
+          s = s.replace("カリキュラムは大学と共同開発した、スポーツ科学×大学の知の結晶です。毎週金曜・月4回、データが君の成長を加速させます。",
+                        "カリキュラムは大学と共同開発した、スポーツ科学×大学の知の結晶。基本は1年単位の設計で、毎週金曜・月4回の積み重ねが1年後の大きな差になります。")
+          s = s.replace("<li>比治山大学と共同開発のカリキュラム</li>",
+                        "<li>比治山大学と共同開発の1年設計カリキュラム</li>")
+          s = s.replace("HAKI proではスポーツ科学の視点で身体能力と動作を測定し、詳細に分析。データをもとに「打つ・投げる・走る」を個別メニューで伸ばします。",
+                        "HAKI proではスポーツ科学の視点で身体能力と動作を測定し、詳細に分析。プログラムは基本1年設計で、データをもとに「打つ・投げる・走る」を段階的に伸ばします。")
+          open("index.html", "w", encoding="utf-8").write(s)
+
+          # ===== 全ページ共通フッター =====
+          import glob
+          for f in glob.glob("*.html"):
+              s = open(f, encoding="utf-8").read()
+              s = s.replace("スポーツ力学に基づく一貫した年間プログラムで",
+                            "スポーツ力学に基づく1年設計の一貫したプログラムで")
+              s = s.replace("style.css?v=45", "style.css?v=46")
+              open(f, "w", encoding="utf-8").write(s)
+          PYEOF
+          git rm -q .github/workflows/add-annual.yml
+          git add -A
+          git commit -m "プログラムが基本1年設計である旨を各ページに明記"
+          git push origin HEAD:main
