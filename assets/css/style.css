@@ -779,3 +779,7 @@ h1, h2, h3, h4, .phil-statement, .rep-band .q, .rep-quote, .mvv-headline,
   .page-hero .jp, .bighead .jp { font-size: .96rem; }
   .about-copy h2, .sec-head h2 { font-size: 1.5rem; }
 }
+
+
+/* 代表の言葉：2カラムで幅が狭くなる 900-1180px 帯でも1行に収まるサイズ */
+.rep-quote { font-size: clamp(1.15rem, 2.05vw, 1.6rem); }
