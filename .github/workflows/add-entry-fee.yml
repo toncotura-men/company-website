@@ -1,0 +1,68 @@
+name: Add entry fee
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add 入会金10,000円 to price cards, table and notes
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          python3 - <<'PYEOF'
+          import glob
+
+          FEE = '<div class="entry-fee"><span class="ef-label">入会金</span><span class="ef-amount">¥10,000</span><span class="ef-unit">（税別）／初回のみ</span></div>\n          '
+
+          # 料金カードの「毎週金曜・月4回開講」リストの直前に入会金ブロックを差し込む
+          NOTE_B = '<p class="price-note">2027年1月以降のご入会は月20,000円（税別）になります。</p>\n          '
+          NOTE_A = '<p class="price-note">2027年1月以降のご入会は月25,000円（税別）になります。</p>\n          '
+          for f in ("index.html", "school.html"):
+              s = open(f, encoding="utf-8").read()
+              s = s.replace(NOTE_B, NOTE_B + FEE)
+              s = s.replace(NOTE_A, NOTE_A + FEE)
+              open(f, "w", encoding="utf-8").write(s)
+
+          # index.html は price-note が無いパターンもあるため保険（price直後に入れる）
+          s = open("index.html", encoding="utf-8").read()
+          if "entry-fee" not in s:
+              s = s.replace('<div class="price"><span class="yen">¥</span>16,000<span class="unit">/月（税別）</span></div>\n          ',
+                            '<div class="price"><span class="yen">¥</span>16,000<span class="unit">/月（税別）</span></div>\n          ' + FEE)
+              s = s.replace('<div class="price"><span class="yen">¥</span>22,000<span class="unit">/月（税別）</span></div>\n          ',
+                            '<div class="price"><span class="yen">¥</span>22,000<span class="unit">/月（税別）</span></div>\n          ' + FEE)
+              open("index.html", "w", encoding="utf-8").write(s)
+
+          # 比較表に入会金の行を追加
+          s = open("school.html", encoding="utf-8").read()
+          s = s.replace('<tr><th>開講日</th>',
+                        '<tr><th>入会金（税別）</th><td>10,000円（初回のみ）</td><td class="hl">10,000円（初回のみ）</td></tr>\n            <tr><th>開講日</th>')
+          s = s.replace('※ 料金はいずれも税別の月会費です。',
+                        '※ 料金はいずれも税別です。ご入会時に入会金10,000円（税別・初回のみ）を申し受けます。')
+          open("school.html", "w", encoding="utf-8").write(s)
+
+          # CSS
+          css = open("assets/css/style.css", encoding="utf-8").read()
+          css += """
+
+          /* ===== entry fee ===== */
+          .entry-fee { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-top: 4px; padding: 10px 16px; border: 1px dashed rgba(25,212,255,.55); background: rgba(25,212,255,.07); }
+          .entry-fee .ef-label { font-weight: 900; font-size: .82rem; letter-spacing: .06em; color: var(--cyan); }
+          .entry-fee .ef-amount { font-family: var(--disp); font-weight: 600; font-size: 1.5rem; line-height: 1; color: #fff; }
+          .entry-fee .ef-unit { font-size: .75rem; color: rgba(255,255,255,.7); }
+          """.replace("\n          ", "\n")
+          open("assets/css/style.css", "w", encoding="utf-8").write(css)
+
+          for f in glob.glob("*.html"):
+              s = open(f, encoding="utf-8").read()
+              open(f, "w", encoding="utf-8").write(s.replace("style.css?v=40", "style.css?v=41"))
+          PYEOF
+          git rm -q .github/workflows/add-entry-fee.yml
+          git add -A
+          git commit -m "料金セクションに入会金10,000円（税別・初回のみ）を明記"
+          git push origin HEAD:main
