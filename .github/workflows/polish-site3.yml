@@ -1,0 +1,59 @@
+name: Tune headline sizes for clean wrapping
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shrink oversized headlines and enable phrase-based wrapping
+        run: |
+          set -eux
+          git config user.name "toncotura-men"
+          git config user.email "133511812+toncotura-men@users.noreply.github.com"
+          python3 - <<'PYEOF'
+          import glob
+
+          css = open("assets/css/style.css", encoding="utf-8").read()
+          css += """
+
+          /* ===== headline sizing so phrases fit on one line ===== */
+          /* 文節単位で折り返す（対応ブラウザ）＋禁則を厳格に */
+          h1, h2, h3, h4, .phil-statement, .rep-band .q, .rep-quote, .mvv-headline,
+          .hero-message, .page-hero .jp, .bighead .jp, .sec-head p, .hero-lead,
+          .phil-lead, .lead, .cls-copy, .price-note, .tax-note, .rep-copy p {
+            word-break: auto-phrase; line-break: strict;
+          }
+          /* 代表の言葉（下層ページ）：1行に収まるサイズへ */
+          .rep-quote { font-size: clamp(1.15rem, 2.4vw, 1.75rem); line-height: 1.75; }
+          /* 代表の言葉（トップの帯） */
+          .rep-band .q { font-size: clamp(1.02rem, 1.9vw, 1.45rem); line-height: 1.8; }
+          .rep-band .inner { gap: 24px 40px; }
+          /* 理念・スクールのステートメント */
+          .phil-statement { font-size: clamp(1.35rem, 3.4vw, 2.4rem); line-height: 1.5; }
+          .mvv-headline { font-size: clamp(1.5rem, 4vw, 2.7rem); line-height: 1.5; }
+          .school-lede .phil-statement { font-size: clamp(1.3rem, 3.2vw, 2.2rem); }
+          /* 狭い画面ではさらに一段小さく */
+          @media (max-width: 600px) {
+            .rep-quote { font-size: 1.15rem; }
+            .rep-band .q { font-size: 1.02rem; }
+            .phil-statement { font-size: 1.35rem; }
+            .mvv-headline { font-size: 1.45rem; }
+            .page-hero .jp, .bighead .jp { font-size: .96rem; }
+            .about-copy h2, .sec-head h2 { font-size: 1.5rem; }
+          }
+          """.replace("\n          ", "\n")
+          open("assets/css/style.css", "w", encoding="utf-8").write(css)
+
+          for f in glob.glob("*.html"):
+              s = open(f, encoding="utf-8").read()
+              open(f, "w", encoding="utf-8").write(s.replace("style.css?v=43", "style.css?v=44"))
+          PYEOF
+          git rm -q .github/workflows/polish-site3.yml
+          git add -A
+          git commit -m "見出しの文字サイズを最適化し、文節単位の折り返しを全端末で有効化"
+          git push origin HEAD:main
