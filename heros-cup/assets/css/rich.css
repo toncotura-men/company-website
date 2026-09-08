@@ -323,11 +323,26 @@ p,li,dd{ text-wrap:pretty; }
   z-index:5;
   margin:0;
   transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:14px;
   white-space:nowrap;
   font-family:var(--f-en);
-  font-size:11px;
-  letter-spacing:.25em;
-  color:rgba(255,255,255,.52);
+  font-size:clamp(11px,1vw,14px);
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.32em;
+  color:rgba(255,255,255,.86);
+  text-shadow:0 2px 12px rgba(0,0,0,.42);
+}
+.hero-place::before,
+.hero-place::after{
+  content:"";
+  width:30px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,190,112,.78));
+}
+.hero-place::after{ transform:scaleX(-1); }
 }
 .home-page .hero-facts{
   z-index:4;
@@ -755,7 +770,8 @@ p,li,dd{ text-wrap:pretty; }
   .home-page .hero-logo{ width:min(80%,390px); }
   .hero-orbit{ width:min(94%,420px); }
   .baseball{ width:38px; }
-  .hero-place{ font-size:8px;bottom:0;letter-spacing:.18em; }
+  .hero-place{ font-size:10px;bottom:0;gap:9px;letter-spacing:.24em; }
+  .hero-place::before,.hero-place::after{ width:20px; }
   .home-page .hero h1{ font-size:clamp(44px,14vw,70px);line-height:1.08; }
   .home-page .hero h1 small{ font-size:12px;letter-spacing:.08em; }
   .home-page .hero-lead{ font-size:13px;line-height:1.95;text-wrap:pretty; }
