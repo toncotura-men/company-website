@@ -765,6 +765,14 @@ p,li,dd{ text-wrap:pretty; }
 
 @media(max-width:699px){
   .container{ width:min(100% - 32px,1220px); }
+  .home-page .shead .shead-en{
+    max-width:100%;
+    margin-bottom:-.08em;
+    font-size:clamp(38px,11.8vw,52px);
+    line-height:.95;
+    letter-spacing:-.045em;
+    white-space:nowrap;
+  }
   .home-page .hero{ padding-top:98px;padding-bottom:62px; }
   .home-page .hero-visual{ min-height:310px;margin:-18px auto -8px; }
   .home-page .hero-logo{ width:min(80%,390px); }
