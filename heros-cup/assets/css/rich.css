@@ -550,6 +550,32 @@ p,li,dd{ text-wrap:pretty; }
   align-self:center;
   transform:translateY(-28px);
 }
+.rep-greeting-title{
+  position:relative;
+  z-index:3;
+  margin:0 0 24px 15px;
+  padding-left:18px;
+  border-left:4px solid #ffca75;
+}
+.rep-greeting-title span{
+  display:block;
+  margin-bottom:4px;
+  font-family:var(--f-en);
+  font-size:10px;
+  font-weight:600;
+  line-height:1.4;
+  letter-spacing:.25em;
+  color:rgba(255,255,255,.72);
+}
+.rep-greeting-title h2{
+  margin:0;
+  font-family:var(--f-mc);
+  font-size:clamp(26px,2.6vw,38px);
+  font-weight:800;
+  line-height:1.35;
+  letter-spacing:.06em;
+  color:#fff;
+}
 .home-page .rep-photo::before{
   inset:0 -10%;
   background:radial-gradient(circle at 50% 55%,rgba(4,15,34,.32),transparent 66%);
@@ -753,6 +779,8 @@ p,li,dd{ text-wrap:pretty; }
   .home-page .exp-card{ flex:0 0 min(82vw,320px);scroll-snap-align:center; }
   .home-page .award.is-hero{ min-height:350px; }
   .home-page .rep-photo{ max-width:390px; }
+  .rep-greeting-title{ margin:0 0 20px 10px; }
+  .rep-greeting-title h2{ font-size:28px; }
   .home-page .rep-name{ width:calc(100% - 20px);margin:-2px auto 0; }
   .home-page .rep-body h2{ max-width:none;font-size:clamp(28px,8.2vw,34px);line-height:1.4; }
   .home-page .rep-body h2 em{ max-width:none;font-size:.88em;letter-spacing:-.07em; }
