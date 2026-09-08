@@ -462,10 +462,15 @@ p,li,dd{ text-wrap:pretty; }
 .home-page .loop-card p{ color:rgba(255,255,255,.66); }
 
 .home-page .sec-alt{ background:var(--cream); }
+.shead .shead-en{
+  color:rgba(242,107,33,.07);
+  -webkit-text-stroke:1.4px rgba(242,107,33,.46);
+  text-shadow:0 5px 24px rgba(242,107,33,.08);
+}
 .home-page .shead .shead-en{
   font-size:clamp(70px,12vw,150px);
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,104,29,.22);
+  color:rgba(255,104,29,.08);
+  -webkit-text-stroke:1.5px rgba(255,104,29,.48);
   margin-bottom:-.26em;
 }
 .home-page .shead h2{ font-size:clamp(30px,4.6vw,54px); }
