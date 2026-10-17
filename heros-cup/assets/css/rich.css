@@ -343,7 +343,7 @@ p,li,dd{ text-wrap:pretty; }
   background:linear-gradient(90deg,transparent,rgba(255,190,112,.78));
 }
 .hero-place::after{ transform:scaleX(-1); }
-}
+/* (stray closing brace removed: it silently disabled the .hero-facts rule below) */
 .home-page .hero-facts{
   z-index:4;
   margin-top:clamp(38px,5vh,64px);
