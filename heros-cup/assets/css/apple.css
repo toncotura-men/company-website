@@ -471,12 +471,12 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .venue-figure{ margin:0; }
 .js-motion .venue-figure .vpin{
   opacity:0;
-  transform:translate(-50%,-20%);
+  transform:translate(calc(-50% + var(--pin-dx,0px)),-20%);
   transition:opacity .35s var(--a-ease),transform .35s var(--a-ease);
 }
 .js-motion .venue-figure.pins-in .vpin{
   opacity:1;
-  transform:translate(-50%,-50%);
+  transform:translate(calc(-50% + var(--pin-dx,0px)),-50%);
   transition-delay:calc(var(--pin-i,0) * 30ms);
 }
 .venue-figure[data-focus] .vpin{ transition-delay:0s; }
@@ -485,7 +485,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .venue-figure[data-focus="s"] .vpin:not(.s){ opacity:.2; }
 .venue-figure[data-focus="g"] .vpin.g,
 .venue-figure[data-focus="p"] .vpin.p,
-.venue-figure[data-focus="s"] .vpin.s{ transform:translate(-50%,-50%) scale(1.08); }
+.venue-figure[data-focus="s"] .vpin.s{ transform:translate(calc(-50% + var(--pin-dx,0px)),-50%) scale(1.08); }
 .venue-legend span[data-cat]{
   padding:6px 12px;
   border-radius:999px;
@@ -566,7 +566,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
     transition:opacity .4s linear !important;
     transition-delay:0s !important;
   }
-  .js-motion .venue-figure .vpin{ transform:translate(-50%,-50%) !important; }
+  .js-motion .venue-figure .vpin{ transform:translate(calc(-50% + var(--pin-dx,0px)),-50%) !important; }
   .js-motion .home-page.is-loaded .hero-eyebrow,
   .js-motion .home-page.is-loaded .hero h1 small,
   .js-motion .home-page.is-loaded .hero h1 .nw,

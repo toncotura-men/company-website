@@ -189,6 +189,23 @@
         pin.style.setProperty('--pin-i', String(n++));
       });
     });
+    // keep every label inside the photo on narrow screens (the pin point itself stays put)
+    var fitPins = function () {
+      // measured from layout (not the on-screen box) so an in-flight transition can't skew it
+      venue.querySelectorAll('.vpin').forEach(function (pin) {
+        var area = pin.offsetParent ? pin.offsetParent.clientWidth : 0;
+        var left = pin.offsetLeft - pin.offsetWidth / 2;
+        var right = left + pin.offsetWidth;
+        var dx = 0;
+        if (left < 4) dx = 4 - left;
+        else if (right > area - 4) dx = area - 4 - right;
+        pin.style.setProperty('--pin-dx', dx.toFixed(1) + 'px');
+      });
+    };
+    fitPins();
+    window.addEventListener('resize', fitPins, { passive: true });
+    window.addEventListener('load', fitPins);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPins); // labels widen once web fonts arrive
     var showPins = function () { venue.classList.add('pins-in'); };
     if ('IntersectionObserver' in window) {
       var pinObserver = new IntersectionObserver(function (entries) {
