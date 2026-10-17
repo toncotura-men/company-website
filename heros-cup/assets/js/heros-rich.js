@@ -125,6 +125,17 @@
       window.addEventListener('resize', placeIndicator, { passive: true });
     }
 
+    // arrow keys move between days, as expected of a tab list
+    if (bar) bar.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      var list = Array.prototype.slice.call(tabs);
+      var i = list.indexOf(document.activeElement);
+      if (i < 0) return;
+      var next = list[(i + (event.key === 'ArrowRight' ? 1 : list.length - 1)) % list.length];
+      next.focus();
+      next.click();
+    });
+
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         if (tab.classList.contains('is-on')) return;
@@ -240,6 +251,9 @@
       item.addEventListener('focus', function () { focusCat(cat); });
       item.addEventListener('blur', function () { focusCat(null); });
       item.addEventListener('click', function () { focusCat(cat); });
+      item.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); focusCat(cat); }
+      });
     });
   }
 

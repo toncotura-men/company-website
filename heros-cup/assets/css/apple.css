@@ -531,6 +531,125 @@ table.tbl tbody th{ color:var(--a-accent-text); }
   .shead h2,.home-page .shead h2{ font-size:clamp(26px,7.4vw,34px); }
 }
 
+/* ============================================================
+   Refinement: no unexplained decoration, richer surfaces
+   ============================================================ */
+
+/* decoration with no meaning for parents: removed */
+.home-page .hero::before,.home-page .hero::after,.hero-fx,.hero-stadium,.hero-ring,.home-page .hero-ring,
+.scroll-cue,.hero-eyebrow i,.hero-ticker,.home-page .pv-arrow::before,.home-page .award.is-hero::before,
+.home-page .concept::before,.home-page .first-banner::before,.home-page .cta::after,.ftr::before,
+.concept-quote::before,.home-page .concept-quote::before,.phero::after,.first-banner::after,
+.pillar .ic,.home-page .pillar::after,.shead .shead-en,.home-page .shead .shead-en{ display:none !important; }
+
+/* quieter brand glow behind the logo instead of rings and beams */
+.home-page .hero{
+  min-height:100dvh;
+  background:
+    radial-gradient(60% 55% at 74% 42%,rgba(255,122,51,.28),transparent 70%),
+    radial-gradient(70% 60% at 10% 100%,rgba(40,90,170,.32),transparent 70%),
+    linear-gradient(160deg,#0a1222 0%,#0d1a33 55%,#1a1420 100%);
+}
+.home-page .hero-glow{ opacity:.55; }
+.hero-eyebrow{ gap:0; padding:8px 16px; border-radius:999px; background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14); letter-spacing:.16em; }
+
+/* glass with an edge highlight (web approximation of Apple materials) */
+.home-page .hero-facts{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px rgba(4,10,24,.35);
+}
+.home-page .hero-facts div{ background:rgba(10,18,36,.55); padding:22px 22px; }
+.home-page .hero-facts dt{ color:var(--signal-2); letter-spacing:.18em; }
+
+/* section heads: one clear label, big calm headline */
+.shead .shead-tag{ font-size:13px; letter-spacing:.12em; margin-bottom:18px; }
+.shead .shead-tag::before{ width:18px; height:1.5px; }
+.shead h2,.home-page .shead h2{ max-width:20em; text-wrap:balance; }
+
+/* light cards: hairline + navy-tinted soft shadow */
+.loop-card,.pillar,.home-page .pillar,.exp-card,.award,.ccard,.block,.gr-item,.tbl-wrap,.rule-toc,.tl-row,.home-page .pv-problem{
+  border:1px solid var(--a-line);
+  box-shadow:0 1px 2px rgba(16,32,64,.04),0 12px 32px rgba(16,32,64,.06);
+}
+/* dark cards: inner edge light, no heavy outline */
+.home-page .loop-card,.home-page .exp-card{
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.home-page .exp-card .n{ position:static; display:block; margin-bottom:14px; font-size:13px; letter-spacing:.14em; color:var(--signal-2); }
+.exp-card .n{ position:static; display:block; margin-bottom:12px; font-size:13px; line-height:1; letter-spacing:.14em; color:var(--o); }
+
+/* pillars: plain hierarchy, no clip-art icons */
+.pillar,.home-page .pillar{ min-height:0; padding:36px 28px 34px; }
+.pillar h3{ font-size:19px; margin-bottom:14px; }
+.pillar::before{ height:2px; }
+
+/* value card: richer orange with depth, still one accent */
+.pv-value,.home-page .pv-value{
+  background:linear-gradient(160deg,#ff8a3d 0%,var(--o) 55%,#e2560f 100%);
+  box-shadow:0 24px 50px rgba(226,86,15,.22),inset 0 1px 0 rgba(255,255,255,.22);
+  border:0;
+}
+.pv-col li i{ width:20px; height:20px; font-size:11px; }
+.pv-problem li i,.home-page .pv-problem li i{ background:var(--a-line); color:var(--a-text-3); }
+
+/* first-tournament banner: deep navy panel with soft orange light */
+.first-banner,.home-page .first-banner{
+  background:
+    radial-gradient(70% 90% at 100% 0%,rgba(255,122,51,.22),transparent 60%),
+    linear-gradient(150deg,#0e1d3a,#0a1428);
+  box-shadow:0 30px 70px rgba(10,20,40,.28),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.home-page .fb-meta{ background:rgba(255,255,255,.1); }
+
+/* awards: HERO award reads as the centrepiece */
+.home-page .award.is-hero,.award.is-hero{
+  background:radial-gradient(80% 60% at 50% 0%,rgba(255,196,107,.18),transparent 70%),linear-gradient(160deg,#13305f,#0a1730);
+  box-shadow:0 30px 60px rgba(10,23,48,.3),inset 0 1px 0 rgba(255,255,255,.1);
+  border:0;
+}
+.medal.m1{ box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 20px rgba(214,162,39,.3); }
+.medal.m2{ box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 20px rgba(120,134,150,.25); }
+
+/* representative + CTA: calmer light */
+.home-page .cta{
+  background:radial-gradient(60% 70% at 50% 100%,rgba(255,122,51,.22),transparent 70%),linear-gradient(160deg,#0a1222,#0d1a33);
+}
+.home-page .cta h2{ max-width:16em; margin-inline:auto; }
+
+/* sub-page heads: the English word becomes a small solid label */
+.phero .en{
+  font-size:13px; line-height:1; letter-spacing:.2em; font-weight:600;
+  color:var(--signal-2); -webkit-text-stroke:0; margin-bottom:6px;
+}
+.phero{ padding:calc(var(--hdr) + 72px) 0 72px; }
+.phero h1{ max-width:18em; }
+
+/* numbers line up */
+.tl-time,.gr-num,.fb-meta dd,.hero-facts dd,table.tbl td,.medal{ font-variant-numeric:tabular-nums; }
+
+/* footer: simple and quiet */
+.ftr{ background:#0a0d14; }
+
+/* keyboard focus is always visible */
+a:focus-visible,button:focus-visible,.day-tab:focus-visible{ outline:2px solid var(--o); outline-offset:3px; border-radius:8px; }
+
+/* no pure black in dark mode */
+@media (prefers-color-scheme:dark){
+  :root{ --a-bg:#0b0c10; --a-bg-2:#111318; --a-surface:#1a1c22; }
+  .loop-card,.pillar,.home-page .pillar,.exp-card,.award,.ccard,.block,.gr-item,.tbl-wrap,.rule-toc,.tl-row,.home-page .pv-problem{
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 12px 32px rgba(0,0,0,.3);
+  }
+}
+
+/* touch & safe areas */
+a,button,.day-tab,.venue-legend span[data-cat]{ touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+.drawer{ overscroll-behavior:contain; }
+.float-entry{ bottom:calc(18px + env(safe-area-inset-bottom)); right:calc(18px + env(safe-area-inset-right)); }
+@media(max-width:520px){ .float-entry{ bottom:calc(12px + env(safe-area-inset-bottom)); right:calc(12px + env(safe-area-inset-right)); } }
+
 /* ---------- phone performance ---------- */
 /* cards no longer animate continuously: drop permanent GPU layers */
 .home-page .hero-logo,.home-page .pillar,.home-page .exp-card,.home-page .award{ will-change:auto; transform-style:flat; }
