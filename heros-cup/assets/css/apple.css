@@ -650,6 +650,31 @@ a,button,.day-tab,.venue-legend span[data-cat]{ touch-action:manipulation; -webk
 .float-entry{ bottom:calc(18px + env(safe-area-inset-bottom)); right:calc(18px + env(safe-area-inset-right)); }
 @media(max-width:520px){ .float-entry{ bottom:calc(12px + env(safe-area-inset-bottom)); right:calc(12px + env(safe-area-inset-right)); } }
 
+/* ---------- legibility: orange that passes contrast ---------- */
+:root{ --a-fill:#c94a0c; --a-fill-hover:#b93d0b; --a-accent-large:#d9520f; }
+@media (prefers-color-scheme:dark){ :root{ --a-accent-large:#ff9a52; } }
+/* white text sits on a deeper orange (4.7:1) */
+.btn-primary,.home-page .btn-primary,.nav .nav-cta,.hdr.is-top .nav .nav-cta,.float-entry,.drawer .drawer-cta,
+.day-tab.is-on,.day-tabs.has-indicator::before,.home-page .fb-badge,.fb-badge,.vpin.g{ background:var(--a-fill); }
+.day-tabs.has-indicator .day-tab.is-on{ background:transparent; }
+.btn-primary:hover,.nav .nav-cta:hover{ background:var(--a-fill-hover); }
+.art > h2::before{ background:var(--a-fill); }
+.pv-value,.home-page .pv-value{ background:linear-gradient(160deg,#d9520f 0%,var(--a-fill) 55%,#b93d0b 100%); }
+/* small orange text on light surfaces */
+.shead .shead-tag,.gr-en,.rule-toc h3,.ccard .tag,.tl-time,.chip,.exp-card .n,.loop-card .no,
+table.tbl tbody th,.award .rank,.callout h4{ color:var(--a-accent-text); }
+.shead .shead-tag::before{ background:var(--a-accent-text); }
+.shead h2 .hl,.home-page .shead h2 .hl,.phero h1 .hl{ color:var(--a-accent-large); }
+/* labels that live on dark panels keep the bright orange */
+.home-page .concept .loop-card .no,.home-page .sec-soft .shead .shead-tag,.home-page .exp-card .n,
+.home-page .sec-soft .shead h2 .hl,.cta .shead-tag,.award.is-hero .rank{ color:var(--signal-2); }
+.home-page .sec-soft .shead .shead-tag::before{ background:var(--signal-2); }
+a[style*="color:var(--o-deep)"]{ color:var(--a-accent-text) !important; }
+@media (prefers-color-scheme:dark){
+  .tl-g.ex{ background:#4b5563; }
+  a[style*="color:var(--navy)"]{ color:var(--a-navy-text) !important; }
+}
+
 /* ---------- phone performance ---------- */
 /* cards no longer animate continuously: drop permanent GPU layers */
 .home-page .hero-logo,.home-page .pillar,.home-page .exp-card,.home-page .award{ will-change:auto; transform-style:flat; }
