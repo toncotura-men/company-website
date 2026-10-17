@@ -73,13 +73,8 @@ h1,h2,h3,.concept-quote p,.rep-pull{ font-feature-settings:"palt"; }
   letter-spacing:-.02em;
 }
 .shead p{ font-size:clamp(15px,1.4vw,17px); line-height:2; color:var(--a-text-2); max-width:40em; }
-.shead .shead-en,
-.home-page .shead .shead-en{
-  color:transparent;
-  -webkit-text-stroke:1px rgba(242,107,33,.28);
-  text-shadow:none;
-}
-.home-page .sec-soft .shead p.shead-en{ color:transparent; -webkit-text-stroke-color:rgba(255,255,255,.12); }
+/* on the dark section keep the outline readable instead of a grey fill */
+.home-page .sec-soft .shead p.shead-en{ color:rgba(255,255,255,.04); -webkit-text-stroke-color:rgba(255,255,255,.28); }
 .shead .shead-tag{ letter-spacing:.18em; }
 .phero h1{ font-size:clamp(30px,5vw,54px); line-height:1.3; letter-spacing:-.02em; }
 .phero p{ font-size:clamp(15px,1.4vw,17px); }
@@ -540,7 +535,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .scroll-cue,.hero-eyebrow i,.hero-ticker,.home-page .pv-arrow::before,.home-page .award.is-hero::before,
 .home-page .concept::before,.home-page .first-banner::before,.home-page .cta::after,.ftr::before,
 .concept-quote::before,.home-page .concept-quote::before,.phero::after,.first-banner::after,
-.pillar .ic,.home-page .pillar::after,.shead .shead-en,.home-page .shead .shead-en{ display:none !important; }
+.pillar .ic,.home-page .pillar::after{ display:none !important; }
 
 /* quieter brand glow behind the logo instead of rings and beams */
 .home-page .hero{
@@ -619,11 +614,6 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 }
 .home-page .cta h2{ max-width:16em; margin-inline:auto; }
 
-/* sub-page heads: the English word becomes a small solid label */
-.phero .en{
-  font-size:13px; line-height:1; letter-spacing:.2em; font-weight:600;
-  color:var(--signal-2); -webkit-text-stroke:0; margin-bottom:6px;
-}
 .phero{ padding:calc(var(--hdr) + 72px) 0 72px; }
 .phero h1{ max-width:18em; }
 
@@ -631,6 +621,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .tl-time,.gr-num,.fb-meta dd,.hero-facts dd,table.tbl td,.medal{ font-variant-numeric:tabular-nums; }
 
 /* footer: simple and quiet */
+.ftr-brand img{ width:auto; max-width:100%; }
 .ftr{ background:#0a0d14; }
 
 /* keyboard focus is always visible */
