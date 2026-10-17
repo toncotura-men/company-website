@@ -14,6 +14,7 @@
 
   /* ---- header state and scroll progress ---- */
   var hdr = document.querySelector('.hdr');
+  var progressBar = document.querySelector('.page-progress i');
   var hasHero = !!document.querySelector('.hero, .phero');
   var floatCta = document.querySelector('.float-entry');
   var drawerOpen = false;
@@ -23,7 +24,8 @@
     var y = window.scrollY || window.pageYOffset;
     var doc = document.documentElement;
     var max = Math.max(1, doc.scrollHeight - window.innerHeight);
-    root.style.setProperty('--page-progress', Math.min(1, y / max).toFixed(4));
+    // set on the bar itself: a variable on <html> would restyle the whole page every scroll frame
+    if (progressBar) progressBar.style.transform = 'scaleX(' + Math.min(1, y / max).toFixed(4) + ')';
 
     if (hdr) {
       hdr.classList.toggle('is-scrolled', y > 18);
@@ -191,7 +193,7 @@
     if ('IntersectionObserver' in window) {
       var pinObserver = new IntersectionObserver(function (entries) {
         if (!entries[0].isIntersecting) return;
-        window.setTimeout(showPins, reducedMotion ? 0 : 350);
+        showPins();
         pinObserver.disconnect();
       }, { threshold: 0.35 });
       pinObserver.observe(venue);

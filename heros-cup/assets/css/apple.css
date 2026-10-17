@@ -98,7 +98,7 @@ table.tbl{ font-size:15px; }
 
 /* ---------- frosted header ---------- */
 .page-progress{ height:2px; background:transparent; }
-.page-progress i{ background:var(--o); box-shadow:none; }
+.page-progress i{ background:var(--o); box-shadow:none; transform:scaleX(0); }
 
 .hdr{
   height:var(--hdr);
@@ -190,8 +190,8 @@ body.has-open-menu .hdr{ background:var(--a-bg); border-color:var(--a-line); }
 .float-entry:hover{ transform:none; box-shadow:0 10px 30px rgba(0,0,0,.18); }
 
 .btn:active,.nav .nav-cta:active,.float-entry:active,.drawer .drawer-cta:active,.day-tab:active{
-  transform:scale(.96);
-  transition-duration:.12s;
+  transform:scale(.97);
+  transition:transform .1s ease-out;
 }
 
 /* ---------- shapes: rounded instead of cut corners ---------- */
@@ -235,6 +235,18 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .ccard dd a{ color:var(--a-accent-text); }
 .venue-legend{ color:var(--a-text-2); }
 
+/* problem / value lists: mark on the left, heading over description */
+.pv-col li{
+  display:grid;
+  grid-template-columns:20px minmax(0,1fr);
+  column-gap:12px;
+  align-items:start;
+}
+.pv-col li i{ grid-column:1; grid-row:1 / span 2; }
+.pv-col li{ line-height:1.5; }
+.pv-col li span{ grid-column:2; margin-top:4px; font-size:14px; line-height:1.6; }
+.pv-col ul{ gap:20px; }
+
 /* message section: navy instead of a full orange field */
 .home-page .rep{
   background:
@@ -261,14 +273,27 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .ticker-track i{ color:var(--o); }
 
 /* ---------- calm hover states ---------- */
-.home-page .loop-card:hover,.loop-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); }
+@media (hover:hover) and (pointer:fine){
+  .home-page .loop-card:hover,.loop-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); }
+  .exp-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); }
+  .award:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.1); }
+}
+/* touch screens: a tap must not leave a card floating */
+@media (hover:none),(pointer:coarse){
+  .loop-card:hover,.home-page .loop-card:hover,.exp-card:hover,.home-page .exp-card:hover,
+  .award:hover,.pillar:hover,.home-page .pillar:hover,.tl-row:hover,.home-page .hero-facts div:hover,
+  .home-page .fb-meta div:hover{ transform:none; box-shadow:none; }
+  .home-page .fb-meta div:hover{ padding-left:20px; background:rgba(5,11,22,.44); }
+  .home-page .hero-facts div:hover{ background:rgba(4,10,22,.62); }
+  .home-page .hero-facts div:hover::before,.home-page .loop-card:hover::after,.pillar:hover::before{ transform:scaleX(0); }
+  .home-page .hero-facts div:hover::before{ transform:scaleY(0); }
+  .btn:hover .arr{ transform:none; }
+}
 .home-page .pillar:hover{ color:inherit; background:var(--a-surface); box-shadow:0 18px 40px rgba(0,0,0,.08); }
 .home-page .pillar:hover p{ color:var(--a-text-2); }
 .home-page .pillar:hover .ic{ transform:none; background:rgba(255,104,29,.12); color:var(--signal); }
 .pillar:hover{ background:var(--a-surface); }
 .home-page .exp-card::before{ content:none; }
-.exp-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); }
-.award:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.1); }
 .tl-row:hover{ transform:none; box-shadow:none; border-color:var(--o-line); }
 .home-page .hero-facts div:hover{ transform:none; }
 .home-page .fb-meta div:hover{ padding-left:20px; }
@@ -288,11 +313,11 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 /* ---------- reveal: decelerate in, never pop ---------- */
 .rv{
   opacity:0;
-  transform:translateY(28px);
+  transform:translateY(14px);
   filter:none;
-  transition:opacity 1s var(--a-ease),transform 1s var(--a-ease);
+  transition:opacity .6s var(--a-ease),transform .6s var(--a-ease);
 }
-.rv[data-reveal="left"],.rv[data-reveal="right"]{ transform:translateY(28px); }
+.rv[data-reveal="left"],.rv[data-reveal="right"]{ transform:translateY(14px); }
 .rv.is-in,.rv[data-reveal].is-in{ opacity:1; transform:none; }
 
 /* text you read and tables you check stay put */
@@ -305,14 +330,14 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .awards.rv > *,
 .hero-loop.rv > *{
   opacity:0;
-  transform:translateY(20px);
-  transition:opacity .9s var(--a-ease),transform .9s var(--a-ease);
+  transform:translateY(10px);
+  transition:opacity .5s var(--a-ease),transform .5s var(--a-ease);
 }
 .game-rules.is-in .gr-item,.awards.is-in > *,.hero-loop.is-in > *{ opacity:1; transform:none; }
-.game-rules.is-in .gr-item:nth-child(2),.awards.is-in > :nth-child(2),.hero-loop.is-in > :nth-child(2){ transition-delay:.08s; }
-.game-rules.is-in .gr-item:nth-child(3),.awards.is-in > :nth-child(3),.hero-loop.is-in > :nth-child(3){ transition-delay:.16s; }
-.game-rules.is-in .gr-item:nth-child(4),.hero-loop.is-in > :nth-child(4){ transition-delay:.24s; }
-.game-rules.is-in .gr-item:nth-child(5),.hero-loop.is-in > :nth-child(5){ transition-delay:.32s; }
+.game-rules.is-in .gr-item:nth-child(2),.awards.is-in > :nth-child(2),.hero-loop.is-in > :nth-child(2){ transition-delay:.05s; }
+.game-rules.is-in .gr-item:nth-child(3),.awards.is-in > :nth-child(3),.hero-loop.is-in > :nth-child(3){ transition-delay:.1s; }
+.game-rules.is-in .gr-item:nth-child(4),.hero-loop.is-in > :nth-child(4){ transition-delay:.15s; }
+.game-rules.is-in .gr-item:nth-child(5),.hero-loop.is-in > :nth-child(5){ transition-delay:.2s; }
 /* keep hover lift responsive once the entrance is done */
 .awards.is-in > *:hover,.hero-loop.is-in > *:hover{ transition-delay:0s; }
 
@@ -320,22 +345,22 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .home-page .rep-body.rv h2 .rep-line,
 .home-page .rep-body.rv h2 em{
   opacity:0;
-  transform:translateY(14px);
-  transition:opacity .9s var(--a-ease),transform .9s var(--a-ease);
+  transform:translateY(8px);
+  transition:opacity .5s var(--a-ease),transform .5s var(--a-ease);
 }
 .home-page .rep-body.is-in h2 .rep-line,
 .home-page .rep-body.is-in h2 em{ opacity:1; transform:none; }
-.home-page .rep-body.is-in h2 .rep-line:nth-child(1){ transition-delay:.15s; }
-.home-page .rep-body.is-in h2 .rep-line:nth-child(2){ transition-delay:.4s; }
-.home-page .rep-body.is-in h2 em{ transition-delay:.65s; }
+.home-page .rep-body.is-in h2 .rep-line:nth-child(1){ transition-delay:.05s; }
+.home-page .rep-body.is-in h2 .rep-line:nth-child(2){ transition-delay:.15s; }
+.home-page .rep-body.is-in h2 em{ transition-delay:.25s; }
 
 /* problem → value arrow draws once */
 .pv .pv-arrow svg line,.pv .pv-arrow svg polyline{ stroke-dasharray:30; stroke-dashoffset:30; }
 .pv.is-in .pv-arrow svg line,.pv.is-in .pv-arrow svg polyline{
   stroke-dashoffset:0;
-  transition:stroke-dashoffset 1s var(--a-ease) .45s;
+  transition:stroke-dashoffset .5s var(--a-ease) .2s;
 }
-.pv.is-in .pv-arrow svg polyline{ transition-delay:.75s; }
+.pv.is-in .pv-arrow svg polyline{ transition-delay:.35s; }
 
 /* HERO award: one soft light pass */
 .award.is-hero{ position:relative; overflow:hidden; }
@@ -347,7 +372,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
   background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.16) 50%,transparent 62%);
   transform:translateX(-120%);
 }
-.awards.is-in .award.is-hero::after{ transform:translateX(120%); transition:transform 1.8s var(--a-ease) .6s; }
+.awards.is-in .award.is-hero::after{ transform:translateX(120%); transition:transform 1.2s var(--a-ease) .3s; }
 
 .award-blocks{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 0 14px !important; }
 .award-blocks span{
@@ -431,7 +456,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
   transform:translateX(var(--tab-x,0));
   border-radius:999px;
   background:var(--o);
-  transition:transform .45s var(--a-ease),width .45s var(--a-ease);
+  transition:transform .45s var(--a-ease);
 }
 .day-panel.is-entering{ animation:panelIn .5s var(--a-ease); }
 @keyframes panelIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
@@ -442,15 +467,17 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 .rule-toc a.is-active::before{ color:var(--o); }
 
 /* ---------- venue: pins in order, legend focus ---------- */
+/* browsers give <figure> 40px side margins: the map shrank on phones and clipped its pins */
+.venue-figure{ margin:0; }
 .js-motion .venue-figure .vpin{
   opacity:0;
   transform:translate(-50%,-20%);
-  transition:opacity .6s var(--a-ease),transform .6s var(--a-ease),filter .3s;
+  transition:opacity .35s var(--a-ease),transform .35s var(--a-ease);
 }
 .js-motion .venue-figure.pins-in .vpin{
   opacity:1;
   transform:translate(-50%,-50%);
-  transition-delay:calc(var(--pin-i,0) * 90ms);
+  transition-delay:calc(var(--pin-i,0) * 30ms);
 }
 .venue-figure[data-focus] .vpin{ transition-delay:0s; }
 .venue-figure[data-focus="g"] .vpin:not(.g),
@@ -478,6 +505,23 @@ table.tbl tbody th{ color:var(--a-accent-text); }
   animation-timing-function:var(--a-ease);
 }
 
+/* ---------- hero entrance: everything settled in ~0.5s ---------- */
+.js-motion .home-page .hero-eyebrow,.js-motion .home-page .hero h1 small,.js-motion .home-page .hero h1 .nw,
+.js-motion .home-page .hero h1 .flame,.js-motion .home-page .hero-lead,.js-motion .home-page .hero-actions,
+.js-motion .home-page .hero-visual,.js-motion .home-page .hero-facts{ transform:translateY(10px); }
+.js-motion .home-page.is-loaded .hero-eyebrow,.js-motion .home-page.is-loaded .hero h1 small,
+.js-motion .home-page.is-loaded .hero h1 .nw,.js-motion .home-page.is-loaded .hero h1 .flame,
+.js-motion .home-page.is-loaded .hero-lead,.js-motion .home-page.is-loaded .hero-actions,
+.js-motion .home-page.is-loaded .hero-visual,.js-motion .home-page.is-loaded .hero-facts{
+  transform:none;
+  transition:opacity .4s var(--a-ease),transform .4s var(--a-ease);
+  transition-delay:0s;
+}
+.js-motion .home-page.is-loaded .hero h1 small,.js-motion .home-page.is-loaded .hero h1 .nw{ transition-delay:.03s; }
+.js-motion .home-page.is-loaded .hero h1 .flame,.js-motion .home-page.is-loaded .hero-visual{ transition-delay:.06s; }
+.js-motion .home-page.is-loaded .hero-lead{ transition-delay:.08s; }
+.js-motion .home-page.is-loaded .hero-actions,.js-motion .home-page.is-loaded .hero-facts{ transition-delay:.1s; }
+
 /* ---------- small screens ---------- */
 @media(max-width:959px){
   .hdr{ height:var(--hdr); }
@@ -485,6 +529,29 @@ table.tbl tbody th{ color:var(--a-accent-text); }
 @media(max-width:699px){
   .home-page .hero-lead{ font-size:14.5px; }
   .shead h2,.home-page .shead h2{ font-size:clamp(26px,7.4vw,34px); }
+}
+
+/* ---------- phone performance ---------- */
+/* cards no longer animate continuously: drop permanent GPU layers */
+.home-page .hero-logo,.home-page .pillar,.home-page .exp-card,.home-page .award{ will-change:auto; transform-style:flat; }
+/* keep frosted glass for the header only; blur under every card and button costs each scroll frame */
+.home-page .loop-card,.btn-light,.hero-eyebrow,.hero-facts,.home-page .hero-facts{
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+.home-page .loop-card{ background:rgba(255,255,255,.06); }
+/* animate only transform/opacity/colour; shadows switch without a per-frame repaint */
+.loop-card,.home-page .loop-card,.exp-card,.award,.tl-row{
+  transition:transform .3s var(--a-ease),opacity .5s var(--a-ease),border-color .25s;
+}
+.home-page .fb-meta div{ transition:background-color .25s; }
+.home-page .fb-meta div:hover{ padding-left:20px; }
+.burger span{ transition:transform .3s var(--a-ease),opacity .3s,background-color .3s; }
+
+/* ---------- reduce transparency: solid header ---------- */
+@media (prefers-reduced-transparency:reduce){
+  .hdr,.hdr.is-top{ background:var(--a-bg); -webkit-backdrop-filter:none; backdrop-filter:none; }
+  .hdr.is-top{ background:var(--night); }
 }
 
 /* ---------- reduce motion: fade only, nothing travels ---------- */
