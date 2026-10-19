@@ -175,4 +175,154 @@
     });
   });
 
+  (function motionLayer() {
+  /* =======================================================
+     MOTION LAYER — progressive enhancement, transform/opacity only.
+     Everything here is skipped under prefers-reduced-motion.
+     ======================================================= */
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var root = document.documentElement;
+  root.classList.add("js");
+
+  // Exponential follow: always continues from the live value, so any
+  // new target re-aims mid-flight with no jump (interruptible).
+  function follow(cur, target, dt, tau) { return cur + (target - cur) * (1 - Math.exp(-dt / tau)); }
+
+  /* ---------- Mobile nav: stagger order ---------- */
+  if (nav) nav.querySelectorAll(":scope > a").forEach(function (a, i) { a.style.setProperty("--i", i); });
+
+  /* ---------- Scroll progress line + hide-on-scroll header ---------- */
+  var bar = null;
+  if (header) {
+    bar = document.createElement("span");
+    bar.className = "scroll-progress"; bar.setAttribute("aria-hidden", "true");
+    header.appendChild(bar);
+  }
+  var reserve = document.querySelector(".reserve");
+  var footer = document.querySelector(".site-footer");
+  var lastY = window.scrollY, ticking = false, footerIn = false;
+  if (reserve && footer && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { footerIn = es[0].isIntersecting; update(); }, { threshold: 0 }).observe(footer);
+  }
+  function update() {
+    ticking = false;
+    var y = window.scrollY, max = Math.max(1, root.scrollHeight - innerHeight);
+    if (bar) bar.style.transform = "scaleX(" + Math.min(1, y / max).toFixed(4) + ")";
+    if (!reduce && header && !root.classList.contains("nav-open")) {
+      var dy = y - lastY;
+      if (y < 240 || dy < -6) root.classList.remove("hdr-hide");
+      else if (dy > 6) root.classList.add("hdr-hide");
+    }
+    if (reserve) reserve.classList.toggle("show", y > innerHeight * 0.6 && !footerIn);
+    lastY = y;
+  }
+  addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+
+  if (reduce) return;
+
+  /* ---------- Hero headline: characters materialize ---------- */
+  var h1 = document.querySelector(".hero-message");
+  if (h1) {
+    var n = 0;
+    Array.prototype.slice.call(h1.childNodes).forEach(function (node) {
+      if (node.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        Array.from(node.textContent).forEach(function (c) {
+          if (!c.trim()) { frag.appendChild(document.createTextNode(c)); return; }
+          var s = document.createElement("span"); s.className = "ch"; s.textContent = c;
+          s.style.setProperty("--i", n++); frag.appendChild(s);
+        });
+        h1.replaceChild(frag, node);
+      } else if (node.classList && node.classList.contains("accent")) {
+        // gradient text must stay one unit, or the gradient restarts per glyph
+        node.classList.add("ch"); node.style.setProperty("--i", n++ + 1);
+      }
+    });
+    h1.setAttribute("aria-label", h1.textContent.replace(/\s+/g, ""));
+    h1.classList.add("is-split");
+  }
+
+  /* ---------- Big EN headings: mask reveal ---------- */
+  var masks = document.querySelectorAll(".bighead .en, .page-hero .en, .sec-head h2, .phil-statement, .mvv-headline");
+  /* ---------- Grids: stagger children ---------- */
+  var groups = document.querySelectorAll(".feature-grid, .spec-grid, .phil-grid, .diamonds, .price-grid, .flow-row, .value-list, .news-rows, .info-table, .split");
+  groups.forEach(function (g) {
+    g.classList.remove("reveal", "d1", "d2", "d3", "in");
+    Array.prototype.forEach.call(g.children, function (c, i) {
+      c.classList.remove("d1", "d2", "d3");
+      c.classList.add("reveal"); c.style.setProperty("--i", i);
+    });
+  });
+  if ("IntersectionObserver" in window) {
+    var mo = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); mo.unobserve(en.target); } });
+    }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+    masks.forEach(function (m) { m.classList.add("mask"); mo.observe(m); });
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); so.unobserve(en.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    groups.forEach(function (g) { Array.prototype.forEach.call(g.children, function (c) { so.observe(c); }); });
+  }
+
+  if (!fine) return;
+
+  /* ---------- Spotlight on dark cards (pointer devices only) ---------- */
+  document.querySelectorAll(".price-card, .split-panel, .diamond, .contact-panel").forEach(function (card) {
+    var spot = document.createElement("span");
+    spot.className = "spot"; spot.setAttribute("aria-hidden", "true");
+    card.appendChild(spot);
+    card.addEventListener("pointermove", function (e) {
+      var r = card.getBoundingClientRect();
+      spot.style.transform = "translate3d(" + (e.clientX - r.left) + "px," + (e.clientY - r.top) + "px,0)";
+    });
+  });
+
+  /* ---------- Program tiles: gentle 3D tilt toward the pointer ---------- */
+  document.querySelectorAll(".diamond").forEach(function (el) {
+    var cx = 0, cy = 0, tx = 0, ty = 0, lift = 0, tl = 0, raf = 0, last = 0;
+    function frame(t) {
+      var dt = Math.min(48, t - (last || t)); last = t;
+      cx = follow(cx, tx, dt, 90); cy = follow(cy, ty, dt, 90); lift = follow(lift, tl, dt, 110);
+      el.style.transform = "perspective(900px) translate3d(0," + (-6 * lift).toFixed(2) + "px,0) rotateX(" + cy.toFixed(2) + "deg) rotateY(" + cx.toFixed(2) + "deg)";
+      if (Math.abs(cx - tx) + Math.abs(cy - ty) + Math.abs(lift - tl) > 0.01) raf = requestAnimationFrame(frame);
+      else { raf = 0; last = 0; if (!tl) el.style.transform = ""; }
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 8;
+      ty = -((e.clientY - r.top) / r.height - 0.5) * 8;
+      tl = 1; kick();
+    });
+    el.addEventListener("pointerleave", function () { tx = ty = 0; tl = 0; kick(); });
+  });
+
+  /* ---------- Hero: pointer-led light + PUMPS mark parallax ---------- */
+  var hero = document.querySelector(".hero");
+  if (hero) {
+    var glow = document.createElement("div");
+    glow.className = "hero-glow"; glow.setAttribute("aria-hidden", "true");
+    hero.insertBefore(glow, hero.firstChild);
+    var mark = hero.querySelector(".hero-mark");
+    var gx = 0.72, gy = 0.3, tgx = 0.72, tgy = 0.3, hraf = 0, hlast = 0;
+    function hframe(t) {
+      var dt = Math.min(48, t - (hlast || t)); hlast = t;
+      gx = follow(gx, tgx, dt, 260); gy = follow(gy, tgy, dt, 260);
+      var w = hero.clientWidth, h = hero.clientHeight;
+      glow.style.transform = "translate3d(" + (gx * w).toFixed(1) + "px," + (gy * h).toFixed(1) + "px,0)";
+      if (mark) mark.style.transform = "translate(" + ((0.5 - gx) * -18).toFixed(2) + "px, calc(-50% + " + ((0.5 - gy) * -14 + window.scrollY * 0.12).toFixed(2) + "px))";
+      if (Math.abs(gx - tgx) + Math.abs(gy - tgy) > 0.0005) hraf = requestAnimationFrame(hframe); else { hraf = 0; hlast = 0; }
+    }
+    function hkick() { if (!hraf) hraf = requestAnimationFrame(hframe); }
+    hero.addEventListener("pointermove", function (e) {
+      var r = hero.getBoundingClientRect();
+      tgx = (e.clientX - r.left) / r.width; tgy = (e.clientY - r.top) / r.height; hkick();
+    });
+    hero.addEventListener("pointerleave", function () { tgx = 0.72; tgy = 0.3; hkick(); });
+    addEventListener("scroll", function () { if (window.scrollY < hero.offsetHeight) hkick(); }, { passive: true });
+    hkick();
+  }
+  })();
+
 })();
