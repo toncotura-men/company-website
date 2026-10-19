@@ -13,6 +13,7 @@
 - 素材：ヘッダー・スマホメニュー・追従ボタンはすりガラス（`backdrop-filter`）。ヘッダーのガラスは `::before` に置く（入れ子にするとメニューが透ける）
 - 動き：transform / opacity のみ、expo-out の曲線。`prefers-reduced-motion` / `prefers-reduced-transparency` に対応
 - 料金はすべて税込で表示する
+- 動きの層（`main.js` の motionLayer）：見出しの1文字ずつの出現・英字見出しの幕上げ・カードの時間差・暗いカードの光・プログラムカードの傾き・ヘッダーの出し入れと読了ライン・追従ボタンの出し入れ・ページ間のフェード（View Transitions）。料金の数字は読む情報なので動かさない
 
 ### 主な技術要素
 
