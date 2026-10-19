@@ -255,10 +255,21 @@
     });
   });
   if ("IntersectionObserver" in window) {
+    // watch the parent: the mask's own clip-path hides it from the observer, so it never fires
+    var maskOf = new Map();
     var mo = new IntersectionObserver(function (es) {
-      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); mo.unobserve(en.target); } });
-    }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
-    masks.forEach(function (m) { m.classList.add("mask"); mo.observe(m); });
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        maskOf.get(en.target).forEach(function (m) { m.classList.add("is-in"); });
+        mo.unobserve(en.target);
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+    masks.forEach(function (m) {
+      var p = m.parentElement;
+      m.classList.add("mask");
+      if (!maskOf.has(p)) { maskOf.set(p, []); mo.observe(p); }
+      maskOf.get(p).push(m);
+    });
     var so = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); so.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
