@@ -7,7 +7,12 @@
 
 ## 概要
 
-ビルド不要の静的サイト（HTML / CSS / Vanilla JS）。ダーク基調・モノスペースのテック系デザイン。
+ビルド不要の静的サイト（HTML / CSS / Vanilla JS）。白基調＋濃紺、アクセントは紫1色のコーポレートデザイン（2026-10 刷新）。
+
+- 文字：英字 Inter Tight／和文 Noto Sans JP／引用は Shippori Mincho B1。大きい字ほど字間を詰める
+- 素材：ヘッダー・スマホメニュー・追従ボタンはすりガラス（`backdrop-filter`）。ヘッダーのガラスは `::before` に置く（入れ子にするとメニューが透ける）
+- 動き：transform / opacity のみ、expo-out の曲線。`prefers-reduced-motion` / `prefers-reduced-transparency` に対応
+- 料金はすべて税込で表示する
 
 ### 主な技術要素
 
