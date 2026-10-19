@@ -1,5 +1,5 @@
 /* =========================================================
-   PUMPS — Arrowz-Lab style interactions & canvas art
+   HAKI pro — interactions & radar canvas
    No external libraries. No real-person imagery.
    ========================================================= */
 (function () {
@@ -17,10 +17,29 @@
     toggle.addEventListener("click", function () {
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      document.documentElement.classList.toggle("nav-open", open);
     });
     nav.addEventListener("click", function (e) {
-      if (e.target.closest("a")) { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); }
+      if (e.target.closest("a")) { nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); document.documentElement.classList.remove("nav-open"); }
     });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) {
+        nav.classList.remove("open"); toggle.setAttribute("aria-expanded", "false"); document.documentElement.classList.remove("nav-open"); toggle.focus();
+      }
+    });
+  }
+
+  /* ---------- Current page in nav ---------- */
+  var here = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav > a:not(.nav-cta), .footer-nav a").forEach(function (a) {
+    if (a.getAttribute("href") === here) a.setAttribute("aria-current", "page");
+  });
+
+  /* ---------- Header: deepen glass once content scrolls under it ---------- */
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 8); };
+    addEventListener("scroll", onScroll, { passive: true }); onScroll();
   }
 
   /* ---------- Reveal on scroll ---------- */
@@ -30,7 +49,7 @@
   } else {
     var ro = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); } });
-    }, { threshold: 0.16 });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     reveals.forEach(function (el) { ro.observe(el); });
   }
 
@@ -44,60 +63,6 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     return { ctx: ctx, w: r.width, h: r.height };
   }
-
-  /* =======================================================
-     NETWORK CONSTELLATION — the purple/lime node texture
-     Runs on every <canvas class="net-canvas" data-color="r,g,b">
-     ======================================================= */
-  function constellation(canvas) {
-    var color = canvas.getAttribute("data-color") || "180,150,255";
-    var ctx, W, H, nodes = [], raf;
-    function build() {
-      var f = fit(canvas); ctx = f.ctx; W = f.w; H = f.h;
-      var n = Math.round(Math.min(70, (W * H) / 13000));
-      nodes = [];
-      for (var i = 0; i < n; i++) {
-        nodes.push({
-          x: Math.random() * W, y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
-          r: 0.8 + Math.random() * 1.8
-        });
-      }
-    }
-    function step() {
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < nodes.length; i++) {
-        var p = nodes[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
-      }
-      // links
-      for (var a = 0; a < nodes.length; a++) {
-        for (var b = a + 1; b < nodes.length; b++) {
-          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
-          var d2 = dx * dx + dy * dy;
-          if (d2 < 16000) {
-            var al = (1 - d2 / 16000) * 0.5;
-            ctx.strokeStyle = "rgba(" + color + "," + al + ")";
-            ctx.lineWidth = 0.7;
-            ctx.beginPath(); ctx.moveTo(nodes[a].x, nodes[a].y); ctx.lineTo(nodes[b].x, nodes[b].y); ctx.stroke();
-          }
-        }
-      }
-      // nodes
-      for (var k = 0; k < nodes.length; k++) {
-        var q = nodes[k];
-        ctx.fillStyle = "rgba(" + color + ",0.9)";
-        ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, Math.PI * 2); ctx.fill();
-      }
-      raf = requestAnimationFrame(step);
-    }
-    build();
-    if (reduce) { step(); cancelAnimationFrame(raf); } else step();
-    addEventListener("resize", function () { cancelAnimationFrame(raf); build(); if (!reduce) step(); else step(); });
-  }
-  document.querySelectorAll(".net-canvas").forEach(constellation);
 
   /* =======================================================
      ABOUT — animated pentagon radar (data report)
@@ -136,7 +101,7 @@
         ctx.stroke();
       }
       // ring scale ticks along the top spoke (20..100)
-      ctx.fillStyle = C.tick; ctx.font = "500 " + (M*0.026) + "px 'Oswald',sans-serif";
+      ctx.fillStyle = C.tick; ctx.font = "500 " + (M*0.026) + "px 'Inter Tight',sans-serif";
       ctx.textAlign = "left"; ctx.textBaseline = "middle";
       for (var t = 1; t <= 5; t++) { ctx.fillText(String(t*20), cx + 4, cy - R*t/5); }
       // spokes
@@ -162,14 +127,14 @@
         var lp = pt(n, R + M*0.085);
         ctx.fillStyle = C.label; ctx.font = "900 " + (M*0.036) + "px 'Noto Sans JP',sans-serif";
         ctx.fillText(labels[n], lp[0], lp[1]);
-        ctx.fillStyle = C.value; ctx.font = "700 " + (M*0.034) + "px 'Oswald',sans-serif";
+        ctx.fillStyle = C.value; ctx.font = "700 " + (M*0.034) + "px 'Inter Tight',sans-serif";
         ctx.fillText(Math.round(target[n]*100*prog), lp[0], lp[1] + M*0.046);
       }
       // center overall score
       var tot = 0; for (var k = 0; k < N; k++) tot += target[k];
-      ctx.fillStyle = C.caption; ctx.font = "500 " + (M*0.03) + "px 'Oswald',sans-serif";
+      ctx.fillStyle = C.caption; ctx.font = "500 " + (M*0.03) + "px 'Inter Tight',sans-serif";
       ctx.fillText("OVERALL", cx, cy - M*0.055);
-      ctx.fillStyle = C.total; ctx.font = "700 " + (M*0.085) + "px 'Oswald',sans-serif";
+      ctx.fillStyle = C.total; ctx.font = "700 " + (M*0.085) + "px 'Inter Tight',sans-serif";
       ctx.fillText(Math.round(tot / N * 100 * prog), cx, cy + M*0.01);
     }
     function animate() { progress += (1 - progress) * 0.06; draw(progress); if (progress < 0.995) requestAnimationFrame(animate); else draw(1); }
