@@ -258,7 +258,7 @@ p, li, dd { text-wrap: pretty; }
   .nav-group { padding: 6px 0 8px; border-bottom: 1px solid var(--line); }
   .nav-top { pointer-events: none; padding: 14px 0 4px; font-size: .75rem; letter-spacing: .08em; color: var(--text-2); }
   .nav-top .chev { display: none; }
-  .nav-sub { position: static; min-width: 0; padding: 0; border-radius: 0; background: none; box-shadow: none; opacity: 1; visibility: visible; transform: none; transition: none; }
+  .nav-sub { position: static; min-width: 0; padding: 0; border-radius: 0; background: none; box-shadow: none; opacity: 1; visibility: inherit; transform: none; transition: none; } /* inherit: hidden (and untappable) while the menu is closed */
   .nav-sub::before { content: none; }
   .nav-sub a { padding: 10px 0; border-radius: 0; white-space: normal; }
   .nav-sub a:hover { background: none; }
