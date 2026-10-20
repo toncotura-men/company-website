@@ -243,7 +243,7 @@ p,li,dd{ text-wrap:pretty; }
   max-width:8.5em;
   font-size:clamp(50px,7.35vw,104px);
   line-height:1.02;
-  letter-spacing:-.035em;
+  letter-spacing: .02em;
   text-shadow:0 14px 56px rgba(0,0,0,.48);
 }
 .home-page .hero h1 small{
@@ -588,7 +588,7 @@ p,li,dd{ text-wrap:pretty; }
   margin:0;
   font-family:var(--f-mc);
   font-size:clamp(26px,2.6vw,38px);
-  font-weight:800;
+  font-weight: 700;
   line-height:1.35;
   letter-spacing:.06em;
   color:#fff;
@@ -636,7 +636,7 @@ p,li,dd{ text-wrap:pretty; }
   max-width:13em;
   font-size:clamp(36px,3.8vw,54px);
   line-height:1.34;
-  letter-spacing:-.025em;
+  letter-spacing: .02em;
 }
 .home-page .rep-body h2 .rep-line{ display:block; }
 .home-page .rep-body h2 em{
@@ -650,7 +650,7 @@ p,li,dd{ text-wrap:pretty; }
   box-shadow:none;
   white-space:nowrap;
   font-size:.92em;
-  letter-spacing:-.055em;
+  letter-spacing: .02em;
 }
 .home-page .rep-body p{ color:rgba(255,255,255,.86); }
 .home-page .rep-pull{ border-color:var(--night);background:rgba(5,11,22,.16); }
@@ -665,7 +665,7 @@ p,li,dd{ text-wrap:pretty; }
   box-shadow:0 32px 90px rgba(8,28,57,.24);
   clip-path:polygon(22px 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%,0 22px);
 }
-.home-page .first-banner::before{ content:"MIHARA";position:absolute;left:2%;bottom:-.28em;font-family:var(--f-en);font-size:clamp(90px,18vw,240px);font-weight:600;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07); }
+.home-page .first-banner::before{ content:"MIHARA";position:absolute;left:2%;bottom:-.28em;font-family:var(--f-en);font-size:clamp(90px,18vw,240px);font-weight:600;letter-spacing: 0;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07); }
 .home-page .fb-badge{ border-radius:2px;background:var(--signal); }
 .home-page .fb-meta{ border-radius:0;background:rgba(255,255,255,.12); }
 .home-page .fb-meta div{ background:rgba(5,11,22,.44);transition:background .3s,padding-left .3s; }
@@ -789,7 +789,7 @@ p,li,dd{ text-wrap:pretty; }
     margin-bottom:-.08em;
     font-size:clamp(38px,11.8vw,52px);
     line-height:.95;
-    letter-spacing:-.045em;
+    letter-spacing: .02em;
     white-space:nowrap;
   }
   .home-page .hero{ padding-top:98px;padding-bottom:62px; }
@@ -826,7 +826,7 @@ p,li,dd{ text-wrap:pretty; }
   .rep-greeting-title h2{ font-size:28px; }
   .home-page .rep-name{ width:calc(100% - 20px);margin:-2px auto 0; }
   .home-page .rep-body h2{ max-width:none;font-size:clamp(28px,8.2vw,34px);line-height:1.4; }
-  .home-page .rep-body h2 em{ max-width:none;font-size:.88em;letter-spacing:-.07em; }
+  .home-page .rep-body h2 em{ max-width:none;font-size:.88em;letter-spacing: .02em; }
   .cta-actions,.hero-actions{ width:100%; }
   .cta-actions .btn,.hero-actions .btn{ width:100%;justify-content:space-between; }
 }

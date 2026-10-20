@@ -139,7 +139,7 @@
         var e = pt(s, R * f); ctx.strokeStyle = C.spoke; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]); ctx.stroke();
       }
-      ctx.fillStyle = C.tick; ctx.font = "500 " + (M * 0.026) + "px 'Inter Tight',sans-serif";
+      ctx.fillStyle = C.tick; ctx.font = "500 " + (M * 0.026) + "px \"Helvetica Neue\",Arial,sans-serif";
       ctx.textAlign = "left"; ctx.textBaseline = "middle";
       for (var k = 2; k <= 5; k++) ctx.fillText(String(k * 20), cx + 4, cy - R * k / 5);
       ctx.restore();
@@ -175,9 +175,9 @@
       for (var n = 0; n < N; n++) {
         var lp = pt(n, R + M * 0.085), la = clamp((t - T_FRAME * 0.5 - n * STAGGER) / 400);
         ctx.globalAlpha = la;
-        ctx.fillStyle = C.label; ctx.font = "900 " + (M * 0.036) + "px 'Noto Sans JP',sans-serif";
+        ctx.fillStyle = C.label; ctx.font = "700 " + (M * 0.036) + "px \"Hiragino Sans\",\"Hiragino Kaku Gothic ProN\",\"Yu Gothic Medium\",Meiryo,sans-serif";
         ctx.fillText(labels[n], lp[0], lp[1]);
-        ctx.fillStyle = C.value; ctx.font = "700 " + (M * 0.034) + "px 'Inter Tight',sans-serif";
+        ctx.fillStyle = C.value; ctx.font = "700 " + (M * 0.034) + "px \"Helvetica Neue\",Arial,sans-serif";
         ctx.fillText(Math.round(target[n] * 100 * Math.min(1, pr[n])), lp[0], lp[1] + M * 0.046);
       }
       ctx.globalAlpha = 1;
@@ -185,9 +185,9 @@
       var tot = 0, cur = 0;
       for (var z = 0; z < N; z++) { tot += target[z]; cur += target[z] * Math.min(1, pr[z]); }
       ctx.globalAlpha = f;
-      ctx.fillStyle = C.caption; ctx.font = "500 " + (M * 0.03) + "px 'Inter Tight',sans-serif";
+      ctx.fillStyle = C.caption; ctx.font = "500 " + (M * 0.03) + "px \"Helvetica Neue\",Arial,sans-serif";
       ctx.fillText("OVERALL", cx, cy - M * 0.055);
-      ctx.fillStyle = C.total; ctx.font = "700 " + (M * 0.085) + "px 'Inter Tight',sans-serif";
+      ctx.fillStyle = C.total; ctx.font = "700 " + (M * 0.085) + "px \"Helvetica Neue\",Arial,sans-serif";
       ctx.fillText(Math.round(cur / N * 100), cx, cy + M * 0.01);
       ctx.globalAlpha = 1;
     }
