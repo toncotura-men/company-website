@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho+B1:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=63" />
+  <link rel="stylesheet" href="assets/css/style.css?v=64" />
 </head>
 <body>
   <a class="skip" href="#main">本文へスキップ</a>
@@ -22,14 +22,42 @@
         <img src="assets/img/logo-haki.png" alt="株式会社HAKI pro" class="brand-logo" />
               </a>
       <nav class="nav" aria-label="メインナビゲーション">
-        <a href="https://haki-pro.com/" class="nav-home">HAKI pro トップ</a>
-        <a href="mvv.html">理念</a> <a href="message.html">代表メッセージ</a>
-        <a href="index.html#about">スクールについて</a>
-        <a href="team.html">チーム・団体の方</a>
-        <a href="personal.html">個人の方</a> <a href="school.html">比治山スクール</a>
-        <a href="index.html#menu">プログラム<span class="caret">▼</span></a>
-        <a href="index.html#contact">施設・アクセス<span class="caret">▼</span></a>
+        <div class="nav-group">
+          <button type="button" class="nav-top" aria-expanded="false">スクールについて<span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub">
+            <a href="index.html#about">スクールの特徴</a>
+            <a href="mvv.html">理念</a>
+            <a href="message.html">代表メッセージ</a>
+            <a href="index.html#company">施設・アクセス</a>
+            <a href="sponsor.html">スポンサー</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button type="button" class="nav-top" aria-expanded="false">コース<span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub">
+            <a href="school.html">比治山スクール（月謝制）</a>
+            <a href="personal.html">個人の方（出張指導・無料体験）</a>
+            <a href="team.html">チーム・団体の方（出張測定）</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button type="button" class="nav-top" aria-expanded="false">プログラム<span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub">
+            <a href="index.html#menu">プログラム一覧</a>
+            <a href="batting.html">バッティング</a>
+            <a href="pitching.html">ピッチング</a>
+            <a href="running.html">走塁・フィジカル</a>
+            <a href="measurement.html">測定・分析</a>
+          </div>
+        </div>
         <a href="index.html#news">お知らせ</a>
+        <div class="nav-group">
+          <button type="button" class="nav-top" aria-expanded="false">グループサイト<span class="chev" aria-hidden="true"></span></button>
+          <div class="nav-sub">
+            <a href="https://haki-pro.com/">HAKI pro<small>会社サイト</small></a>
+            <a href="https://haki-pro.com/heros-cup/">HERO&#39;s CUP<small>少年野球大会</small></a>
+          </div>
+        </div>
         <a href="index.html#contact" class="nav-cta"><span>無料体験</span><span>お問い合わせ</span></a>
       </nav>
       <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -155,7 +183,6 @@
           <p>元プロ野球選手と比治山大学が共同開発した、スポーツ力学に基づく1年設計の一貫したプログラムで「打つ・投げる・走る」を測定・分析・改善。『なぜこの数値なのか』を自分で考える指導で、野球IQと判断力も育てます。</p>
         </div>
         <nav class="footer-nav" aria-label="フッターナビ">
-          <a href="https://haki-pro.com/">HAKI pro トップ（会社サイト）</a>
           <a href="mvv.html">理念</a> <a href="message.html">代表メッセージ</a>
           <a href="index.html#about">スクールについて</a>
           <a href="team.html">チーム・団体の方</a>
@@ -163,6 +190,8 @@
           <a href="personal.html">個人の方</a> <a href="school.html">比治山スクール</a>
           <a href="index.html#news">お知らせ</a>
           <a href="sponsor.html">スポンサー</a>
+          <a href="https://haki-pro.com/">HAKI pro（会社サイト）</a>
+          <a href="https://haki-pro.com/heros-cup/">HERO&#39;s CUP</a>
           <a href="index.html#contact">お問い合わせ</a>
         </nav>
       </div>
@@ -170,6 +199,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=42" defer></script>
+  <script src="assets/js/main.js?v=43" defer></script>
 </body>
 </html>

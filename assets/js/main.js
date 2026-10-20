@@ -29,10 +29,31 @@
     });
   }
 
+  /* ---------- Header dropdowns: hover opens them (CSS); click / keyboard toggles ---------- */
+  var groups = document.querySelectorAll(".nav-group");
+  function closeGroups(except) {
+    groups.forEach(function (g) { if (g !== except) g.querySelector(".nav-top").setAttribute("aria-expanded", "false"); });
+  }
+  groups.forEach(function (g) {
+    var btn = g.querySelector(".nav-top");
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") !== "true";
+      closeGroups(g); btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    g.addEventListener("mouseleave", function () { btn.setAttribute("aria-expanded", "false"); });
+    g.addEventListener("focusout", function (e) { if (!g.contains(e.relatedTarget)) btn.setAttribute("aria-expanded", "false"); });
+    g.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { e.stopPropagation(); btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+    });
+  });
+  document.addEventListener("click", function (e) { if (!e.target.closest(".nav-group")) closeGroups(); });
+
   /* ---------- Current page in nav ---------- */
   var here = location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".nav > a:not(.nav-cta), .footer-nav a").forEach(function (a) {
-    if (a.getAttribute("href") === here) a.setAttribute("aria-current", "page");
+  document.querySelectorAll(".nav a:not(.nav-cta), .footer-nav a").forEach(function (a) {
+    if (a.getAttribute("href") !== here) return;
+    a.setAttribute("aria-current", "page");
+    var g = a.closest(".nav-group"); if (g) g.classList.add("is-current");
   });
 
   /* ---------- Header: deepen glass once content scrolls under it ---------- */
@@ -189,7 +210,7 @@
   function follow(cur, target, dt, tau) { return cur + (target - cur) * (1 - Math.exp(-dt / tau)); }
 
   /* ---------- Mobile nav: stagger order ---------- */
-  if (nav) nav.querySelectorAll(":scope > a").forEach(function (a, i) { a.style.setProperty("--i", i); });
+  if (nav) nav.querySelectorAll(":scope > a, :scope > .nav-group").forEach(function (a, i) { a.style.setProperty("--i", i); });
 
   /* ---------- Scroll progress line + hide-on-scroll header ---------- */
   var bar = null;
