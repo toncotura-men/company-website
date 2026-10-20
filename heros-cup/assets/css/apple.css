@@ -62,7 +62,7 @@
 
 /* ---------- base & type ---------- */
 body{ background:var(--a-bg); color:var(--a-text); line-height:1.9; }
-h1,h2,h3,.concept-quote p,.rep-pull{ font-feature-settings:"palt"; }
+h1,h2,h3,.concept-quote p,.rep-pull{ }
 
 .sec{ padding:var(--section-space) 0; }
 .shead{ margin-bottom:clamp(48px,6vw,84px); }
@@ -70,18 +70,18 @@ h1,h2,h3,.concept-quote p,.rep-pull{ font-feature-settings:"palt"; }
 .home-page .shead h2{
   font-size:clamp(30px,5vw,58px);
   line-height:1.3;
-  letter-spacing:-.02em;
+  letter-spacing: .02em;
 }
 .shead p{ font-size:clamp(15px,1.4vw,17px); line-height:2; color:var(--a-text-2); max-width:40em; }
 /* on the dark section keep the outline readable instead of a grey fill */
 .home-page .sec-soft .shead p.shead-en{ color:rgba(255,255,255,.04); -webkit-text-stroke-color:rgba(255,255,255,.28); }
 .shead .shead-tag{ letter-spacing:.18em; }
-.phero h1{ font-size:clamp(30px,5vw,54px); line-height:1.3; letter-spacing:-.02em; }
+.phero h1{ font-size:clamp(30px,5vw,54px); line-height:1.3; letter-spacing: .02em; }
 .phero p{ font-size:clamp(15px,1.4vw,17px); }
-.cta h2,.home-page .cta h2{ letter-spacing:-.02em; line-height:1.3; }
-.fb-in h2{ letter-spacing:-.02em; line-height:1.3; }
-.art > h2{ letter-spacing:-.01em; }
-.concept-quote p,.home-page .concept-quote p{ letter-spacing:-.02em; line-height:1.4; }
+.cta h2,.home-page .cta h2{ letter-spacing: .02em; line-height:1.3; }
+.fb-in h2{ letter-spacing: .02em; line-height:1.3; }
+.art > h2{ letter-spacing: .02em; }
+.concept-quote p,.home-page .concept-quote p{ letter-spacing: .02em; line-height:1.4; }
 
 .home-page .hero-lead{ font-size:clamp(14.5px,1.25vw,17px); line-height:2; color:rgba(255,255,255,.8); }
 .loop-card p{ font-size:15px; }
@@ -249,7 +249,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
     linear-gradient(150deg,var(--night),var(--night-3));
 }
 .home-page .rep::before{ background:none; }
-.home-page .rep-body h2 em{ background:none; color:var(--signal-2); padding:0; letter-spacing:-.03em; }
+.home-page .rep-body h2 em{ background:none; color:var(--signal-2); padding:0; letter-spacing: .02em; }
 .home-page .rep-pull{ border-color:var(--o); background:rgba(255,255,255,.05); border-radius:0 16px 16px 0; }
 
 /* ticker becomes a quiet static line */
@@ -402,7 +402,7 @@ table.tbl tbody th{ color:var(--a-accent-text); }
   font-weight:600;
   font-size:clamp(40px,4.6vw,58px);
   line-height:1;
-  letter-spacing:-.03em;
+  letter-spacing: .02em;
   color:var(--a-text);
 }
 .gr-num small{ margin-left:4px; font-family:var(--f-jp); font-size:15px; font-weight:700; letter-spacing:0; color:var(--a-text-2); }
