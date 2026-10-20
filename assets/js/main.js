@@ -74,100 +74,149 @@
     reveals.forEach(function (el) { ro.observe(el); });
   }
 
-  /* HiDPI fit */
-  function fit(canvas) {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var r = canvas.getBoundingClientRect();
-    canvas.width = Math.max(1, r.width * dpr);
-    canvas.height = Math.max(1, r.height * dpr);
-    var ctx = canvas.getContext("2d");
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    return { ctx: ctx, w: r.width, h: r.height };
-  }
-
   /* =======================================================
      ABOUT — animated pentagon radar (data report)
      ======================================================= */
   (function radar() {
     var canvas = document.getElementById("radar-canvas");
     if (!canvas) return;
-    var ctx, W, H, cx, cy, R;
+    var ctx, W = 0, H = 0, cx, cy, R, M;
     var labels = ["打力", "球速", "走力", "敏捷性", "体幹"];
     var target = [0.86, 0.72, 0.8, 0.66, 0.78];
-    var N = 5, started = false, progress = reduce ? 1 : 0;
+    var N = 5;
     // palette: the radar sits on a dark panel by default, on a light page section
-    // when the canvas is marked data-theme="light" (measurement.html)
+    // when the canvas is marked data-theme="light"
     var C = canvas.getAttribute("data-theme") === "light" ? {
-      ring: "rgba(40,16,86,0.13)", ringEdge: "rgba(40,16,86,0.34)", tick: "rgba(60,56,80,0.55)",
-      spoke: "rgba(40,16,86,0.13)", fill: "rgba(123,92,255,0.16)", line: "#7b5cff",
-      glow: "rgba(123,92,255,0.35)", dot: "#7b5cff", dotCore: "#ffffff",
-      label: "#1a0a42", value: "#6a47ff", caption: "rgba(60,56,80,0.6)", total: "#1a0a42"
+      ring: "rgba(60,30,10,0.13)", ringEdge: "rgba(60,30,10,0.34)", tick: "rgba(80,60,50,0.55)",
+      spoke: "rgba(60,30,10,0.13)", fill: "rgba(232,89,12,0.16)", line: "#e8590c",
+      glow: "rgba(232,89,12,0.35)", dot: "#e8590c", dotCore: "#ffffff", sweep: "232,89,12",
+      label: "#2a1406", value: "#c2410c", caption: "rgba(80,60,50,0.6)", total: "#2a1406"
     } : {
       ring: "rgba(255,255,255,0.1)", ringEdge: "rgba(255,255,255,0.3)", tick: "rgba(255,255,255,0.45)",
-      spoke: "rgba(255,255,255,0.15)", fill: "rgba(25,212,255,0.18)", line: "#19d4ff",
-      glow: "rgba(25,212,255,0.6)", dot: "#19d4ff", dotCore: "#1a0a42",
-      label: "#ffffff", value: "#19d4ff", caption: "rgba(255,255,255,0.55)", total: "#ffffff"
+      spoke: "rgba(255,255,255,0.15)", fill: "rgba(255,138,61,0.2)", line: "#ff8a3d",
+      glow: "rgba(255,138,61,0.7)", dot: "#ff8a3d", dotCore: "#2a1406", sweep: "255,138,61",
+      label: "#ffffff", value: "#ffa94d", caption: "rgba(255,255,255,0.55)", total: "#ffffff"
     };
 
-    function init() { var f = fit(canvas); ctx = f.ctx; W = f.w; H = f.h; cx = W / 2; cy = H / 2 + H * 0.02; R = Math.min(W, H) * 0.30; }
+    // entrance timeline (ms): guide rings + spokes draw in, then each axis grows out
+    // in turn with a small overshoot while its number counts up; after that a slow
+    // scan light circles the chart while it is on screen
+    var T_FRAME = 600, T_AXIS = 900, STAGGER = 110;
+    var T_DONE = T_FRAME + STAGGER * (N - 1) + T_AXIS;
+    var t0 = null, elapsed = reduce ? T_DONE : 0, visible = false, raf = 0;
+
+    function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+    function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+    function easeBack(x) { var c = 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
+    function axisProg(i, t) { return easeBack(clamp((t - T_FRAME - i * STAGGER) / T_AXIS)); }
+
+    function init() {
+      var r = canvas.getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) return false;
+      var dpr = Math.min(window.devicePixelRatio || 1, 3);
+      canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
+      ctx = canvas.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      W = r.width; H = r.height; M = Math.min(W, H);
+      cx = W / 2; cy = H / 2 + M * 0.02; R = M * 0.30;
+      return true;
+    }
     function pt(i, rad) { var a = -Math.PI / 2 + (i / N) * Math.PI * 2; return [cx + Math.cos(a) * rad, cy + Math.sin(a) * rad]; }
-    function draw(prog) {
+
+    function draw(t) {
+      if (!ctx) return;
       ctx.clearRect(0, 0, W, H);
-      var M = Math.min(W, H);
-      // concentric guide rings
+      var f = easeOut(clamp(t / T_FRAME));
+      ctx.save(); ctx.globalAlpha = f;
+      // concentric guide rings, each one arriving a moment after the last
       for (var ring = 1; ring <= 5; ring++) {
-        ctx.strokeStyle = ring === 5 ? C.ringEdge : C.ring;
-        ctx.lineWidth = 1; ctx.beginPath();
-        for (var i = 0; i <= N; i++) { var p = pt(i % N, R * ring / 5); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }
+        var rf = easeOut(clamp((t - ring * 60) / (T_FRAME - 240)));
+        ctx.strokeStyle = ring === 5 ? C.ringEdge : C.ring; ctx.lineWidth = 1; ctx.beginPath();
+        for (var i = 0; i <= N; i++) { var p = pt(i % N, R * ring / 5 * (0.6 + 0.4 * rf)); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }
         ctx.stroke();
       }
-      // ring scale ticks along the top spoke (20..100)
-      ctx.fillStyle = C.tick; ctx.font = "500 " + (M*0.026) + "px 'Inter Tight',sans-serif";
-      ctx.textAlign = "left"; ctx.textBaseline = "middle";
-      for (var t = 1; t <= 5; t++) { ctx.fillText(String(t*20), cx + 4, cy - R*t/5); }
-      // spokes
+      // spokes grow out from the centre
       for (var s = 0; s < N; s++) {
-        var e = pt(s, R); ctx.strokeStyle = C.spoke; ctx.lineWidth = 1;
+        var e = pt(s, R * f); ctx.strokeStyle = C.spoke; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]); ctx.stroke();
       }
+      ctx.fillStyle = C.tick; ctx.font = "500 " + (M * 0.026) + "px 'Inter Tight',sans-serif";
+      ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      for (var k = 2; k <= 5; k++) ctx.fillText(String(k * 20), cx + 4, cy - R * k / 5);
+      ctx.restore();
+
+      // scan light: a soft wedge that circles once the chart has settled
+      if (t > T_DONE) {
+        var ang = -Math.PI / 2 + ((t - T_DONE) / 5200) * Math.PI * 2;
+        var fade = easeOut(clamp((t - T_DONE) / 600));
+        var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, R);
+        g.addColorStop(0, "rgba(" + C.sweep + ",0)"); g.addColorStop(1, "rgba(" + C.sweep + "," + (0.22 * fade) + ")");
+        ctx.save(); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, R, ang - 0.7, ang); ctx.closePath();
+        ctx.fillStyle = g; ctx.fill(); ctx.restore();
+      }
+
       // data polygon
+      var pr = [];
+      for (var d = 0; d < N; d++) pr.push(axisProg(d, t));
       ctx.beginPath();
-      for (var d = 0; d <= N; d++) { var idx = d % N, dp = pt(idx, R * target[idx] * prog); d ? ctx.lineTo(dp[0], dp[1]) : ctx.moveTo(dp[0], dp[1]); }
+      for (var q = 0; q <= N; q++) { var idx = q % N, dp = pt(idx, R * target[idx] * pr[idx]); q ? ctx.lineTo(dp[0], dp[1]) : ctx.moveTo(dp[0], dp[1]); }
       ctx.closePath();
       ctx.fillStyle = C.fill; ctx.fill();
-      ctx.strokeStyle = C.line; ctx.lineWidth = 2.4; ctx.shadowColor = C.glow; ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0;
-      // vertices + per-axis value chips
+      var breathe = t > T_DONE ? 0.5 + 0.5 * Math.sin((t - T_DONE) / 700) : 0;
+      ctx.strokeStyle = C.line; ctx.lineWidth = 2.4; ctx.shadowColor = C.glow; ctx.shadowBlur = 10 + 8 * breathe; ctx.stroke(); ctx.shadowBlur = 0;
+      // vertices
       for (var v = 0; v < N; v++) {
-        var vp = pt(v, R * target[v] * prog);
-        ctx.fillStyle = C.dot; ctx.beginPath(); ctx.arc(vp[0], vp[1], M*0.012, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = C.dotCore; ctx.beginPath(); ctx.arc(vp[0], vp[1], M*0.005, 0, Math.PI*2); ctx.fill();
+        if (pr[v] <= 0) continue;
+        var vp = pt(v, R * target[v] * pr[v]), pop = clamp(pr[v] * 1.5);
+        ctx.fillStyle = C.dot; ctx.beginPath(); ctx.arc(vp[0], vp[1], M * 0.012 * pop, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = C.dotCore; ctx.beginPath(); ctx.arc(vp[0], vp[1], M * 0.005 * pop, 0, Math.PI * 2); ctx.fill();
       }
-      // axis names + score value just outside each vertex
+      // axis names + score values (count up with their axis)
       ctx.textAlign = "center";
       for (var n = 0; n < N; n++) {
-        var lp = pt(n, R + M*0.085);
-        ctx.fillStyle = C.label; ctx.font = "900 " + (M*0.036) + "px 'Noto Sans JP',sans-serif";
+        var lp = pt(n, R + M * 0.085), la = clamp((t - T_FRAME * 0.5 - n * STAGGER) / 400);
+        ctx.globalAlpha = la;
+        ctx.fillStyle = C.label; ctx.font = "900 " + (M * 0.036) + "px 'Noto Sans JP',sans-serif";
         ctx.fillText(labels[n], lp[0], lp[1]);
-        ctx.fillStyle = C.value; ctx.font = "700 " + (M*0.034) + "px 'Inter Tight',sans-serif";
-        ctx.fillText(Math.round(target[n]*100*prog), lp[0], lp[1] + M*0.046);
+        ctx.fillStyle = C.value; ctx.font = "700 " + (M * 0.034) + "px 'Inter Tight',sans-serif";
+        ctx.fillText(Math.round(target[n] * 100 * Math.min(1, pr[n])), lp[0], lp[1] + M * 0.046);
       }
-      // center overall score
-      var tot = 0; for (var k = 0; k < N; k++) tot += target[k];
-      ctx.fillStyle = C.caption; ctx.font = "500 " + (M*0.03) + "px 'Inter Tight',sans-serif";
-      ctx.fillText("OVERALL", cx, cy - M*0.055);
-      ctx.fillStyle = C.total; ctx.font = "700 " + (M*0.085) + "px 'Inter Tight',sans-serif";
-      ctx.fillText(Math.round(tot / N * 100 * prog), cx, cy + M*0.01);
+      ctx.globalAlpha = 1;
+      // centre overall score
+      var tot = 0, cur = 0;
+      for (var z = 0; z < N; z++) { tot += target[z]; cur += target[z] * Math.min(1, pr[z]); }
+      ctx.globalAlpha = f;
+      ctx.fillStyle = C.caption; ctx.font = "500 " + (M * 0.03) + "px 'Inter Tight',sans-serif";
+      ctx.fillText("OVERALL", cx, cy - M * 0.055);
+      ctx.fillStyle = C.total; ctx.font = "700 " + (M * 0.085) + "px 'Inter Tight',sans-serif";
+      ctx.fillText(Math.round(cur / N * 100), cx, cy + M * 0.01);
+      ctx.globalAlpha = 1;
     }
-    function animate() { progress += (1 - progress) * 0.06; draw(progress); if (progress < 0.995) requestAnimationFrame(animate); else draw(1); }
-    init(); draw(progress);
-    addEventListener("resize", function () { init(); draw(started || reduce ? 1 : 0); });
-    if (reduce) { draw(1); return; }
+
+    function frame(now) {
+      raf = 0;
+      if (t0 === null) t0 = now - elapsed;
+      elapsed = now - t0;
+      draw(elapsed);
+      if (visible && !document.hidden) raf = requestAnimationFrame(frame);
+    }
+    function play() { if (!raf && !reduce) { t0 = null; raf = requestAnimationFrame(frame); } }
+    function pause() { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    // re-measure whenever the box changes (rotation, address bar, fonts, reveal) so
+    // the drawing always matches the shape on screen instead of being stretched
+    function refit() { if (init()) draw(elapsed); }
+    if ("ResizeObserver" in window) new ResizeObserver(refit).observe(canvas);
+    else addEventListener("resize", refit);
+    refit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+    if (reduce) return;
+
     if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (en) { if (en.isIntersecting && !started) { started = true; animate(); io.disconnect(); } });
-      }, { threshold: 0.35 });
-      io.observe(canvas);
-    } else { started = true; animate(); }
+      new IntersectionObserver(function (es) {
+        es.forEach(function (en) { visible = en.isIntersecting; visible ? play() : pause(); });
+      }, { threshold: 0.35 }).observe(canvas);
+    } else { visible = true; play(); }
+    document.addEventListener("visibilitychange", function () { document.hidden ? pause() : visible && play(); });
   })();
 
   /* =======================================================
