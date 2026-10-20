@@ -264,5 +264,24 @@
     if (href && href === file) anchor.classList.add('is-current');
   });
 
+  /* ---- header dropdown: hover opens it (CSS); click / keyboard toggles ---- */
+  var groups = document.querySelectorAll('.nav-group');
+  function closeGroups(except) {
+    groups.forEach(function (g) { if (g !== except) g.querySelector('.nav-top').setAttribute('aria-expanded', 'false'); });
+  }
+  groups.forEach(function (g) {
+    var btn = g.querySelector('.nav-top');
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      closeGroups(g); btn.setAttribute('aria-expanded', String(open));
+    });
+    g.addEventListener('mouseleave', function () { btn.setAttribute('aria-expanded', 'false'); });
+    g.addEventListener('focusout', function (e) { if (!g.contains(e.relatedTarget)) btn.setAttribute('aria-expanded', 'false'); });
+    g.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+    });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.nav-group')) closeGroups(); });
+
   updateScrollScene();
 })();
