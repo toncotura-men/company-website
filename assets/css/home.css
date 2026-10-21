@@ -90,18 +90,29 @@ body.x-home::after {
 @keyframes x-spin { to { transform: rotate(1turn); } }
 .x-logo { position: relative; width: 82%; height: auto; filter: drop-shadow(0 24px 60px rgba(232, 89, 12, .45)); transition: transform .5s var(--x-e); }
 
-/* ---------- 数字 ---------- */
-.x-stats { border-top: 1px solid var(--x-line); border-bottom: 1px solid var(--x-line); }
-.x-stats-in { display: grid; grid-template-columns: 1fr; }
-.x-stats p { margin: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 28px 0; border-top: 1px solid var(--x-line); }
-.x-stats p:first-child { border-top: 0; }
-.x-stats b { font-size: clamp(44px, 4.6vw, 72px); font-weight: 700; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
-.x-stats b small { font-size: .34em; margin: 0 .1em; color: var(--x-o2); }
-.x-stats p > span { font-size: 16px; color: var(--x-ink2); }
+/* ---------- 数字（2026-10-21 作り直し：大きな数字＋下に一言。画面に入ると上の線が伸びる） ---------- */
+.x-stats { position: relative; overflow: hidden; padding: clamp(24px, 4vw, 48px) 0; border-top: 1px solid var(--x-line); border-bottom: 1px solid var(--x-line); }
+.x-stats::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(900px, 140vw); aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; background: radial-gradient(closest-side, rgba(232, 89, 12, .16), transparent); }
+.x-stats-in { position: relative; display: grid; grid-template-columns: 1fr; }
+.x-stats p { position: relative; margin: 0; display: flex; flex-direction: column; align-items: flex-start; padding: 36px 0 32px; }
+.x-stats p::before, .x-stats p::after { content: ""; position: absolute; left: 0; top: 0; height: 1px; }
+.x-stats p::before { right: 0; background: var(--x-line); }
+.x-stats p::after { width: 56px; height: 2px; background: var(--x-o); transform: scaleX(0); transform-origin: left; transition: transform 1s var(--x-e) .25s; }
+.x-stats p.fx-in::after { transform: scaleX(1); }
+.x-stats p:first-child::before { display: none; }
+.x-stats b {
+  display: flex; align-items: baseline; font-size: clamp(88px, 9vw, 150px); font-weight: 700; line-height: .9; letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #fff 30%, rgba(244, 242, 238, .45)); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.x-stats b small { font-size: .26em; letter-spacing: .04em; margin: 0 .2em; color: var(--x-o2); }
+.x-stats p > span { margin-top: 18px; font-size: 15px; letter-spacing: .14em; color: var(--x-ink2); }
 @media (min-width: 900px) {
   .x-stats-in { grid-template-columns: repeat(3, 1fr); }
-  .x-stats p { flex-direction: column; justify-content: center; padding: 48px 0 48px clamp(24px, 3vw, 48px); border-top: 0; border-left: 1px solid var(--x-line); }
-  .x-stats p:first-child { border-left: 0; padding-left: 0; }
+  .x-stats p { padding: 56px clamp(24px, 3vw, 48px) 52px; }
+  .x-stats p::after { left: clamp(24px, 3vw, 48px); }
+  .x-stats p:first-child { padding-left: 0; }
+  .x-stats p:first-child::after { left: 0; }
+  .x-stats p::before { top: 0; bottom: 0; right: auto; width: 1px; height: auto; }
 }
 
 /* ---------- 流れる文字（ページに1つ） ---------- */
@@ -368,3 +379,7 @@ html:not(.nav-open) body.x-home .brand-logo { content: url("../img/logo.png"); }
   .x-track { gap: 12px; padding-inline: 7vw; scroll-padding-inline: 7vw; }
   .x-track .x-panel { width: 86vw; scroll-snap-align: center; }
 }
+
+/* ---------- プログラムのカード：人の絵をカードの真ん中に（2026-10-21 オーナー指示） ---------- */
+.x-panel img { left: 0; right: 0; margin-inline: auto; bottom: 34%; height: 54%; max-width: 76%; }
+@media (hover: hover) and (pointer: fine) { .x-panel:hover img { transform: scale(1.05); } }
