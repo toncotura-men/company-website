@@ -74,6 +74,31 @@
     reveals.forEach(function (el) { ro.observe(el); });
   }
 
+  /* 測定項目・うまくなる仕組みの並び：画面に入ったら線を伸ばす（style.css の .in） */
+  var groups = document.querySelectorAll(".spec-grid, .flow-row");
+  if (reduce || !("IntersectionObserver" in window)) {
+    groups.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var go = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); go.unobserve(en.target); } });
+    }, { threshold: 0.2 });
+    groups.forEach(function (el) { go.observe(el); });
+  }
+
+  /* カードの光がカーソルについてくる（マウスの端末だけ） */
+  if (window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.querySelectorAll(".price-card").forEach(function (el) {
+      if (!el.querySelector(".spot")) { var sp = document.createElement("span"); sp.className = "spot"; sp.setAttribute("aria-hidden", "true"); el.prepend(sp); }
+    });
+    document.querySelectorAll(".feature-card, .phil-card, .spec-item, .flow-cell, .price-card").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  }
+
   /* =======================================================
      ABOUT — animated pentagon radar (data report)
      ======================================================= */
