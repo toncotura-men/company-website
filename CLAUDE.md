@@ -33,3 +33,11 @@
 - 枠のカードはやめ、上の線と余白で区切る。1つの枠の中に「英語の小見出し＋日本語＋説明」を詰め込まない。言葉は少なく、大きく
 - 動きは「画面に入ると線が伸びる」「カーソルを乗せると線が端まで・光がついてくる」。HERO's CUP は `heros-cup/assets/css/rich2.css`（全ページで最後に読み込む）、PUMPS は `assets/css/style.css` の最後と `assets/js/main.js`
 - 書体は 3サイトとも **Zen Kaku Gothic New**（Google Fonts で読み込む。2026-10-21 オーナー指示「端末の標準書体はチープ」。Windows では游ゴシック／メイリオになり安っぽく見えた）。明朝は代表メッセージだけ
+
+## トップページ（2026-10-21 作り直し）
+
+- PUMPS（`index.html`）と HERO's CUP（`heros-cup/index.html`）のトップは、ヘッダー・フッター以外を作り直した。
+  見た目は `assets/css/home.css` / `heros-cup/assets/css/home.css`（同じ作りで色だけ違う）、動きは `assets/js/fx.js`（`heros-cup/assets/js/fx.js` は同じ中身の写し。直すときは両方）
+- 動き：見出しが1文字ずつ（`data-split`）、写真が幕のように（`data-clip`）、スクロールで奥行き（`data-speed`）、プログラム・大会体験は縦スクロールで横に流れる（`data-hscroll`、パソコンのみ）、
+  数字が数え上がる（`data-count`）、大会までの日数（`data-countdown`）、文字がスクロールで明るくなる（`data-scrub`）、流れる文字（`data-marquee`、ページに1つ）、ボタンが吸い付く（`data-magnetic`）、光がカーソルについてくる（`data-spot`）
+- 暗い背景・オレンジ1色。言葉は見出しと一文だけ（2026-10-21 オーナー指示「無駄な枠・無駄な文字が多すぎる」）。他のページは今までの見た目のまま
