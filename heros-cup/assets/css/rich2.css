@@ -165,3 +165,25 @@ body .hero-points li::before{
 @media (hover: hover) and (pointer: fine){ .judge-list li:hover::after{ transform: scaleX(1); } }
 .art .judge-list li{ font-size: 17px; padding: 16px 0; }
 .judge-list li small{ grid-column: 2; margin-top: 4px; font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--r2-ink-3); }
+
+/* ---------- 囲み枠（.callout）をやめる（2026-10-21 オーナー指示「わけのわからない枠やめて」） ----------
+   背景・枠線・角丸をなくし、短いオレンジの線＋太い見出し＋本文だけにする。
+   線は画面に入ると伸びる。大事なことは見出しの大きさと太さで伝える */
+body .callout, body .callout.navy{
+  position: relative; margin-top: clamp(40px, 5vw, 64px) !important; padding: 28px 0 0; max-width: 44em;
+  background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+}
+body .callout::before{
+  content: ""; position: absolute; left: 0; top: 0; width: 48px; height: 3px; border-radius: 3px; background: var(--r2-o);
+  transform: scaleX(0); transform-origin: left; transition: transform .9s var(--r2-ease) .15s;
+}
+body .callout.is-in::before, body .callout:not(.rv)::before{ transform: none; }
+body .callout h4, body .callout.navy h4{
+  margin: 0 0 14px; font-size: clamp(20px, 2vw, 26px); font-weight: 700; line-height: 1.45; letter-spacing: .02em; color: var(--r2-ink) !important;
+}
+body .callout p, body .callout li{ font-size: 16px !important; line-height: 2; color: var(--r2-ink-2); }
+body .callout b, body .callout strong{ color: var(--r2-ink); }
+body .callout ul{ margin: 0; padding-left: 1.2em; }
+body .callout li + li{ margin-top: 6px; }
+body .callout a{ color: var(--r2-o) !important; border-bottom: 1px solid currentColor !important; font-weight: 700; text-decoration: none; }
+@media (prefers-reduced-motion: reduce){ body .callout::before{ transform: none; transition: none; } }
