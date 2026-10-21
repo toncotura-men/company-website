@@ -25,14 +25,14 @@ body.x-home::after {
 .x { color: var(--x-ink); background: var(--x-bg); font-family: var(--jp); font-weight: 500; overflow-x: clip; }
 .x * { box-sizing: border-box; }
 .x-wrap { width: min(1280px, 100% - 2 * clamp(20px, 5vw, 64px)); margin-inline: auto; }
-.x-sec { position: relative; padding: clamp(80px, 10vw, 150px) 0; }
+.x-sec { position: relative; padding: clamp(72px, 8vw, 120px) 0; }
 .x [data-split] { white-space: nowrap; }
 .x em { font-style: normal; color: var(--x-o2); }
 
 /* ---------- 文字 ---------- */
-.x-display { margin: 0; font-size: clamp(56px, 10.4vw, 164px); font-weight: 700; line-height: 1.06; letter-spacing: .01em; }
-.x-display-sm { font-size: clamp(44px, 7.6vw, 120px); }
-.x-h2 { margin: 0; font-size: clamp(38px, 5.6vw, 88px); font-weight: 700; line-height: 1.14; letter-spacing: .01em; }
+.x-display { margin: 0; font-size: clamp(44px, 6.4vw, 96px); font-weight: 700; line-height: 1.06; letter-spacing: .01em; }
+.x-display-sm { font-size: clamp(36px, 5vw, 76px); }
+.x-h2 { margin: 0; font-size: clamp(30px, 3.6vw, 54px); font-weight: 700; line-height: 1.14; letter-spacing: .01em; }
 .x-p { margin: 32px 0 0; max-width: 34em; font-size: clamp(16px, 1.3vw, 19px); line-height: 2; color: var(--x-ink2); }
 .x-note { margin: 28px 0 0; font-size: 14px; line-height: 1.9; color: var(--x-ink3); }
 
@@ -51,12 +51,12 @@ body.x-home::after {
 .x-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 36px; margin-top: 44px; }
 .x-btn {
   position: relative; display: inline-flex; align-items: center; gap: 18px; padding: 20px 22px 20px 32px; border-radius: 999px;
-  background: var(--x-o); color: #fff; font-size: 19px; font-weight: 700; letter-spacing: .04em; text-decoration: none; white-space: nowrap;
+  background: var(--x-o); color: #fff; font-size: 17px; font-weight: 700; letter-spacing: .04em; text-decoration: none; white-space: nowrap;
   box-shadow: 0 18px 48px -18px rgba(232, 89, 12, .8); transition: transform .5s var(--x-e), background-color .25s ease, box-shadow .3s ease;
 }
 .x-btn i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, .2); font-style: normal; transition: transform .45s var(--x-e); }
 .x-btn:active { transform: scale(.97); }
-.x-btn-lg { font-size: 21px; padding: 24px 26px 24px 38px; }
+.x-btn-lg { font-size: 18px; padding: 22px 24px 22px 34px; }
 .x-link { position: relative; display: inline-flex; align-items: center; gap: 12px; padding: 6px 0; color: var(--x-ink); font-size: 17px; font-weight: 700; letter-spacing: .04em; text-decoration: none; }
 .x-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; opacity: .35; transform-origin: right; transition: transform .6s var(--x-e); }
 .x-link i { font-style: normal; transition: transform .45s var(--x-e); }
@@ -95,7 +95,7 @@ body.x-home::after {
 .x-stats-in { display: grid; grid-template-columns: 1fr; }
 .x-stats p { margin: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 28px 0; border-top: 1px solid var(--x-line); }
 .x-stats p:first-child { border-top: 0; }
-.x-stats b { font-size: clamp(56px, 7vw, 108px); font-weight: 700; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
+.x-stats b { font-size: clamp(44px, 4.6vw, 72px); font-weight: 700; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
 .x-stats b small { font-size: .34em; margin: 0 .1em; color: var(--x-o2); }
 .x-stats p > span { font-size: 16px; color: var(--x-ink2); }
 @media (min-width: 900px) {
@@ -107,12 +107,12 @@ body.x-home::after {
 /* ---------- 流れる文字（ページに1つ） ---------- */
 .x-marquee { overflow: hidden; padding: clamp(40px, 6vw, 80px) 0; border-bottom: 1px solid var(--x-line); }
 .x-marquee > div { display: flex; width: max-content; will-change: transform; }
-.x-marquee span { padding-right: .45em; font-size: clamp(64px, 11vw, 184px); font-weight: 700; line-height: 1; letter-spacing: .02em; color: var(--x-ink); white-space: nowrap; }
+.x-marquee span { padding-right: .45em; font-size: clamp(44px, 6.4vw, 104px); font-weight: 700; line-height: 1; letter-spacing: .02em; color: var(--x-ink); white-space: nowrap; }
 .x-marquee span.o { color: rgba(244, 242, 238, .14); }
 
 /* ---------- 左右に分ける ---------- */
 .x-split { display: grid; gap: clamp(48px, 6vw, 96px); align-items: center; }
-.x-split .x-h2 { font-size: clamp(36px, 4.8vw, 76px); }
+.x-split .x-h2 { font-size: clamp(28px, 3.2vw, 48px); }
 @media (min-width: 1024px) { .x-split { grid-template-columns: 1fr 1fr; } }
 
 /* カーソルについてくる光（共通） */
@@ -129,12 +129,12 @@ body.x-home::after {
 .x-radar canvas { position: relative; width: 100%; height: 100%; display: block; }
 
 /* ---------- 理念（スクロールで明るくなる） ---------- */
-.x-scrub { margin: 0; font-size: clamp(40px, 7.4vw, 120px); font-weight: 700; line-height: 1.25; letter-spacing: .01em; }
+.x-scrub { margin: 0; font-size: clamp(30px, 4vw, 60px); font-weight: 700; line-height: 1.25; letter-spacing: .01em; }
 .x-scrub .fx-w { color: rgba(244, 242, 238, .12); transition: color .5s ease; }
 .x-scrub .fx-w.on { color: var(--x-ink); }
 .x-trio { display: grid; margin-top: clamp(64px, 8vw, 120px); border-top: 1px solid var(--x-line); }
 @media (min-width: 900px) { .x-trio { grid-template-columns: repeat(3, 1fr); } }
-.x-trio a { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 32px 4px; border-bottom: 1px solid var(--x-line); color: var(--x-ink); text-decoration: none; font-size: clamp(22px, 2.2vw, 32px); font-weight: 700; }
+.x-trio a { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 32px 4px; border-bottom: 1px solid var(--x-line); color: var(--x-ink); text-decoration: none; font-size: clamp(18px, 1.6vw, 24px); font-weight: 700; }
 @media (min-width: 900px) { .x-trio a { border-bottom: 0; padding: 36px clamp(20px, 2.4vw, 36px); } .x-trio a:first-child { padding-left: 0; } .x-trio a + a { border-left: 1px solid var(--x-line); } }
 .x-trio a::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--x-o); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--x-e); }
 .x-trio i { font-style: normal; color: var(--x-o2); transition: transform .45s var(--x-e); }
@@ -148,16 +148,16 @@ body.x-home::after {
 .x-track { display: flex; gap: clamp(16px, 2vw, 28px); padding: 0 clamp(20px, 5vw, 64px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .x-track::-webkit-scrollbar { display: none; }
 .x-panel {
-  position: relative; flex: none; width: min(82vw, 760px); height: min(66vh, 560px); min-height: 400px; scroll-snap-align: start; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(28px, 3vw, 44px); border-radius: 24px;
+  position: relative; flex: none; width: min(80vw, 560px); height: min(58vh, 440px); min-height: 340px; scroll-snap-align: start; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(22px, 2.2vw, 32px); border-radius: 24px;
   background: linear-gradient(160deg, #161924, #0b0c12 70%); color: var(--x-ink); text-decoration: none;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06);
 }
 .x-panel img { position: absolute; right: 2%; bottom: 0; height: 84%; width: auto; max-width: 56%; object-fit: contain; opacity: .9; transition: transform 1s var(--x-e), opacity .4s ease; }
-.x-panel .big { position: absolute; right: 6%; top: 8%; font-size: clamp(96px, 14vw, 220px); font-weight: 700; line-height: 1; color: rgba(255, 122, 46, .16); letter-spacing: .02em; }
+.x-panel .big { position: absolute; right: 6%; top: 8%; font-size: clamp(72px, 9vw, 140px); font-weight: 700; line-height: 1; color: rgba(255, 122, 46, .16); letter-spacing: .02em; }
 .x-panel::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(20deg, rgba(8, 9, 15, .92) 0%, rgba(8, 9, 15, .55) 34%, transparent 62%); }
 .x-panel .t, .x-panel .d, .x-panel > i { z-index: 2; }
-.x-panel .t { position: relative; font-size: clamp(34px, 3.8vw, 60px); font-weight: 700; line-height: 1.2; }
+.x-panel .t { position: relative; font-size: clamp(26px, 2.6vw, 40px); font-weight: 700; line-height: 1.2; }
 .x-panel .d { position: relative; margin-top: 12px; max-width: 18em; font-size: 16px; line-height: 1.8; color: var(--x-ink2); }
 .x-panel > i { position: absolute; top: clamp(24px, 3vw, 40px); right: clamp(24px, 3vw, 40px); display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(255, 255, 255, .08); font-style: normal; font-size: 20px; transition: transform .5s var(--x-e), background-color .3s ease; }
 @media (hover: hover) and (pointer: fine) { .x-panel:hover img { transform: scale(1.05) translateX(-2%); } .x-panel:hover > i { background: var(--x-o); transform: rotate(-45deg); } }
@@ -177,7 +177,7 @@ body.x-home::after {
 .x-plan h3 span { font-size: 13px; letter-spacing: .1em; color: var(--x-o2); }
 .x-plan-adv::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--x-o); transform: scaleX(0); transform-origin: left; transition: transform 1.2s var(--x-e) .3s; }
 .x-plan-adv.fx-in::before { transform: scaleX(1); }
-.x-price { margin: 22px 0 0; font-size: clamp(56px, 6.4vw, 100px); font-weight: 700; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
+.x-price { margin: 22px 0 0; font-size: clamp(40px, 4.4vw, 68px); font-weight: 700; line-height: 1; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
 .x-price .yen { font-family: "Helvetica Neue", Arial, sans-serif; font-size: .5em; font-weight: 700; margin-right: .08em; vertical-align: .55em; }
 .x-price small { margin-left: 12px; font-size: 15px; font-weight: 500; letter-spacing: .02em; color: var(--x-ink3); }
 .x-plan-d { margin: 20px 0 0; max-width: 24em; font-size: 16px; line-height: 1.9; color: var(--x-ink2); }
@@ -193,7 +193,7 @@ body.x-home::after {
 .x-half { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; min-height: clamp(360px, 56vh, 560px); padding: clamp(32px, 5vw, 72px); color: var(--x-ink); text-decoration: none; }
 .x-half + .x-half { border-top: 1px solid var(--x-line); }
 @media (min-width: 900px) { .x-half + .x-half { border-top: 0; border-left: 1px solid var(--x-line); } }
-.x-half .k { font-size: clamp(32px, 4.2vw, 64px); font-weight: 700; line-height: 1.2; white-space: nowrap; }
+.x-half .k { font-size: clamp(26px, 2.8vw, 42px); font-weight: 700; line-height: 1.2; white-space: nowrap; }
 .x-half .d { margin-top: 14px; max-width: 22em; font-size: 16px; line-height: 1.8; color: var(--x-ink2); }
 .x-half > i { position: absolute; top: clamp(32px, 5vw, 72px); right: clamp(32px, 5vw, 72px); font-style: normal; font-size: 28px; color: var(--x-o2); transition: transform .5s var(--x-e); }
 @media (hover: hover) and (pointer: fine) { .x-half:hover > i { transform: translate(6px, -6px) rotate(-45deg); } }
@@ -204,7 +204,7 @@ body.x-home::after {
 .x-photo img { position: relative; width: 100%; height: auto; }
 [data-clip] { clip-path: inset(100% 0 0 0); transition: clip-path 1.4s var(--x-move); }
 [data-clip].fx-in { clip-path: inset(0 0 0 0); }
-.x-quote { margin: 0; font-size: clamp(34px, 4.6vw, 68px); font-weight: 700; line-height: 1.35; }
+.x-quote { margin: 0; font-size: clamp(26px, 3vw, 44px); font-weight: 700; line-height: 1.35; }
 .x-who { margin: 28px 0 0; font-size: 15px; color: var(--x-ink3); letter-spacing: .04em; }
 .x-message .x-link { margin-top: 28px; }
 
