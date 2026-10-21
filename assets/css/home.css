@@ -297,3 +297,51 @@ html:not(.nav-open) body.x-home .brand-logo { content: url("../img/logo.png"); }
 .x-light .x-panel .big { color: rgba(255, 122, 46, .22); }
 /* スポンサーの帯は周りの白地と分かるよう、真っ白に */
 .x-sponsor-band { background: #fff; border-top: 1px solid rgba(22, 26, 38, .08); border-bottom: 1px solid rgba(22, 26, 38, .08); }
+
+/* ---------- 理念の3つ：大きな番号＋言葉そのものを見出しに（2026-10-21 オーナー指示「目立たせて・リッチに」）
+   画面に入るとオレンジの線が左から伸びる。マウスを乗せると番号が塗られ、温かい色が左から差し込む ---------- */
+.x-creed-h { margin-top: clamp(80px, 10vw, 140px); }
+.x-creed { margin-top: clamp(32px, 4vw, 56px); border-bottom: 1px solid var(--x-line); }
+.x-creed-row {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px clamp(24px, 4vw, 72px);
+  padding: clamp(36px, 4.8vw, 68px) clamp(4px, 1.2vw, 20px);
+  border-top: 1px solid var(--x-line); color: var(--x-ink); text-decoration: none;
+}
+.x-creed-row::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--x-o); transform: scaleX(0); transform-origin: left; transition: transform 1.2s var(--x-move) .25s; }
+.x-creed-row.fx-in::before { transform: none; }
+.x-creed-row:nth-child(2), .x-creed-row:nth-child(2)::before { transition-delay: .08s; }
+.x-creed-row:nth-child(3), .x-creed-row:nth-child(3)::before { transition-delay: .16s; }
+.x-creed-row::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(232, 89, 12, .1), rgba(232, 89, 12, 0) 70%); clip-path: inset(0 100% 0 0); transition: clip-path .45s var(--x-e); }
+.x-creed-row .n { font-size: clamp(64px, 7.6vw, 124px); font-weight: 700; line-height: .9; letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: transparent; -webkit-text-stroke: 1.5px var(--x-o); transition: color .35s ease; }
+.x-creed-row .k { display: block; font-size: 15px; font-weight: 700; letter-spacing: .14em; color: var(--x-o2); }
+.x-creed-row .s { display: block; margin-top: 12px; font-size: clamp(26px, 3.1vw, 48px); font-weight: 700; line-height: 1.3; letter-spacing: .01em; word-break: keep-all; overflow-wrap: anywhere; transition: transform .45s var(--x-e); }
+.x-creed-row > i { font-style: normal; font-size: clamp(26px, 2.4vw, 36px); color: var(--x-o2); transition: transform .45s var(--x-e); }
+.x-creed-row:focus-visible { outline: 2px solid var(--x-o2); outline-offset: -2px; }
+@media (hover: hover) and (pointer: fine) {
+  .x-creed-row:hover::after { clip-path: inset(0 0 0 0); }
+  .x-creed-row:hover .n { color: var(--x-o); }
+  .x-creed-row:hover .s { transform: translateX(8px); }
+  .x-creed-row:hover > i { transform: translateX(10px); }
+}
+@media (max-width: 640px) {
+  .x-creed-row { grid-template-columns: 1fr auto; align-items: end; }
+  .x-creed-row .n { grid-column: 1 / -1; font-size: 60px; }
+}
+.fx-reduce .x-creed-row::before { transform: none; transition: none; }
+/* 理念の3つ：画面に入ったときの動き（番号が下から現れる → 小見出し → 言葉が浮かぶ）・押したとき */
+.x-creed-row .n { display: block; overflow: hidden; }
+.x-creed-row .n > span { display: block; clip-path: inset(100% 0 0 0); transition: clip-path 1.1s var(--x-move) .15s, color .35s ease; }
+.x-creed-row.fx-in .n > span { clip-path: inset(0 0 0 0); }
+.x-creed-row .k { opacity: 0; transform: translate3d(-12px, 0, 0); transition: opacity .7s var(--x-e) .35s, transform .9s var(--x-e) .35s; }
+.x-creed-row .s { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity .8s var(--x-e) .45s, transform 1s var(--x-e) .45s; }
+.x-creed-row > i { opacity: 0; transition: opacity .6s ease .7s, transform .45s var(--x-e); }
+.x-creed-row.fx-in .k, .x-creed-row.fx-in .s { opacity: 1; transform: none; }
+.x-creed-row.fx-in > i { opacity: 1; }
+.x-creed-row.fx-in .s { transition: opacity .8s var(--x-e) .45s, transform .45s var(--x-e); }
+@media (hover: hover) and (pointer: fine) {
+  .x-creed-row.fx-in:hover .s { transform: translateX(8px); }
+  .x-creed-row.fx-in:hover > i { transform: translateX(10px); }
+}
+.x-creed-row:active .s { transform: scale(.98); transition-duration: .16s; }
+.fx-reduce .x-creed-row .n > span, .fx-reduce .x-creed-row .k, .fx-reduce .x-creed-row .s, .fx-reduce .x-creed-row > i { clip-path: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
