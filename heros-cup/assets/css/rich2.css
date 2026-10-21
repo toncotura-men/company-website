@@ -187,3 +187,11 @@ body .callout ul{ margin: 0; padding-left: 1.2em; }
 body .callout li + li{ margin-top: 6px; }
 body .callout a{ color: var(--r2-o) !important; border-bottom: 1px solid currentColor !important; font-weight: 700; text-decoration: none; }
 @media (prefers-reduced-motion: reduce){ body .callout::before{ transform: none; transition: none; } }
+/* 大会規約のページでは .art ol の丸い番号の指定が重なり、文字が1列目の細い所に押し込まれていた。審査項目の一覧ではその指定を打ち消す */
+.art .judge-list{ display: grid; gap: 0; margin: 14px 0 16px; }
+.art .judge-list > li{ counter-increment: j; padding-left: 0; display: grid; grid-template-columns: 52px 1fr; color: var(--r2-ink); }
+.art .judge-list > li::before{
+  content: counter(j, decimal-leading-zero); position: static; inset: auto; width: auto; height: auto; margin: 0; border-radius: 0; background: none; display: block;
+  font-size: 14px; font-weight: 700; line-height: inherit; letter-spacing: .08em; color: var(--r2-o); text-align: left;
+}
+.judge-list li small{ grid-row: 2; }
