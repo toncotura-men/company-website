@@ -359,3 +359,12 @@ html:not(.nav-open) body.x-home .brand-logo { content: url("../img/logo.png"); }
   .x-programs { padding: 72px 0 8px; }
   .x-programs-head { margin-bottom: 28px; }
 }
+
+/* ---------- スマホ：カードを画面の真ん中に、余白を詰める（2026-10-21 2回目） ---------- */
+@media (max-width: 1023px) {
+  .x-sec { padding: 56px 0; }
+  .x-programs { padding: 56px 0 0; }
+  .x-programs-head { margin-bottom: 24px; }
+  .x-track { gap: 12px; padding-inline: 7vw; scroll-padding-inline: 7vw; }
+  .x-track .x-panel { width: 86vw; scroll-snap-align: center; }
+}
