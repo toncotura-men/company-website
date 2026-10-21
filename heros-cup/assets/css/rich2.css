@@ -151,3 +151,17 @@ body .hero-points li::before{
   body .hero-points li:first-child::before{ display: none; }
   body .hero-points li + li::before{ background: rgba(255, 255, 255, .22); }
 }
+
+/* ---------- HERO審査の項目：チェック付きの箱をやめ、番号つきの太字の行に（2026-10-21 オーナー指示「文字が細くチープ」） ---------- */
+.judge-list{ list-style: none; margin: clamp(28px, 4vw, 44px) 0 0; padding: 0; counter-reset: j; display: grid; border-top: 1px solid var(--r2-line); }
+@media (min-width: 820px){ .judge-list{ grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 4vw, 56px); } }
+.judge-list li{
+  position: relative; counter-increment: j; display: grid; grid-template-columns: 52px 1fr; align-items: baseline;
+  padding: 22px 0; border-bottom: 1px solid var(--r2-line); background: none; box-shadow: none; border-radius: 0;
+  font-size: clamp(18px, 1.7vw, 21px); font-weight: 700; line-height: 1.5; letter-spacing: .02em; color: var(--r2-ink);
+}
+.judge-list li::before{ content: counter(j, decimal-leading-zero); font-size: 14px; font-weight: 700; letter-spacing: .08em; color: var(--r2-o); }
+.judge-list li::after{ content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--r2-o); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--r2-ease); }
+@media (hover: hover) and (pointer: fine){ .judge-list li:hover::after{ transform: scaleX(1); } }
+.art .judge-list li{ font-size: 17px; padding: 16px 0; }
+.judge-list li small{ grid-column: 2; margin-top: 4px; font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--r2-ink-3); }
