@@ -215,8 +215,6 @@ body.x-home::after {
 .x-news i { font-style: normal; color: var(--x-o2); transition: transform .45s var(--x-e); }
 @media (hover: hover) and (pointer: fine) { .x-news:hover i { transform: translateX(8px); } .x-news:hover span { color: var(--x-o2); } }
 .x-sponsors { display: flex; flex-wrap: wrap; align-items: center; gap: 28px clamp(32px, 5vw, 72px); margin-top: clamp(56px, 7vw, 96px); }
-.x-sponsors img { height: clamp(26px, 2.6vw, 38px); width: auto; filter: brightness(0) invert(1); opacity: .62; transition: opacity .3s ease; }
-.x-sponsors img:hover { opacity: 1; }
 .x-sponsors .x-link { margin-left: auto; }
 
 /* ---------- 会社概要 ---------- */
@@ -258,3 +256,23 @@ html:not(.nav-open) body.x-home .brand-logo { content: url("../img/logo.png"); }
   body.x-home .nav > a:not(.nav-cta):hover, body.x-home .nav-top:hover { color: #fff; }
   body.x-home .nav > .nav-cta { background: var(--x-o); }
 }
+
+/* ---------- 理念の3つ：見出し＋一言 ---------- */
+.x-label { margin: clamp(56px, 7vw, 96px) 0 0; font-size: 15px; font-weight: 700; letter-spacing: .08em; color: var(--x-o2); }
+.x-label + .x-trio { margin-top: 18px; }
+.x-trio a { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; column-gap: 16px; row-gap: 8px; align-items: center; }
+.x-trio a .k { font-size: clamp(20px, 1.8vw, 26px); font-weight: 700; }
+.x-trio a .d { grid-column: 1; font-size: 15px; font-weight: 500; line-height: 1.7; color: var(--x-ink2); }
+.x-trio a > i { grid-column: 2; grid-row: 1 / span 2; }
+.x-trio a:focus-visible { outline: 2px solid var(--x-o2); outline-offset: -2px; border-radius: 0; }
+
+/* ---------- スポンサー：明るい帯にロゴを元の色のまま ---------- */
+.x-sponsor-band { background: #f4f2ee; color: #121522; padding: clamp(64px, 7vw, 104px) 0; }
+.x-sponsor-h { margin: 0; font-size: clamp(20px, 2vw, 28px); font-weight: 700; letter-spacing: .02em; }
+.x-sponsors { list-style: none; margin: clamp(32px, 4vw, 48px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px clamp(32px, 4vw, 64px); align-items: center; }
+.x-sponsors li { display: flex; align-items: center; justify-content: center; height: clamp(56px, 6vw, 80px); }
+.x-sponsors img { max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+.x-link-dark { margin-top: 40px; color: #121522; }
+@media (hover: hover) and (pointer: fine) { .x-link-dark:hover { color: var(--x-o); } }
+.x-company { padding-top: clamp(72px, 8vw, 120px); }
+.x-label-top { margin-top: 0; margin-bottom: 18px; }
