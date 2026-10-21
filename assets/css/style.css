@@ -1039,3 +1039,86 @@ p, li, dd { text-wrap: pretty; }
   .sponsor-names { grid-template-columns: 1fr; }
   .sponsor-names .sl { height: 84px; }
 }
+
+/* ============================================================
+   2026-10 カードの作り直し（オーナー指示「文字・枠がチープ、動きがない」）
+   枠や灰色の箱をやめ、上の線と余白で区切る。画面に入ると線が伸び、
+   カーソルを乗せると線が端まで伸びて、光がカーソルについてくる（位置は main.js が --mx / --my に入れる）
+   ============================================================ */
+.feature-card, .phil-card, .spec-item, .flow-cell { isolation: isolate; }
+.feature-card::after, .phil-card::after, .spec-item::after, .flow-cell::before, .price-card .spot {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .35s ease;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 40%), rgba(232, 89, 12, .08), transparent 62%);
+}
+.flow-cell::before { background: radial-gradient(130px circle at var(--mx, 50%) var(--my, 40%), rgba(232, 89, 12, .08), transparent 70%); }
+
+/* 特徴・ポイント（全ページ共通のカード） */
+.feature-card { overflow: hidden; padding: 30px 8px 12px 0; }
+.feature-card::before { top: 0; width: 100%; transform: scaleX(0); transition: transform 1s var(--ease-out); }
+.feature-card.in::before { transform: scaleX(.14); }
+.feature-card h3 { font-size: clamp(1.375rem, 2vw, 1.75rem); line-height: 1.4; margin: 16px 0 14px; transition: color .3s ease; }
+.feature-card p { font-size: 1rem; }
+
+/* 理念（トップ） */
+.phil-card { position: relative; overflow: hidden; }
+.phil-card::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--violet);
+  transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease-out);
+}
+.phil-card + .phil-card::before { left: 0; }
+.phil-card.in::before { transform: scaleX(.14); }
+.phil-card h3 { transition: color .3s ease; }
+
+/* 測定項目：灰色の箱をやめ、上の線で区切る */
+.spec-grid { gap: 0 clamp(24px, 3vw, 44px); }
+.spec-item, .page-section.alt .spec-item {
+  overflow: hidden; padding: 28px 8px 32px 0; border-radius: 0; background: none; box-shadow: none;
+  border-top: 1px solid var(--line-strong);
+}
+.spec-item:hover { transform: none; }
+.spec-item h4 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); margin: 14px 0 10px; transition: color .3s ease; }
+.spec-item p { font-size: .9375rem; }
+.spec-item .sn::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--violet);
+  transform: scaleX(0); transform-origin: left; transition: transform 1s var(--ease-out);
+}
+.spec-grid.in .spec-item .sn::before { transform: scaleX(.14); }
+.spec-grid.in .spec-item:nth-child(2) .sn::before { transition-delay: .06s; }
+.spec-grid.in .spec-item:nth-child(3) .sn::before { transition-delay: .12s; }
+.spec-grid.in .spec-item:nth-child(4) .sn::before { transition-delay: .18s; }
+.spec-grid.in .spec-item:nth-child(5) .sn::before { transition-delay: .24s; }
+.spec-grid.in .spec-item:nth-child(6) .sn::before { transition-delay: .3s; }
+.dark-section .spec-item { background: none; box-shadow: none; border-top-color: var(--line-dark); }
+
+/* うまくなる仕組み：箱をやめ、1本の線を左から順に進む */
+.flow-row { gap: 20px clamp(16px, 2vw, 28px); }
+.flow-cell, .page-section:not(.alt) .flow-cell {
+  overflow: hidden; padding: 30px 4px 8px 0; border-radius: 0; background: none; box-shadow: none;
+  border-top: 0; box-shadow: inset 0 2px 0 var(--line);
+}
+.flow-cell:not(:last-child)::after { display: none; }
+.flow-cell .fn { position: relative; display: inline-block; font-size: .875rem; font-weight: 700; letter-spacing: .1em; line-height: 1; }
+.flow-cell .fn::after {
+  content: ""; position: absolute; left: 0; top: -30px; width: 100vw; max-width: 600px; height: 2px; background: var(--violet);
+  transform: scaleX(0); transform-origin: left; transition: transform .7s var(--ease-out);
+}
+.flow-row.in .flow-cell .fn::after { transform: scaleX(1); }
+.flow-row.in .flow-cell:nth-child(2) .fn::after { transition-delay: .25s; }
+.flow-row.in .flow-cell:nth-child(3) .fn::after { transition-delay: .5s; }
+.flow-row.in .flow-cell:nth-child(4) .fn::after { transition-delay: .75s; }
+.flow-row.in .flow-cell:nth-child(5) .fn::after { transition-delay: 1s; }
+.flow-cell h4 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); margin: 14px 0 8px; transition: color .3s ease; }
+.flow-cell p { font-size: .9375rem; }
+
+/* 料金（暗い背景）：光は白く */
+.price-card .spot { z-index: -1; background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 30%), rgba(255, 255, 255, .07), transparent 65%); }
+
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover::before, .phil-card:hover::before, .spec-item:hover .sn::before { transform: scaleX(1); transition-delay: 0s; }
+  .feature-card:hover::after, .phil-card:hover::after, .spec-item:hover::after, .flow-cell:hover::before, .price-card:hover .spot { opacity: 1; }
+  .feature-card:hover h3, .phil-card:hover h3, .spec-item:hover h4, .flow-cell:hover h4 { color: var(--violet); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-card::before, .phil-card::before, .spec-item .sn::before, .flow-cell .fn::after { transition: none !important; }
+  .flow-row .flow-cell .fn::after { transform: scaleX(1); }
+}

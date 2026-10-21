@@ -283,5 +283,16 @@
   });
   document.addEventListener('click', function (e) { if (!e.target.closest('.nav-group')) closeGroups(); });
 
+  /* ---- カーソルについてくる光（マウスの端末だけ。位置は CSS の --mx / --my） ---- */
+  if (window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.pillar, .shift-rows li, .exp-card').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
   updateScrollScene();
 })();
