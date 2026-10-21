@@ -28,8 +28,8 @@
   --maxw: 1160px;
   --hdr: 76px;
 
-  --f-en: "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "YuGothic", "Meiryo", sans-serif;
-  --f-jp: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "YuGothic", "Meiryo", sans-serif;
+  --f-en: "Zen Kaku Gothic New", "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "YuGothic", "Meiryo", sans-serif;
+  --f-jp: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "YuGothic", "Meiryo", sans-serif;
   --f-mc: var(--f-jp); /* 見出し：標準のゴシック（2026-10 オーナー指示） */
   --f-letter: "Shippori Mincho B1",serif; /* 代表メッセージだけ明朝 */
 }
