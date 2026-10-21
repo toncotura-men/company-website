@@ -87,6 +87,7 @@ p, li, dd { text-wrap: pretty; }
   background: var(--ink); color: #fff; font-size: .875rem; font-weight: 700; transform: translateY(-160%);
   transition: transform .3s var(--ease-out);
 }
+.skip:not(:focus) { opacity: 0; pointer-events: none; }
 .skip:focus { transform: none; }
 
 /* =========================================================
