@@ -5,15 +5,16 @@
   <script>/* github.io で開かれたら haki-pro.com の同じページへ移す（haki-pro.com 経由の表示では動かない） */(function(){if(location.hostname!=="toncotura-men.github.io")return;var p=location.pathname.replace(/^\/company-website\/?/,"");var d=/^heros-cup(\/|$)/.test(p)?"https://haki-pro.com/heros-cup/"+p.replace(/^heros-cup\/?/,""):"https://haki-pro.com/pumps/"+p;location.replace(d+location.search+location.hash);})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0b0e1a" />
-  <title>株式会社HAKI pro｜野球スクール — 才能を、科学する。</title>
+  <title>PUMPS｜才能を、科学する。HAKI pro の野球スクール</title>
   <meta name="description" content="株式会社HAKI proの野球スクール。スポーツ科学で「打つ・投げる・走る」を測定・分析・評価し、データで考えて動ける選手を育てます。チーム・個人対応、無料体験受付中。" />
   <link rel="icon" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho+B1:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css?v=69" />
+  <link rel="stylesheet" href="assets/css/home.css?v=1" />
 </head>
-<body>
+<body class="x-home">
   <a class="skip" href="#main">本文へスキップ</a>
 
   <!-- ===== Header ===== -->
@@ -70,274 +71,163 @@
   <!-- ===== Floating reserve button ===== -->
   <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="reserve" aria-label="無料体験 受付中">無料体験<small>受付中 ≫</small></a>
 
-  <main id="main">
-  <!-- ===== Hero (corporate message) ===== -->
-  <section class="hero" id="top-hero">
-    <div class="hero-inner">
-      <div class="hero-msg">
-        <p class="hero-eyebrow">BASEBALL SCIENCE LAB</p>
-        <h1 class="hero-message">才能を<br /><span class="accent">科学する</span></h1>
-        <p class="hero-lead">元プロ野球選手と比治山大学が共同開発した、スポーツ力学の理論に基づく<strong>1年設計</strong>のプログラム。数値で見える化し、力学的な根拠で動きを磨き、また数値で確かめる——このサイクルが、走攻守すべての土台と野球IQを育てます。<strong>比治山大学と連携した新スクール、開講。</strong></p>
-        <div class="hero-actions">
-          <a href="school.html" class="btn btn-lime"><span>比治山大学連携スクール</span><span class="arr">→</span></a>
-          <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="btn btn-violet"><span>無料体験を申し込む</span><span class="arr">→</span></a>
-          <a href="#menu" class="btn btn-ghost-light"><span>プログラムを見る</span><span class="arr">→</span></a>
+  <main id="main" class="x">
+  <!-- ===== ヒーロー ===== -->
+  <section class="x-hero fx-hero" id="top-hero">
+    <div class="x-hero-bg" aria-hidden="true"><i class="x-orb x-orb-a"></i><i class="x-orb x-orb-b"></i><i class="x-grid"></i></div>
+    <div class="x-wrap x-hero-in">
+      <div class="x-hero-copy">
+        <h1 class="x-display" data-split>才能を、<br /><em>科学する。</em></h1>
+        <p class="x-hero-lead" data-in>元プロ野球選手と比治山大学が共同開発した、1年設計の野球スクール。</p>
+        <div class="x-actions" data-in>
+          <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="x-btn" data-magnetic="0.25"><span>無料体験を申し込む</span><i aria-hidden="true">→</i></a>
+          <a href="school.html" class="x-link">比治山スクールを見る<i aria-hidden="true">→</i></a>
         </div>
       </div>
-    </div>
-    <div class="hero-mark">
-      <div class="mark" role="img" aria-label="PUMPS"></div>
-      <div class="sub">BASEBALL SCIENCE LAB</div>
-    </div>
-  </section>
-
-  <!-- ===== ABOUT ===== -->
-  <section class="about" id="about">
-    <div class="container about-grid">
-      <div class="about-copy reveal">
-        <div class="bighead">
-          <div class="en">ABOUT</div>
-          <div class="rule"></div>
-          <div class="jp">スクールについて</div>
-        </div>
-        <h2><span class="nw">データで、</span><span class="nw">野球が<span class="em">進化する。</span></span></h2>
-        <p>うまくなるには、まず今の自分を正確に知ることから。HAKI proのデータ計測なら、詳細な測定でスイング・球速・走力を数値化し、競技特性に踏み込んだ分析ができます。</p>
-        <p>各能力をHAKI proのデータベースと照合し、強みと伸びしろを偏差値で算出。一人ひとりの「実力」と「カラダの状態」を見える化し、目標に向けて何が必要かを具体的にご提案します。</p>
-        <a href="#menu" class="btn btn-violet"><span>スクールについて</span><span class="arr">→</span></a>
-      </div>
-      <div class="about-visual reveal d1">
-        <div class="tag-chip">DATA REPORT</div>
-        <div class="diamond-frame">
-          <div class="inner"><canvas id="radar-canvas" aria-hidden="true"></canvas></div>
-        </div>
+      <div class="x-hero-mark" data-in aria-hidden="true">
+        <div class="x-rings"><i></i><i></i><i></i></div>
+        <img src="assets/img/pumps-logo-white.png" alt="" class="x-logo" data-tilt="10" width="600" height="240" />
       </div>
     </div>
   </section>
 
-  <!-- ===== PHILOSOPHY (理念) ===== -->
-  <section class="home-phil" id="philosophy">
-    <div class="container">
-      <div class="bighead reveal">
-        <div class="en">PHILOSOPHY</div>
-        <div class="rule"></div>
-        <div class="jp">理念</div>
+  <!-- ===== 数字 ===== -->
+  <section class="x-stats" aria-label="スクールの数字">
+    <div class="x-wrap x-stats-in">
+      <p class="fx-reveal"><b><span data-count="1">1</span><small>年</small></b><span>設計のカリキュラム</span></p>
+      <p class="fx-reveal"><b><small>月</small><span data-count="4">4</span><small>回</small></b><span>毎週金曜に開講</span></p>
+      <p class="fx-reveal"><b><span data-count="6">6</span><small>項目</small></b><span>科学的に測定</span></p>
+    </div>
+  </section>
+
+  <div class="x-marquee" data-marquee="1" aria-hidden="true">
+    <div><span>HITTING</span><span class="o">PITCHING</span><span>RUNNING</span><span class="o">MEASUREMENT</span><span>HITTING</span><span class="o">PITCHING</span><span>RUNNING</span><span class="o">MEASUREMENT</span></div>
+  </div>
+
+  <!-- ===== データ ===== -->
+  <section class="x-sec x-about" id="about">
+    <div class="x-wrap x-split">
+      <div>
+        <h2 class="x-h2" data-split>データで、<br />野球が<em>進化する。</em></h2>
+        <p class="x-p fx-reveal">スイング・球速・走力を数値にし、強みと伸びしろを偏差値で示します。次に何を伸ばせばいいかが、はっきり分かります。</p>
       </div>
-      <p class="phil-statement reveal">「好き」を、<span class="em">本物の力</span>に変える。</p>
-      <p class="phil-lead reveal">うまくなりたい——その小さな火を、一生消えない自信に変える。HAKI proが大切にしている、3つの約束です。</p>
-      <div class="phil-grid">
-        <a href="mvv.html" class="phil-card reveal"><span class="phil-wm" aria-hidden="true">MISSION</span><span class="pn">Mission</span><h3>使命</h3><p>「好き」を、本物の力に。データと科学で、努力が必ず結果に変わる道を一緒に描きます。</p><span class="more">詳しく見る →</span></a>
-        <a href="mvv.html" class="phil-card reveal d1"><span class="phil-wm" aria-hidden="true">VISION</span><span class="pn">Vision</span><h3>目指す未来</h3><p>ここから、世界へ。野球を通して、一生消えない自信と、自分で道を切り拓く力を育てます。</p><span class="more">詳しく見る →</span></a>
-        <a href="mvv.html" class="phil-card reveal d2"><span class="phil-wm" aria-hidden="true">VALUE</span><span class="pn">Value</span><h3>5つの約束</h3><p>数字はウソをつかない。主役は選手。比べるのは昨日の自分——ゆずらない価値観。</p><span class="more">詳しく見る →</span></a>
+      <div class="x-radar fx-reveal" data-spot><canvas id="radar-canvas" aria-hidden="true"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ===== 理念 ===== -->
+  <section class="x-sec x-manifesto" id="philosophy">
+    <div class="x-wrap">
+      <p class="x-scrub" data-scrub>「好き」を、本物の力に変える。</p>
+      <nav class="x-trio" aria-label="理念">
+        <a href="mvv.html" class="fx-reveal"><span>使命</span><i aria-hidden="true">→</i></a>
+        <a href="mvv.html" class="fx-reveal"><span>目指す未来</span><i aria-hidden="true">→</i></a>
+        <a href="mvv.html" class="fx-reveal"><span>5つの約束</span><i aria-hidden="true">→</i></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== プログラム（縦スクロールで横に流れる） ===== -->
+  <section class="x-programs" id="menu" data-hscroll>
+    <div class="x-pin">
+      <div class="x-wrap x-programs-head">
+        <h2 class="x-h2" data-split>打つ。投げる。<br />走る。測る。</h2>
+        <span class="x-bar" aria-hidden="true"><i data-hscroll-bar></i></span>
+      </div>
+      <div class="x-track" data-hscroll-track>
+        <a href="batting.html" class="x-panel" data-spot><img src="assets/img/silhouette-bat.png" alt="" loading="lazy" /><span class="t">バッティング</span><span class="d">スイングを数値にして、飛距離を伸ばす。</span><i aria-hidden="true">→</i></a>
+        <a href="pitching.html" class="x-panel" data-spot><img src="assets/img/silhouette-throw.png" alt="" loading="lazy" /><span class="t">ピッチング</span><span class="d">球速と回転を測り、肩とひじを守る。</span><i aria-hidden="true">→</i></a>
+        <a href="running.html" class="x-panel" data-spot><img src="assets/img/silhouette-run.png" alt="" loading="lazy" /><span class="t">走塁・フィジカル</span><span class="d">一歩目の速さと、土台の強さを。</span><i aria-hidden="true">→</i></a>
+        <a href="measurement.html" class="x-panel x-panel-data" data-spot><span class="big" aria-hidden="true">DATA</span><span class="t">測定・分析</span><span class="d">6項目を測り、成長を数字で確かめる。</span><i aria-hidden="true">→</i></a>
       </div>
     </div>
   </section>
 
-  <!-- ===== REPRESENTATIVE teaser ===== -->
-  <section class="rep-band" id="message">
-    <div class="container">
-      <div class="inner reveal">
-        <div>
-          <p class="q"><span class="nw">「根性論ではなく、数字で寄り添う。</span><span class="nw">個性と才能を、<span class="em">一緒に解放</span>していきましょう。」</span></p>
-          <p class="who">代表 安部友裕 — 元プロ野球選手</p>
+  <!-- ===== 比治山スクール ===== -->
+  <section class="x-sec x-school" id="school">
+    <div class="x-wrap">
+      <h2 class="x-h2" data-split>大学と、<em>つくる。</em></h2>
+      <p class="x-p fx-reveal">比治山大学の野球グラウンドとアリーナで、毎週金曜・月4回。</p>
+      <div class="x-plans">
+        <div class="x-plan fx-reveal" data-spot>
+          <h3>ベーシック</h3>
+          <p class="x-price"><span class="yen">¥</span><span data-count="17600" data-comma>17,600</span><small>/月（税込）</small></p>
+          <p class="x-plan-d">月4回の練習と、月1回の科学的測定。</p>
         </div>
-        <a href="message.html" class="btn btn-violet"><span>代表メッセージを読む</span><span class="arr">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HIJIYAMA UNIV. SCHOOL ===== -->
-  <section class="school-band" id="school">
-    <div class="container">
-      <div class="bighead reveal">
-        <div class="en light">SCHOOL</div>
-        <div class="rule"></div>
-        <div class="jp light">比治山大学 連携スクール</div>
-      </div>
-      <div class="school-lede reveal">
-        <span class="school-badge"><span class="bx">HAKI pro</span><span class="cross">×</span><span class="bx">比治山大学</span></span>
-        <p class="phil-statement"><span class="nw">大学と、つくる。</span><span class="nw"><span class="em">未来基準</span>の野球スクール。</span></p>
-        <p class="phil-lead">舞台は比治山大学の野球グラウンド＆アリーナ。カリキュラムは大学と共同開発した、スポーツ科学×大学の知の結晶。基本は1年単位の設計で、毎週金曜・月4回の積み重ねが1年後の大きな差になります。</p>
-      </div>
-      <div class="fee-banner reveal"><span class="fb-tag">全クラス共通</span><span class="fb-main">入会金 <b>¥11,000</b><span class="tax">（税込）</span></span><span class="fb-sub">／ご入会時のみ</span></div>
-      <div class="price-grid">
-        <div class="price-card reveal">
-          <div class="cls-en">BASIC CLASS</div>
-          <h3>ベーシッククラス</h3>
-          <div class="price-campaign">2026年内入会 限定価格</div>
-          <div class="price-row"><span class="price-old"><span class="p">¥22,000</span><span class="lbl">2027年1月〜</span></span></div>
-          <div class="price"><span class="yen">¥</span>17,600<span class="unit">/月（税込）</span></div>
-          <p class="price-note"><span class="nw">2027年1月以降のご入会は</span><span class="nw">月22,000円（税込）</span><span class="nw">になります。</span></p>
-          <ul class="cls-list">
-            <li>毎週金曜・月4回開講</li>
-            <li>科学的測定 月1回</li>
-            <li>比治山大学と共同開発の1年設計カリキュラム</li>
-            <li>会場は比治山大学 野球グラウンド＆アリーナ</li>
-          </ul>
-        </div>
-        <div class="price-card advance reveal d1">
-          <span class="ribbon">RECOMMENDED</span>
-          <div class="cls-en">ADVANCE CLASS</div>
-          <h3>アドバンスクラス</h3>
-          <div class="price-campaign">2026年内入会 限定価格</div>
-          <div class="price-row"><span class="price-old"><span class="p">¥27,500</span><span class="lbl">2027年1月〜</span></span></div>
-          <div class="price"><span class="yen">¥</span>24,200<span class="unit">/月（税込）</span></div>
-          <p class="price-note"><span class="nw">2027年1月以降のご入会は</span><span class="nw">月27,500円（税込）</span><span class="nw">になります。</span></p>
-          <ul class="cls-list">
-            <li>毎週金曜・月4回開講</li>
-            <li>科学的測定 月2回 — 成長を高頻度で見える化</li>
-            <li><strong>比治山大学の学生と共同開発した栄養食</strong>をスクール後に提供</li>
-            <li>比治山大学と共同開発の1年設計カリキュラム</li>
-          </ul>
+        <div class="x-plan x-plan-adv fx-reveal" data-spot>
+          <h3>アドバンス<span>おすすめ</span></h3>
+          <p class="x-price"><span class="yen">¥</span><span data-count="24200" data-comma>24,200</span><small>/月（税込）</small></p>
+          <p class="x-plan-d">月2回の測定と、比治山大学の学生と共同開発した栄養食つき。</p>
         </div>
       </div>
-      <div class="school-cta reveal d2">
-        <a href="school.html" class="btn btn-lime"><span>スクールの詳細を見る</span><span class="arr">→</span></a>
+      <p class="x-note fx-reveal">2026年内にご入会の方の限定価格です。2027年1月以降のご入会は月22,000円／27,500円（税込）。入会金 11,000円（税込）。</p>
+      <a href="school.html" class="x-link fx-reveal">スクールの詳細を見る<i aria-hidden="true">→</i></a>
+    </div>
+  </section>
+
+  <!-- ===== チーム・個人 ===== -->
+  <section class="x-audience" id="audience">
+    <a href="team.html" class="x-half" data-spot>
+      <span class="k">チーム・団体の方</span>
+      <span class="d">グラウンドまで伺い、選手全員をまとめて測定します。</span>
+      <i aria-hidden="true">→</i>
+    </a>
+    <a href="personal.html" class="x-half" data-spot>
+      <span class="k">個人の方</span>
+      <span class="d">ご指定の場所で、一人ひとりに合わせて指導します。</span>
+      <i aria-hidden="true">→</i>
+    </a>
+  </section>
+
+  <!-- ===== 代表 ===== -->
+  <section class="x-sec x-message" id="message">
+    <div class="x-wrap x-split">
+      <figure class="x-photo" data-clip><img src="assets/img/ceo-abe.png" alt="代表 安部友裕" width="900" height="720" data-speed="0.12" /></figure>
+      <div>
+        <p class="x-quote" data-split>根性論ではなく、<br />数字で寄り添う。</p>
+        <p class="x-who fx-reveal">代表　安部 友裕（元プロ野球選手）</p>
+        <a href="message.html" class="x-link fx-reveal">代表メッセージを読む<i aria-hidden="true">→</i></a>
       </div>
     </div>
   </section>
 
-  <!-- ===== TEAM / PERSONAL diagonal split ===== -->
-  <section class="split" id="audience">
-    <div class="split-panel split-team">
-      <div class="split-inner">
-        <h3>チーム・団体の方</h3>
-        <div class="en">TEAM / 出張対応</div>
-        <div class="ln"></div>
-        <p>小・中・高校、大学の野球チームへ、HAKI proが出張します。グラウンドや体育館まで機材を持って伺い、選手全員をまとめて測定・分析。移動の負担なく、勝てるチームづくりをデータで支えます。</p>
-        <a href="team.html" class="btn btn-ghost-light"><span>出張測定を申し込む</span><span class="arr">→</span></a>
-      </div>
-    </div>
-    <div class="split-panel split-personal">
-      <div class="split-inner">
-        <h3>個人の方</h3>
-        <div class="en">PERSONAL / 出張対応</div>
-        <div class="ln"></div>
-        <p>「もっとうまくなりたい」小学生〜高校生まで。ご指定の場所へ伺う<strong>個人出張指導</strong>を承ります。投球、打撃、走力の測定や基本動作など、ご要望に応じてご指導させていただきます。じっくり通うなら比治山大学内のスクールへ。</p>
-        <div class="panel-actions">
-          <a href="https://pro.form-mailer.jp/fms/f99b6c0f355307" target="_blank" rel="noopener" class="btn btn-lime"><span>個人出張指導を申し込む</span><span class="arr">→</span></a>
-          <a href="personal.html#price" class="btn btn-ghost-light"><span>料金を見る</span><span class="arr">→</span></a>
-        </div>
+  <!-- ===== お知らせ・スポンサー ===== -->
+  <section class="x-sec x-info" id="news">
+    <div class="x-wrap">
+      <a href="school.html" class="x-news fx-reveal"><time datetime="2026-04-24">2026.04.24</time><span>比治山大学と連携協定を締結しました。</span><i aria-hidden="true">→</i></a>
+      <div class="x-sponsors fx-reveal" id="sponsor">
+        <img src="assets/img/sponsors/recre.png" alt="株式会社レクレ" width="2000" height="789" loading="lazy" />
+        <img src="assets/img/sponsors/townpharma.png" alt="T&amp;Tタウンファーマ株式会社" width="2000" height="443" loading="lazy" />
+        <img src="assets/img/sponsors/popjapan.png?v=2" alt="株式会社ポップジャパン" width="1289" height="267" loading="lazy" />
+        <a href="sponsor.html" class="x-link">スポンサー<i aria-hidden="true">→</i></a>
       </div>
     </div>
   </section>
 
-  <!-- ===== MENU (diamond tiles) ===== -->
-  <section class="menu" id="menu">
-    <div class="container menu-grid">
-      <div class="menu-copy reveal">
-        <div class="bighead">
-          <div class="en">MENU</div>
-          <div class="rule"></div>
-          <div class="jp">プログラム</div>
-        </div>
-        <p>HAKI proではスポーツ科学の視点で身体能力と動作を測定し、詳細に分析。プログラムは基本1年設計で、データをもとに「打つ・投げる・走る」を段階的に伸ばします。</p>
-      </div>
-      <div class="diamonds reveal d1">
-        <a href="batting.html" class="diamond"><div class="d-inner">
-          <img src="assets/img/silhouette-bat.png" alt="" class="d-fig" />
-          <span class="label">バッティング</span><span class="arr">→</span>
-        </div></a>
-        <a href="pitching.html" class="diamond"><div class="d-inner">
-          <img src="assets/img/silhouette-throw.png" alt="" class="d-fig" />
-          <span class="label">ピッチング</span><span class="arr">→</span>
-        </div></a>
-        <a href="running.html" class="diamond"><div class="d-inner">
-          <img src="assets/img/silhouette-run.png" alt="" class="d-fig" />
-          <span class="label">走塁・フィジカル</span><span class="arr">→</span>
-        </div></a>
-        <a href="measurement.html" class="diamond"><div class="d-inner">
-          <svg class="d-ico" viewBox="0 0 48 48" fill="#fff" aria-hidden="true">
-            <rect x="5" y="39.6" width="38" height="3.6" rx="1"/>
-            <rect x="10" y="26" width="7" height="13.6" rx="1"/>
-            <rect x="20.5" y="21" width="7" height="18.6" rx="1"/>
-            <rect x="31" y="17" width="7" height="22.6" rx="1"/>
-            <path d="M7 25 L38 10" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
-            <path d="M43.5 6.5 L34.5 8 L41 15.5 Z"/>
-          </svg>
-          <span class="label">測定・分析</span><span class="arr">→</span>
-        </div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== NEWS ===== -->
-  <section class="news-section" id="news">
-    <div class="container">
-      <div class="bighead reveal">
-        <div class="en">NEWS</div>
-        <div class="rule"></div>
-        <div class="jp">お知らせ</div>
-      </div>
-      <div class="news-rows reveal d1">
-        <a href="school.html" class="news-row"><span class="nd">2026.04.24</span><span class="nt">重要</span><span class="nx">比治山大学と連携協定を締結しました。</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SPONSOR ===== -->
-  <section class="sponsor-band" id="sponsor">
-    <div class="container">
-      <div class="bighead reveal">
-        <div class="en">SPONSOR</div>
-        <div class="rule"></div>
-        <div class="jp">スポンサー</div>
-      </div>
-      <div class="reveal d1">
-        <ul class="sponsor-names">
-          <li><span class="sl"><img src="assets/img/sponsors/recre.png" alt="株式会社レクレ" width="2000" height="789" loading="lazy" decoding="async" /></span><span class="sn"><span class="nw">株式会社</span><span class="nw">レクレ</span></span></li>
-          <li><span class="sl"><img src="assets/img/sponsors/townpharma.png" alt="T&amp;Tタウンファーマ株式会社" width="2000" height="443" loading="lazy" decoding="async" /></span><span class="sn"><span class="nw">T&amp;Tタウンファーマ</span><span class="nw">株式会社</span></span></li>
-          <li><span class="sl"><img src="assets/img/sponsors/popjapan.png?v=2" alt="株式会社ポップジャパン" width="1289" height="267" loading="lazy" decoding="async" /></span><span class="sn"><span class="nw">株式会社</span><span class="nw">ポップジャパン</span></span></li>
-        </ul>
-        <a href="sponsor.html" class="btn btn-ghost-light"><span>スポンサー一覧を見る</span><span class="arr">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== COMPANY ===== -->
-  <section class="page-section company" id="company">
-    <div class="container">
-      <div class="bighead reveal">
-        <div class="en">COMPANY</div>
-        <div class="rule"></div>
-        <div class="jp">会社概要</div>
-      </div>
-      <dl class="info-table reveal d1">
-        <div class="info-row"><dt>会社名</dt><dd>株式会社HAKI pro</dd></div>
-        <div class="info-row"><dt>所在地</dt><dd>〒733-0001 広島県広島市西区大芝2丁目9-2</dd></div>
-        <div class="info-row"><dt>事業内容</dt><dd>野球スクールの運営（比治山大学連携）／個人・チームへの出張セッション／スポーツ科学に基づく測定・分析・評価</dd></div>
-        <div class="info-row"><dt>スクール会場</dt><dd>〒732-0068 広島県広島市東区牛田新町4丁目1-1<br />比治山大学 野球グラウンド及びアリーナ</dd></div>
-        <div class="info-row"><dt>連携</dt><dd>比治山大学（施設・カリキュラム共同開発・栄養食の共同開発）</dd></div>
+  <!-- ===== 会社概要 ===== -->
+  <section class="x-sec x-company" id="company">
+    <div class="x-wrap">
+      <dl class="x-dl fx-reveal">
+        <div><dt>会社名</dt><dd>株式会社HAKI pro</dd></div>
+        <div><dt>所在地</dt><dd>〒733-0001 広島県広島市西区大芝2丁目9-2</dd></div>
+        <div><dt>スクール会場</dt><dd>〒732-0068 広島県広島市東区牛田新町4丁目1-1　比治山大学 野球グラウンド及びアリーナ</dd></div>
+        <div><dt>連携</dt><dd>比治山大学（施設・カリキュラム・栄養食の共同開発）</dd></div>
       </dl>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="bighead reveal">
-        <div class="en">CONTACT</div>
-        <div class="rule"></div>
-        <div class="jp">お問い合わせ</div>
+  <!-- ===== お問い合わせ ===== -->
+  <section class="x-contact" id="contact">
+    <div class="x-hero-bg" aria-hidden="true"><i class="x-orb x-orb-a"></i></div>
+    <div class="x-wrap">
+      <h2 class="x-display x-display-sm" data-split>まずは、<br /><em>無料体験から。</em></h2>
+      <div class="x-actions">
+        <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="x-btn x-btn-lg" data-magnetic="0.3"><span>無料体験を申し込む</span><i aria-hidden="true">→</i></a>
+        <a href="https://pro.form-mailer.jp/fms/39ce6285355128" target="_blank" rel="noopener" class="x-link">お問い合わせフォーム<i aria-hidden="true">→</i></a>
       </div>
-      <div class="contact-panel reveal d1">
-        <div class="contact-grid">
-          <div class="contact-col">
-            <h3>TEL</h3>
-            <div class="sub">お電話でのお問い合わせ</div>
-            <div class="ln"></div>
-            <p><span class="nw">現在、お電話でのお問い合わせは受け付けておりません。</span><span class="nw">お手数ですが、お問い合わせフォームをご利用ください。</span></p>
-          </div>
-          <div class="contact-col">
-            <h3>FORM</h3>
-            <div class="sub">フォームでのお問い合わせ</div>
-            <div class="ln"></div>
-            <a href="https://pro.form-mailer.jp/fms/39ce6285355128" target="_blank" rel="noopener" class="btn btn-violet"><span>お問い合わせフォーム</span><span class="arr">→</span></a>
-          </div>
-        </div>
-      </div>
+      <p class="x-note">お電話でのお問い合わせは受け付けておりません。フォームをご利用ください。</p>
     </div>
   </section>
-
   </main>
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
@@ -366,5 +256,6 @@
   </footer>
 
   <script src="assets/js/main.js?v=47" defer></script>
+  <script src="assets/js/fx.js?v=1" defer></script>
 </body>
 </html>

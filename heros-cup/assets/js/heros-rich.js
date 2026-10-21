@@ -15,7 +15,7 @@
   /* ---- header state and scroll progress ---- */
   var hdr = document.querySelector('.hdr');
   var progressBar = document.querySelector('.page-progress i');
-  var hasHero = !!document.querySelector('.hero, .phero');
+  var hasHero = !!document.querySelector('.hero, .phero, .x-hero');
   var floatCta = document.querySelector('.float-entry');
   var drawerOpen = false;
   var scrollQueued = false;
