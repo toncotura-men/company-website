@@ -821,3 +821,14 @@ a[style*="color:var(--o-deep)"]{ color:var(--a-accent-text) !important; }
 .hdr .nav .nav-sub a:hover{ background:var(--a-line); }
 .nav-sub a small{ display:block; margin-top:2px; font-size:12px; font-weight:500; color:var(--a-text-3); }
 @media (prefers-reduced-motion:reduce){ .nav-sub,.nav-top .chev{ transition:none; } }
+
+/* HERO 01〜03 のカード：枠・背景・影をなくし、上の線だけにする（2026-10 オーナー指示「枠ダサい」）。
+   上の rich.css の指定を、このファイルの枠の指定より優先させる */
+.home-page .concept .hero-loop .loop-card{
+  border:0; border-radius:0; background:none; box-shadow:none; clip-path:none;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+}
+@media (hover:hover) and (pointer:fine){
+  .home-page .concept .hero-loop .loop-card:hover{ transform:none; box-shadow:none; }
+  .home-page .concept .hero-loop .loop-card:hover::after{ transform:scaleX(1); }
+}

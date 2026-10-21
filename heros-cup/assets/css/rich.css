@@ -455,37 +455,47 @@ p,li,dd{ text-wrap:pretty; }
 }
 .home-page .loop-card:hover{ border-color:rgba(255,126,53,.45);transform:translateY(-10px);box-shadow:0 26px 70px rgba(0,0,0,.26); }
 .home-page .loop-card:hover::after{ transform:scaleX(1); }
-/* HERO 01〜03 の札：星が回って現れ、光が横切る。カードに乗せるともう一度 */
+/* HERO 01〜03：枠なし。カードの上の線が左から伸び、HERO の文字に光が走る。カードに乗せるともう一度 */
+.home-page .loop-card{
+  min-height:0; padding:30px 4px 8px; border:0; border-radius:0; background:none; box-shadow:none;
+  backdrop-filter:none; -webkit-backdrop-filter:none; clip-path:none;
+}
+.home-page .loop-card::before{ content:""; position:absolute; inset:0 0 auto; height:1px; background:rgba(255,255,255,.14); }
+.home-page .loop-card::after{
+  inset:0 0 auto; height:2px; background:linear-gradient(90deg,var(--signal-2),rgba(255,154,77,.15));
+  transform:scaleX(0); transition:transform 1s var(--ease-out) .2s;
+}
+.home-page .is-in .loop-card::after,.home-page .loop-card.is-in::after{ transform:scaleX(.35); }
+.home-page .loop-card:hover{ transform:none; box-shadow:none; }
+.home-page .loop-card:hover::after{ transform:scaleX(1); transition-delay:0s; }
 .home-page .loop-card .no{
-  position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:8px;
-  padding:8px 16px 8px 12px; border-radius:999px; font-size:12px; letter-spacing:.2em; color:var(--signal-2);
-  background:rgba(255,104,29,.12); box-shadow:inset 0 0 0 1px rgba(255,126,53,.4);
+  display:inline-flex; align-items:baseline; gap:8px; font-size:13px; letter-spacing:.22em;
+  background:linear-gradient(90deg,var(--signal-2) 0%,var(--signal-2) 40%,#fff 50%,var(--signal-2) 60%,var(--signal-2) 100%);
+  background-size:250% 100%; background-position:100% 0;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 .home-page .loop-card .no i{
-  display:inline-block; font-style:normal; font-size:14px; letter-spacing:0; color:#ffb347;
+  display:inline-block; font-style:normal; font-size:14px; letter-spacing:0; -webkit-text-fill-color:#ffb347;
   opacity:0; transform:rotate(-180deg) scale(.5);
   transition:transform .8s var(--ease-out) .25s, opacity .4s ease .25s;
 }
-.home-page .loop-card .no em{ font-style:normal; font-size:16px; letter-spacing:.06em; color:#fff; }
-.home-page .loop-card .no::after{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);
-  transform:translateX(-120%);
-}
+.home-page .loop-card .no em{ font-style:normal; font-size:18px; letter-spacing:.06em; -webkit-text-fill-color:#fff; }
 .home-page .is-in .no i{ opacity:1; transform:none; }
-.home-page .is-in .no::after{ animation:no-shine 1.3s var(--ease-out) .55s 1; }
-.home-page .hero-loop.is-in > :nth-child(2) .no::after{ animation-delay:.7s; }
-.home-page .hero-loop.is-in > :nth-child(3) .no::after{ animation-delay:.85s; }
+.home-page .is-in .no{ animation:no-shine 1.4s var(--ease-out) .55s 1 both; }
+.home-page .hero-loop.is-in > :nth-child(2) .no{ animation-delay:.7s; }
+.home-page .hero-loop.is-in > :nth-child(3) .no{ animation-delay:.85s; }
 @media (hover:hover) and (pointer:fine){
   .home-page .loop-card:hover .no i{ transform:rotate(144deg) scale(1.2); transition-delay:0s; }
-  .home-page .hero-loop.is-in > .loop-card:hover .no::after,.home-page .loop-card.is-in:hover .no::after{ animation:no-shine-2 .9s var(--ease-out) 0s 1; }
+  .home-page .hero-loop.is-in > .loop-card:hover .no,.home-page .loop-card.is-in:hover .no{ animation:no-shine-2 .9s var(--ease-out) 0s 1 both; }
 }
-@keyframes no-shine{ to{ transform:translateX(120%); } }
-@keyframes no-shine-2{ to{ transform:translateX(120%); } }
+@keyframes no-shine{ from{ background-position:100% 0; } to{ background-position:0 0; } }
+@keyframes no-shine-2{ from{ background-position:100% 0; } to{ background-position:0 0; } }
 @media (prefers-reduced-motion:reduce){
   .home-page .loop-card .no i{ opacity:1; transform:none; transition:none; }
-  .home-page .loop-card .no::after{ animation:none !important; }
+  .home-page .loop-card .no{ animation:none !important; }
+  .home-page .loop-card::after{ transition:none; }
 }
+
 .home-page .loop-card h3{ font-size:21px; }
 .home-page .loop-card p{ color:rgba(255,255,255,.66); }
 
