@@ -343,3 +343,21 @@ body.x-home .hdr:not(.is-top) .burger span { background: #fff !important; }
 /* ヘッダーが画面の上に固定されているので、その分だけ下げる */
 @media (min-width: 1024px) { .x-hero { min-height: 100dvh; padding-top: 140px; } }
 .x-ball { top: -8%; }
+
+/* ---------- スマホ：横に流れるカードの位置と余白（2026-10-21） ---------- */
+@media (max-width: 1023px) {
+  /* 指で送ったとき、カードが左の余白にそろって止まる（以前は画面の端にくっつき、左がずれて見えた） */
+  .x-track { scroll-padding-inline: clamp(20px, 5vw, 64px); }
+  .x-track::after { content: ""; flex: none; width: 1px; }
+  /* 文字だけのカードは中身の高さに合わせる（真ん中が大きく空いていた） */
+  .x-panel-txt { height: auto; min-height: 0; gap: 40px; }
+  .x-programs { padding: 72px 0 8px; }
+  .x-programs-head { margin-bottom: 28px; }
+  /* 表彰：区切りの上下を詰める */
+  .x-award-row { margin-top: 40px; }
+  .x-award-row > div { padding: 28px 16px; }
+  .x-award-row > div:last-child { border-bottom: 0; }
+  .x-contact { padding: 96px 0; }
+}
+/* トロフィーを真ん中に（以前は左に寄っていた） */
+.x-award-hero img { display: block; margin: 0 auto 8px; }
