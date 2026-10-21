@@ -1,12 +1,12 @@
 /* =========================================================
    PUMPS トップ（2026-10 作り直し）
-   夜の黒地にオレンジ1色。枠はほぼ使わず、線と余白で区切る。言葉は見出しと一文だけ。
+   紺がかった黒地にオレンジ1色（説明の部分は温かい白地）。枠はほぼ使わず、線と余白で区切る。言葉は見出しと一文だけ。
    動きは assets/js/fx.js（transform / opacity / clip-path のみ）。
    ヘッダー・フッター・浮いているボタンは style.css のまま。
    ========================================================= */
 body.x-home {
-  --x-bg: #08090f;
-  --x-bg2: #0f1119;
+  --x-bg: #141826;
+  --x-bg2: #1b2030;
   --x-ink: #f4f2ee;
   --x-ink2: rgba(244, 242, 238, .68);
   --x-ink3: rgba(244, 242, 238, .42);
@@ -248,8 +248,8 @@ body.x-home::after {
 @media (prefers-reduced-motion: reduce) { .x-orb, .x-rings i { animation: none !important; } }
 
 /* ---------- ヘッダーを暗いページに合わせる（スマホでメニューを開いている間は元のまま） ---------- */
-html:not(.nav-open) body.x-home .site-header::before { background: rgba(8, 9, 15, .58); box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .07); }
-html:not(.nav-open) body.x-home .site-header.scrolled::before { background: rgba(8, 9, 15, .86); }
+html:not(.nav-open) body.x-home .site-header::before { background: rgba(20, 24, 38, .62); box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .07); }
+html:not(.nav-open) body.x-home .site-header.scrolled::before { background: rgba(20, 24, 38, .9); }
 html:not(.nav-open) body.x-home .brand-logo { content: url("../img/logo.png"); }
 @media (min-width: 1025px) {
   body.x-home .nav > a:not(.nav-cta), body.x-home .nav-top { color: rgba(244, 242, 238, .88); }
@@ -276,3 +276,24 @@ html:not(.nav-open) body.x-home .brand-logo { content: url("../img/logo.png"); }
 @media (hover: hover) and (pointer: fine) { .x-link-dark:hover { color: var(--x-o); } }
 .x-company { padding-top: clamp(72px, 8vw, 120px); }
 .x-label-top { margin-top: 0; margin-bottom: 18px; }
+
+/* ---------- 説明の部分は温かい白地（2026-10-21 オーナー指示「黒がきつい」）
+   黒地はヒーロー・数字・流れる文字・最後の無料体験だけ。白地の部分は .x-light ---------- */
+.x-light {
+  --x-bg: #f6f4f0;
+  --x-ink: #161a26;
+  --x-ink2: rgba(22, 26, 38, .74);
+  --x-ink3: rgba(22, 26, 38, .62);
+  --x-line: rgba(22, 26, 38, .12);
+  --x-o2: #c2410c;
+  background: var(--x-bg); color: var(--x-ink);
+}
+.x-light .x-scrub .fx-w { color: rgba(22, 26, 38, .14); }
+.x-light .x-scrub .fx-w.on, .fx-reduce .x-light .x-scrub .fx-w { color: var(--x-ink); }
+.x-light .x-photo::before { background: radial-gradient(closest-side, rgba(232, 89, 12, .2), transparent 72%); }
+/* プログラムのカードは紺の板のまま（白いシルエットが映えるように） */
+.x-light .x-panel { --x-ink: #f4f2ee; --x-ink2: rgba(244, 242, 238, .74); background: linear-gradient(160deg, #262c3f, #161a28 70%); box-shadow: 0 24px 48px -28px rgba(22, 26, 38, .45); }
+.x-light .x-panel::before { background: linear-gradient(20deg, rgba(22, 26, 38, .92) 0%, rgba(22, 26, 38, .5) 34%, transparent 62%); }
+.x-light .x-panel .big { color: rgba(255, 122, 46, .22); }
+/* スポンサーの帯は周りの白地と分かるよう、真っ白に */
+.x-sponsor-band { background: #fff; border-top: 1px solid rgba(22, 26, 38, .08); border-bottom: 1px solid rgba(22, 26, 38, .08); }

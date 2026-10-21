@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <script>/* github.io で開かれたら haki-pro.com の同じページへ移す（haki-pro.com 経由の表示では動かない） */(function(){if(location.hostname!=="toncotura-men.github.io")return;var p=location.pathname.replace(/^\/company-website\/?/,"");var d=/^heros-cup(\/|$)/.test(p)?"https://haki-pro.com/heros-cup/"+p.replace(/^heros-cup\/?/,""):"https://haki-pro.com/pumps/"+p;location.replace(d+location.search+location.hash);})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0e1a" />
+  <meta name="theme-color" content="#141826" />
   <title>PUMPS｜才能を、科学する。HAKI pro の野球スクール</title>
   <meta name="description" content="株式会社HAKI proの野球スクール。スポーツ科学で「打つ・投げる・走る」を測定・分析・評価し、データで考えて動ける選手を育てます。チーム・個人対応、無料体験受付中。" />
   <link rel="icon" href="assets/img/logo.png" />
@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho+B1:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css?v=69" />
-  <link rel="stylesheet" href="assets/css/home.css?v=3" />
+  <link rel="stylesheet" href="assets/css/home.css?v=4" />
 </head>
 <body class="x-home">
   <a class="skip" href="#main">本文へスキップ</a>
@@ -105,18 +105,18 @@
   </div>
 
   <!-- ===== データ ===== -->
-  <section class="x-sec x-about" id="about">
+  <section class="x-sec x-about x-light" id="about">
     <div class="x-wrap x-split">
       <div>
         <h2 class="x-h2" data-split>データで、<br />野球が<em>進化する。</em></h2>
         <p class="x-p fx-reveal">スイング・球速・走力を数値にし、強みと伸びしろを偏差値で示します。次に何を伸ばせばいいかが、はっきり分かります。</p>
       </div>
-      <div class="x-radar fx-reveal" data-spot><canvas id="radar-canvas" aria-hidden="true"></canvas></div>
+      <div class="x-radar fx-reveal" data-spot><canvas id="radar-canvas" data-theme="light" aria-hidden="true"></canvas></div>
     </div>
   </section>
 
   <!-- ===== 理念 ===== -->
-  <section class="x-sec x-manifesto" id="philosophy">
+  <section class="x-sec x-manifesto x-light" id="philosophy">
     <div class="x-wrap">
       <p class="x-scrub" data-scrub>「好き」を、本物の力に変える。</p>
       <p class="x-label fx-reveal">HAKI pro の理念</p>
@@ -129,7 +129,7 @@
   </section>
 
   <!-- ===== プログラム（縦スクロールで横に流れる） ===== -->
-  <section class="x-programs" id="menu" data-hscroll>
+  <section class="x-programs x-light" id="menu" data-hscroll>
     <div class="x-pin">
       <div class="x-wrap x-programs-head">
         <h2 class="x-h2" data-split>打つ。投げる。<br />走る。測る。</h2>
@@ -145,7 +145,7 @@
   </section>
 
   <!-- ===== 比治山スクール ===== -->
-  <section class="x-sec x-school" id="school">
+  <section class="x-sec x-school x-light" id="school">
     <div class="x-wrap">
       <h2 class="x-h2" data-split>大学と、<em>つくる。</em></h2>
       <p class="x-p fx-reveal">比治山大学の野球グラウンドとアリーナで、毎週金曜・月4回。</p>
@@ -167,7 +167,7 @@
   </section>
 
   <!-- ===== チーム・個人 ===== -->
-  <section class="x-audience" id="audience">
+  <section class="x-audience x-light" id="audience">
     <a href="team.html" class="x-half" data-spot>
       <span class="k">チーム・団体の方</span>
       <span class="d">グラウンドまで伺い、選手全員をまとめて測定します。</span>
@@ -181,7 +181,7 @@
   </section>
 
   <!-- ===== 代表 ===== -->
-  <section class="x-sec x-message" id="message">
+  <section class="x-sec x-message x-light" id="message">
     <div class="x-wrap x-split">
       <figure class="x-photo" data-clip><img src="assets/img/ceo-abe.png" alt="代表 安部友裕" width="900" height="720" data-speed="0.12" /></figure>
       <div>
@@ -193,7 +193,7 @@
   </section>
 
   <!-- ===== お知らせ・スポンサー ===== -->
-  <section class="x-sec x-info" id="news">
+  <section class="x-sec x-info x-light" id="news">
     <div class="x-wrap">
       <p class="x-label x-label-top fx-reveal">お知らせ</p>
       <a href="school.html" class="x-news fx-reveal"><time datetime="2026-04-24">2026.04.24</time><span>比治山大学と連携協定を締結しました。</span><i aria-hidden="true">→</i></a>
@@ -214,7 +214,7 @@
   </section>
 
   <!-- ===== 会社概要 ===== -->
-  <section class="x-sec x-company" id="company">
+  <section class="x-sec x-company x-light" id="company">
     <div class="x-wrap">
       <p class="x-label x-label-top fx-reveal">会社概要</p>
       <dl class="x-dl fx-reveal">
