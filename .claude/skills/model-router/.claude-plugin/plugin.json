@@ -1,0 +1,1 @@
+{ "name": "model-router", "version": "0.1.0", "description": "頼んだ作業の難しさで Haiku・Sonnet・Opus に振り分け、どのモデルが作業したかと1日の節約額を表示する", "types": "./types/index.d.ts" }
