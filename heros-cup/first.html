@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="assets/css/rich.css?v=14" />
 <link rel="stylesheet" href="assets/css/apple.css?v=4" />
 <link rel="stylesheet" href="assets/css/rich2.css?v=5" />
+<link rel="stylesheet" href="assets/css/bracket.css?v=1" />
 </head>
 <body>
 <div class="page-progress" aria-hidden="true"><i></i></div>
@@ -122,8 +123,8 @@
     <div class="shead rv">
       <p class="shead-en">SCHEDULE</p>
       <p class="shead-tag">想定スケジュール（2日間）</p>
-      <h2>1日2試合。<span class="hl">3面同時進行。</span></h2>
-      <p>下記は現時点の想定スケジュールです。組み合わせは実行委員会で抽選し決定します。確定版は参加チームへ別途ご案内します。</p>
+      <h2>2日間の<span class="hl">試合の流れ。</span></h2>
+      <p>組み合わせが決まりました。チーム名入りの対戦表は、このすぐ下にあります。</p>
     </div>
 
     <div data-tabs class="rv">
@@ -135,7 +136,7 @@
       <div class="day-panel timeline" id="day1" role="tabpanel">
         <div class="tl-row"><span class="tl-time">8:20</span><div class="tl-body"><b>集合・整列</b><span>開会式に参加する A-①・B-① の4チームは第1グランド内に集合してください</span></div><span class="tl-g">第1G</span></div>
         <div class="tl-row"><span class="tl-time">8:30</span><div class="tl-body"><b>開会式</b><span>初日8:30からの開会式は A-①・B-① の試合4チームのみの参加となります</span></div><span class="tl-g">第1G</span></div>
-        <div class="tl-row"><span class="tl-time">9:30</span><div class="tl-body"><b>1回戦</b><span>A-① / B-①</span></div><span class="tl-g">第1G・第2G</span></div>
+        <div class="tl-row"><span class="tl-time">9:30</span><div class="tl-body"><b>1回戦</b><span>A-①（第1G）／ B-①（第2G）</span></div><span class="tl-g">第1G・第2G</span></div>
         <div class="tl-row"><span class="tl-time">10:50</span><div class="tl-body"><b>1回戦</b><span>A-② / B-② ／ 交流戦</span></div><span class="tl-g g2">全3面</span></div>
         <div class="tl-row"><span class="tl-time">12:20</span><div class="tl-body"><b>1回戦・交流戦</b><span>A-③ / B-③ ／ 交流戦</span></div><span class="tl-g g2">全3面</span></div>
         <div class="tl-row"><span class="tl-time">13:40</span><div class="tl-body"><b>1回戦・交流戦</b><span>A-④ / B-④ ／ 交流戦</span></div><span class="tl-g g2">全3面</span></div>
@@ -144,9 +145,9 @@
       </div>
 
       <div class="day-panel timeline" id="day2" role="tabpanel" hidden>
-        <div class="tl-row"><span class="tl-time">9:30</span><div class="tl-body"><b>準々決勝・敗者ブロック</b><span>A&#39;-① / B&#39;-① ／ 交流戦</span></div><span class="tl-g g2">全3面</span></div>
-        <div class="tl-row"><span class="tl-time">10:50</span><div class="tl-body"><b>準決勝A・準決勝B</b><span>A&#39;-② / B&#39;-② ／ 交流戦</span></div><span class="tl-g g2">全3面</span></div>
-        <div class="tl-row"><span class="tl-time">12:20</span><div class="tl-body"><b>決勝・交流戦</b><span>最後の1試合。優勝／準優勝／HERO賞の表彰へ</span></div><span class="tl-g">第1G</span></div>
+        <div class="tl-row"><span class="tl-time">9:30</span><div class="tl-body"><b>2回戦</b><span>A&#39;-①（第1G）／ B&#39;-①（第2G）</span></div><span class="tl-g g2">第1G・第2G</span></div>
+        <div class="tl-row"><span class="tl-time">10:50</span><div class="tl-body"><b>2回戦</b><span>A&#39;-②（第1G）／ B&#39;-②（第2G）</span></div><span class="tl-g g2">第1G・第2G</span></div>
+        <div class="tl-row"><span class="tl-time">12:20</span><div class="tl-body"><b>決勝A・決勝B</b><span>決勝A（第1G）／ 決勝B（第2G）。各ブロックの優勝が決まります</span></div><span class="tl-g g2">第1G・第2G</span></div>
         <div class="tl-row"><span class="tl-time">—</span><div class="tl-body"><b>表彰式・閉会式</b><span>優勝チーム／準優勝チーム／HERO賞</span></div><span class="tl-g">第1G</span></div>
         <div class="tl-row"><span class="tl-time">17:00</span><div class="tl-body"><b>完全撤去</b><span>会場は17時までに完全撤去となります</span></div><span class="tl-g ex">全体</span></div>
       </div>
@@ -172,33 +173,25 @@
       <p class="shead-en">BRACKET</p>
       <p class="shead-tag">トーナメント構成</p>
       <h2>負けても、まだ試合がある。<br /><span class="mark">全チーム、1日2試合を保証。</span></h2>
-      <p>16チームをA・Bの2ブロックに分け、トーナメントを進行します。敗れたチームも交流戦にまわるため、<b>すべてのチームが1日2試合</b>を戦います。「初戦で負けて1日が終わる」を、この大会はつくりません。</p>
+      <p>16チームをA・Bの2ブロックに分け、Aブロックは第1グランド、Bブロックは第2グランドで戦います。2日目に、それぞれのブロックで決勝を行います。敗れたチームも交流戦にまわるため、<b>すべてのチームが1日2試合</b>を戦います。「初戦で負けて1日が終わる」を、この大会はつくりません。</p>
     </div>
 
-    <div class="bracket rv">
-      <div class="block">
-        <h3><i></i>A BLOCK</h3>
-        <ul>
-          <li><em>A-①</em>1回戦</li>
-          <li><em>A-②</em>1回戦</li>
-          <li><em>A-③</em>1回戦</li>
-          <li><em>A-④</em>1回戦</li>
-          <li><em>A&#39;-①</em>2日目 勝ち上がり</li>
-          <li><em>A&#39;-②</em>2日目 勝ち上がり</li>
-          <li><em>準決勝A</em>Aブロック代表決定</li>
-        </ul>
+    <div class="bk-list">
+      <div class="bk bk-a">
+        <div class="bk-head"><h3>Aブロック</h3><span>第1グランド</span></div>
+        <div class="bk-tree">
+          <div class="bk-col"><p class="bk-day">1日目　11月28日（土）</p><div class="bk-body"><div class="bk-pair"><div class="bk-m"><p class="bk-t"><b>9:30</b>A-①</p><ol><li>福木フィールズ少年野球クラブ</li><li>三原ファイヤーズ</li></ol></div><div class="bk-m"><p class="bk-t"><b>10:50</b>A-②</p><ol><li>福山ウエスト野球クラブ</li><li>幸崎パイレーツスポーツ少年団</li></ol></div></div><div class="bk-pair"><div class="bk-m"><p class="bk-t"><b>12:20</b>A-③</p><ol><li>阿品スカイヤーズ</li><li>中筋スポーツ少年団軟式野球部</li></ol></div><div class="bk-m"><p class="bk-t"><b>13:40</b>A-④</p><ol><li>本郷南方ライナーズ</li><li>キタヒロファイターズ</li></ol></div></div></div></div>
+          <div class="bk-col"><p class="bk-day">2日目　11月29日（日）</p><div class="bk-body"><div class="bk-pair"><div class="bk-m"><p class="bk-t"><b>9:30</b>A&#39;-①</p><ol><li>A-① の勝者</li><li>A-② の勝者</li></ol></div><div class="bk-m"><p class="bk-t"><b>10:50</b>A&#39;-②</p><ol><li>A-③ の勝者</li><li>A-④ の勝者</li></ol></div></div></div></div>
+          <div class="bk-col"><p class="bk-day">2日目　決勝</p><div class="bk-body"><div class="bk-m bk-final"><p class="bk-t"><b>12:20</b>決勝A</p><ol><li>A&#39;-① の勝者</li><li>A&#39;-② の勝者</li></ol></div></div></div>
+        </div>
       </div>
-      <div class="block">
-        <h3><i></i>B BLOCK</h3>
-        <ul>
-          <li><em>B-①</em>1回戦</li>
-          <li><em>B-②</em>1回戦</li>
-          <li><em>B-③</em>1回戦</li>
-          <li><em>B-④</em>1回戦</li>
-          <li><em>B&#39;-①</em>2日目 勝ち上がり</li>
-          <li><em>B&#39;-②</em>2日目 勝ち上がり</li>
-          <li><em>準決勝B</em>Bブロック代表決定</li>
-        </ul>
+      <div class="bk bk-b">
+        <div class="bk-head"><h3>Bブロック</h3><span>第2グランド</span></div>
+        <div class="bk-tree">
+          <div class="bk-col"><p class="bk-day">1日目　11月28日（土）</p><div class="bk-body"><div class="bk-pair"><div class="bk-m"><p class="bk-t"><b>9:30</b>B-①</p><ol><li>三原レッドアロー少年野球クラブ</li><li>宮内アベンジャーズ</li></ol></div><div class="bk-m"><p class="bk-t"><b>10:50</b>B-②</p><ol><li>大野友星</li><li>三原レッキーズ少年野球クラブ</li></ol></div></div><div class="bk-pair"><div class="bk-m"><p class="bk-t"><b>12:20</b>B-③</p><ol><li>中之町イーグルス</li><li>三原ジュニア少年軟式野球クラブ</li></ol></div><div class="bk-m"><p class="bk-t"><b>13:40</b>B-④</p><ol><li>段原レッドイーグルス</li><li>三原ベアーズ</li></ol></div></div></div></div>
+          <div class="bk-col"><p class="bk-day">2日目　11月29日（日）</p><div class="bk-body"><div class="bk-pair"><div class="bk-m"><p class="bk-t"><b>9:30</b>B&#39;-①</p><ol><li>B-① の勝者</li><li>B-② の勝者</li></ol></div><div class="bk-m"><p class="bk-t"><b>10:50</b>B&#39;-②</p><ol><li>B-③ の勝者</li><li>B-④ の勝者</li></ol></div></div></div></div>
+          <div class="bk-col"><p class="bk-day">2日目　決勝</p><div class="bk-body"><div class="bk-m bk-final"><p class="bk-t"><b>12:20</b>決勝B</p><ol><li>B&#39;-① の勝者</li><li>B&#39;-② の勝者</li></ol></div></div></div>
+        </div>
       </div>
     </div>
 
@@ -206,8 +199,7 @@
       <h4>交流戦 ①〜⑥</h4>
       <p>各試合の敗者は交流戦にまわります。交流戦も本大会の正式な試合として、全員出場ルール・HERO審査制度・ヒーローインタビューをすべて同じように実施します。<b>交流戦だから手を抜く、という試合はありません。</b></p>
     </div>
-    <p style="margin-top:18px;font-size:13px;color:var(--ink-3);line-height:1.9" class="rv">※組み合わせは実行委員会で抽選し、決めさせていただきます。確定した対戦表は参加チームへ別途ご案内します。</p>
-  </div>
+      </div>
 </section>
 
 <!-- ============ Venue ============ -->
