@@ -26,3 +26,12 @@
   .bk-pair::before { content: ""; position: absolute; right: -48px; top: 50%; width: 24px; border-top: 2px solid var(--c); opacity: .5; }
   .bk-m { margin: 6px 0; }
 }
+
+/* 対戦の2チームの間に「VS」（2026-10-31 オーナー指示「対戦の感じが分からない」） */
+.bk-m li + li { margin-top: 0; padding-top: 0; border-top: 0; }
+.bk-m li + li::before {
+  content: "VS"; display: block; width: max-content; margin: 8px 0; padding: 4px 9px 3px;
+  font-family: "Anton", sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .1em; line-height: 1;
+  color: #fff; background: var(--c); border-radius: 3px; transform: skewX(-10deg);
+}
+.bk-m li + li::after { content: none; }

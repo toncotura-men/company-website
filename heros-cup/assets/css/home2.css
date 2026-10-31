@@ -155,3 +155,12 @@ body .x-rules .pillars .pillar::before { background: #fff; }
 body .x-rules .pillars { grid-template-columns: 1fr; border-top: 2px solid rgba(255, 255, 255, .6); }
 /* チーム名は読みやすさ優先（太い見出し書体だと画数の多い字がつぶれる） */
 .tm li { font-family: var(--jp); font-weight: 700; font-size: clamp(18px, 1.7vw, 23px); }
+
+/* 対戦の2チームの間に「VS」（2026-10-31 オーナー指示「対戦の感じが分からない」） */
+.bk-m li + li { margin-top: 0; padding-top: 0; border-top: 0; }
+.bk-m li + li::before {
+  content: "VS"; display: block; width: max-content; margin: 8px 0; padding: 4px 9px 3px;
+  font-family: "Anton", sans-serif; font-weight: 400; font-size: 15px; letter-spacing: .1em; line-height: 1;
+  color: #fff; background: var(--c); border-radius: 3px; transform: skewX(-10deg);
+}
+.bk-m li + li::after { content: none; }
