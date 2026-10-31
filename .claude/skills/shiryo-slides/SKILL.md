@@ -1,6 +1,6 @@
 ---
 name: shiryo-slides
-description: 社内資料・提案資料の HTML スライドを、5 つのテーマ（A 紺 / B テラコッタ / C ティール / D 緑＋黄 / E 朱）から選んで作る「資料作成キット」のスライド担当。「資料を作って」「提案書を作って」「社内向けの資料を」「スライドにして」「議事録から資料に」と言われた時に使う。PowerPoint ではなくブラウザで開く 16:9 の単一 HTML を生成し、Playwright で撮影して自分で見て直す。既存スライドの修正・PDF 化も担当する。
+description: 社内資料・提案資料の HTML スライドを、5 つのテーマ（A 紺 / B テラコッタ / C ティール / D 緑＋黄 / E 朱）から選んで作る「資料作成キット」のスライド担当。「資料を作って」「提案書を作って」「社内向けの資料を」「スライドにして」「議事録から資料に」と言われた時に使う。PowerPoint ではなくブラウザで開く 16:9 の単一 HTML を生成し、Playwright で撮影して自分で見て直す。既存スライドの修正・PDF 化も担当する。オーナーが選べば PowerPoint（.pptx）でも作る。どの形式でも全スライドに発表者メモ（台本）を必ず入れる。
 ---
 
 # 資料作成キット — スライド
@@ -10,6 +10,10 @@ description: 社内資料・提案資料の HTML スライドを、5 つのテ�
 
 **このスキルは雛形を配らない。** 固定するのはトークン・部品・原則だけで、
 **ページの骨格は毎回、内容から設計する**（`core/structure.md` §1）。
+
+> **【必須・2026-10-31 オーナー指示】全スライドに発表者メモ（台本）を入れる。**
+> オーナーが登壇してもメモを見るだけで完璧に話せる量（時間・伝えること・全文の台本・会場への問いかけ・聞かれたら・注意・出典・つなぎ）。
+> 型と検査は `workflows/speaker-notes.md`。メモの無い資料は未完成として扱い、渡さない。
 
 ---
 
@@ -101,6 +105,8 @@ AskUserQuestion ツールが無い環境では、同じ 3 問をテキストで 
 着手前に必ず読む:
 
 1. `workflows/<mode>.md`（1 本だけ）
+   - **常に**：`workflows/speaker-notes.md`（発表者メモの型。全モード必須）
+   - PowerPoint で作るとき：`workflows/pptx.md`
 2. `core/rules.md` — 全テーマ共通の禁止事項・整列・preflight
 3. `themes/theme-<x>.md` — 選んだテーマ
 4. `styles/style-<style>.md` — 選んだスタイル（**スタイルの規定はこのファイルが正本**）
@@ -166,7 +172,7 @@ npm install -g playwright && npx playwright install chromium
 ## 7. このスキルでやらないこと
 
 - 単発の図解画像（PNG）の納品（スライド内の図解は担当する）
-- PowerPoint (.pptx) 生成
+- PowerPoint (.pptx) の自動生成を勝手に選ぶこと（オーナーが選んだときだけ `workflows/pptx.md` で作る）
 - スライドアニメーション・トランジション（禁止事項）
 - 外部画像・外部 CSS / JS（**Google Fonts の `<link>` のみ例外**）
 
@@ -185,7 +191,9 @@ npm install -g playwright && npx playwright install chromium
     ↓
 構成を数行で宣言する ← 返事は待たない
     ↓
-HTML 生成（マーカー付与）
+HTML 生成（マーカー付与）／PowerPoint は workflows/pptx.md
+    ↓
+発表者メモ（台本）を全枚に書く（workflows/speaker-notes.md）← 必須
     ↓
 iter-0 preflight（core/rules.md §12 の 21 項目 ＋ 面ルール検査
                   ＋ templates/<use>.md の追加検査）← 必ず全件
@@ -214,6 +222,7 @@ iter-0 preflight（core/rules.md §12 の 21 項目 ＋ 面ルール検査
 - 叩き台から書き直した見出し（提案資料の場合）
 - preflight で例外として残した項目とその理由
 - 視覚検証の実施有無（未実施ならその旨を冒頭に）
+- 発表者メモ：全◯枚に入れたこと・合計の字数・全体の時間。事実の確認が要る1文（経歴など）があれば、その文
 
 ---
 
@@ -228,4 +237,5 @@ iter-0 preflight（core/rules.md §12 の 21 項目 ＋ 面ルール検査
 - [ ] 面ルールの許容枚数を超えていないか
 - [ ] TODO ブロックを推測で埋めていないか
 - [ ] PDF を、指示されていないのに作っていないか
+- [ ] 全スライドに発表者メモ（台本）が入り、`workflows/speaker-notes.md` の検査を通したか
 - [ ] カード grid・表・箇条書きで済ませた枚について、`core/structure.md` §8 のモチーフ候補を 2 つ検討して退けた理由を言えるか
