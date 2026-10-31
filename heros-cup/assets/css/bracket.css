@@ -1,0 +1,28 @@
+/* 対戦表（first.html 用。トップの home.css / home2.css の bk-* と同じ作りを明るい背景で） */
+.bk-list { display: grid; gap: clamp(48px, 6vw, 80px); margin-top: clamp(32px, 4vw, 56px); }
+.bk { --c: var(--o, #f26b21); --bk-line: rgba(20, 35, 70, .14); }
+.bk-b { --c: #d99a00; }
+.bk-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--c); }
+.bk-head h3 { margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 700; color: var(--c); }
+.bk-head span { font-size: 15px; font-weight: 700; color: var(--ink-2, #4a5468); }
+.bk-tree { display: grid; gap: 24px; margin-top: 20px; }
+.bk-day { margin: 0 0 10px; font-size: 14px; font-weight: 700; color: var(--ink-3, #7a8396); }
+.bk-body, .bk-pair { display: grid; gap: 12px; }
+.bk-m { padding: 14px 16px 14px 18px; border-left: 3px solid var(--c); border-radius: 4px; background: #fff; box-shadow: 0 1px 0 rgba(20, 35, 70, .06), 0 10px 24px -18px rgba(20, 40, 90, .35); }
+.bk-t { display: flex; align-items: baseline; gap: 12px; margin: 0 0 8px; font-size: 14px; font-weight: 700; color: var(--c); }
+.bk-t b { font-size: 18px; color: var(--ink, #14213d); font-variant-numeric: tabular-nums; }
+.bk-m ol { list-style: none; margin: 0; padding: 0; }
+.bk-m li { font-size: 16px; font-weight: 700; line-height: 1.5; color: var(--ink, #14213d); }
+.bk-m li + li { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--bk-line); }
+.bk-col:not(:first-child) .bk-m li { font-weight: 500; color: var(--ink-2, #4a5468); }
+.bk-final { box-shadow: inset 0 0 0 2px var(--c); }
+@media (min-width: 900px) {
+  .bk-tree { grid-template-columns: 1.35fr 1fr 1fr; gap: 0 48px; }
+  .bk-col { display: grid; grid-template-rows: auto 1fr; }
+  .bk-body { grid-template-rows: repeat(2, 1fr); gap: 0; align-items: center; }
+  .bk-col:not(:first-child) .bk-body { grid-template-rows: 1fr; }
+  .bk-pair { position: relative; height: 100%; grid-template-rows: 1fr 1fr; gap: 0; align-items: center; padding: 6px 0; }
+  .bk-pair::after { content: ""; position: absolute; right: -24px; top: 25%; bottom: 25%; width: 24px; border: 2px solid var(--c); border-left: 0; border-radius: 0 6px 6px 0; opacity: .5; }
+  .bk-pair::before { content: ""; position: absolute; right: -48px; top: 50%; width: 24px; border-top: 2px solid var(--c); opacity: .5; }
+  .bk-m { margin: 6px 0; }
+}

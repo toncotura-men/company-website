@@ -1,0 +1,157 @@
+/* =========================================================
+   HERO's CUP トップ 2026-10-31 作り直し（home.css の上に重ねる）
+   ・見出し：Dela Gothic One（太く勢いのある和文）を斜めに。数字：Anton（球場の得点板のような細長い字）
+   ・一番の見せ場はヒーローの「次は、きみだ！」：切れ目から飛び込み、後ろに残像が流れる
+   ・参加チーム〜当日のご案内は白地（.x-light-zone）。境目はななめに切る
+   ・4つの軸はオレンジ一色の帯。流れる文字はななめの帯
+   動きは transform / opacity / clip-path だけ。動きを減らす設定では止める
+   ========================================================= */
+body.x-home {
+  --disp: "Dela Gothic One", "Zen Kaku Gothic New", sans-serif;
+  --num: "Anton", "Dela Gothic One", sans-serif;
+  --x-bg: #0a1430;
+  --x-bg2: #0f1c3f;
+  --chalk: #f5f6f9;
+  --chalk-ink: #12192c;
+}
+.x-h2, .x-display, .x-scrub, .x-quote, .x-panel .t, .x-award-row h3 { font-family: var(--disp); font-weight: 400; letter-spacing: .01em; }
+.x-h2 { font-size: clamp(32px, 4.2vw, 60px); line-height: 1.2; transform: skewX(-6deg); transform-origin: left bottom; }
+.x [data-split] { white-space: normal; }
+
+/* ---------- ヒーロー：切れ目から飛び込む見出し＋残像 ---------- */
+.x-speed {
+  position: absolute; inset: -20% -10%; opacity: .5;
+  background: repeating-linear-gradient(100deg, transparent 0 46px, rgba(255, 200, 61, .07) 46px 48px, transparent 48px 120px, rgba(255, 255, 255, .05) 120px 121px);
+  animation: x-speed 1.6s linear infinite;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+}
+@keyframes x-speed { to { transform: translate3d(-240px, 0, 0); } }
+.hero-t { position: relative; }
+.x-hero .x-display, .hero-echo {
+  font-family: var(--disp); font-size: clamp(68px, 11vw, 168px); line-height: 1.04; letter-spacing: -.01em;
+  transform: skewX(-9deg); transform-origin: left bottom;
+}
+.x-hero .x-display { position: relative; z-index: 2; }
+.x-hero .x-display em { color: var(--x-gold); text-shadow: 0 .06em 0 #b8560b; }
+.hero-echo { position: absolute; inset: 0; z-index: 1; margin: 0; color: transparent; -webkit-text-stroke: 2px rgba(242, 86, 11, .55); pointer-events: none; opacity: 0; }
+.hero-echo.e2 { -webkit-text-stroke-color: rgba(255, 200, 61, .25); }
+.fx-ready .hero-echo { animation: x-echo 1.6s var(--x-e) .9s forwards; }
+.fx-ready .hero-echo.e2 { animation-delay: 1.05s; --to: -.16em; }
+@keyframes x-echo {
+  0% { opacity: 0; transform: skewX(-9deg) translate3d(.4em, 0, 0); }
+  30% { opacity: 1; }
+  100% { opacity: 1; transform: skewX(-9deg) translate3d(var(--to, -.08em), 0, 0); }
+}
+/* 1文字ずつ：横から飛び込み、斜めの切れ目（clip-path）が開く */
+.x-hero .fx-ch { overflow: visible; }
+.x-hero .fx-ch > span {
+  transform: translate3d(-.9em, 0, 0) skewX(24deg) scale(1.25); opacity: 0;
+  clip-path: polygon(0 0, 0 0, -20% 100%, -20% 100%);
+  transition: transform .9s cubic-bezier(.2, 1.4, .3, 1) calc(var(--ci) * 70ms), opacity .2s linear calc(var(--ci) * 70ms), clip-path .5s var(--x-e) calc(var(--ci) * 70ms);
+}
+.x-hero .fx-in .fx-ch > span, .x-hero .fx-in.fx-ch > span { transform: none; opacity: 1; clip-path: polygon(-20% 0, 120% 0, 100% 100%, -40% 100%); }
+.x-hero-lead { font-weight: 700; color: var(--x-ink); }
+
+/* ---------- あと◯日：電光掲示板の点の粒 ---------- */
+.x-count-n span {
+  font-family: var(--num); font-weight: 400; color: var(--x-gold); letter-spacing: .02em;
+  -webkit-mask: radial-gradient(circle, #000 58%, transparent 64%) 0 0 / 7px 7px; mask: radial-gradient(circle, #000 58%, transparent 64%) 0 0 / 7px 7px;
+  text-shadow: none; filter: none;
+}
+.x-count-n { text-shadow: none; }
+.x-count-n small { font-family: var(--disp); color: var(--x-ink); }
+.x-count-d { font-weight: 700; }
+
+/* ---------- 白地のまとまり（参加チーム・対戦表・ご案内） ---------- */
+.x-light-zone {
+  --x-ink: var(--chalk-ink); --x-ink2: rgba(18, 25, 44, .72); --x-ink3: rgba(18, 25, 44, .5); --x-line: rgba(18, 25, 44, .12);
+  --x-o2: #e04f08; --x-gold: #c98a00;
+  position: relative; color: var(--x-ink); background: var(--chalk);
+  clip-path: polygon(0 3vw, 100% 0, 100% calc(100% - 3vw), 0 100%); margin: -3vw 0; padding: 3vw 0;
+}
+.x-light-zone .x-teams { background: none; }
+.x-teams .x-h2 em, .x-bracket .x-h2 em, .x-faq .x-h2 em { color: var(--x-o2); }
+
+/* 参加チーム：後ろに大きな「16」 */
+.x-teams { overflow: hidden; }
+.x-teams::before {
+  content: "16"; position: absolute; right: -2vw; top: 2vw; z-index: 0; pointer-events: none;
+  font-family: var(--num); font-size: clamp(220px, 34vw, 520px); line-height: .8; color: transparent; -webkit-text-stroke: 2px rgba(224, 79, 8, .16);
+}
+.x-teams .x-wrap { position: relative; z-index: 1; }
+.tm h3 { font-family: var(--disp); font-weight: 400; transform: skewX(-6deg); }
+.tm h3 span { font-family: var(--num); font-size: 2.4em; }
+.tm li { font-family: var(--disp); font-weight: 400; font-size: clamp(18px, 1.7vw, 23px); letter-spacing: .02em; }
+.tm li::before { content: ""; width: 10px; height: 10px; flex: none; align-self: center; background: var(--c); transform: skewX(-12deg); }
+.tm-b { --c: #d99a00; }
+.bk-b { --c: #d99a00; }
+.tm li { opacity: 1; }
+@supports (animation-timeline: view()) {
+  .tm li { animation: tm-in linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+}
+@keyframes tm-in { from { opacity: 0; transform: translate3d(-24px, 0, 0); } }
+
+/* 対戦表（白地用） */
+.bk-head h3 { font-family: var(--disp); font-weight: 400; transform: skewX(-6deg); }
+.bk-m { background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 10px 24px -18px rgba(18, 40, 90, .35); }
+.bk-t b { font-family: var(--num); font-weight: 400; font-size: 22px; letter-spacing: .02em; }
+.bk-final { background: color-mix(in srgb, var(--c) 10%, #fff); box-shadow: inset 0 0 0 2px var(--c); }
+.bk-final .bk-t { font-size: 16px; }
+@media (min-width: 900px) {
+  .bk-pair::after, .bk-pair::before { border-color: var(--c); opacity: .55; }
+  /* 線が勝ち上がる向きに引かれる */
+  .bk-pair::after { clip-path: inset(0 0 0 0); transition: clip-path .9s var(--x-e) .3s; }
+  .bk:not(.fx-in) .bk-pair::after { clip-path: inset(0 100% 0 0); }
+  .bk-pair::before { transform-origin: left; transition: transform .6s var(--x-e) .9s; }
+  .bk:not(.fx-in) .bk-pair::before { transform: scaleX(0); }
+}
+
+/* 当日のご案内：開け閉めなしの2列 */
+.qa-list { display: grid; border-top: 2px solid var(--x-ink); }
+@media (min-width: 700px) { .qa-list { grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 4vw, 56px); } }
+.qa { padding: 26px 0 28px; border-bottom: 1px solid var(--x-line); }
+.qa-q { margin: 0; font-family: var(--disp); font-weight: 400; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.4; }
+.qa-q::before { content: ""; display: inline-block; width: .5em; height: .5em; margin-right: .5em; background: var(--x-o2); transform: skewX(-12deg); vertical-align: .1em; }
+.qa p { margin: 12px 0 0; padding: 0; font-size: 16.5px; line-height: 1.95; color: var(--x-ink2); animation: none; }
+
+/* ---------- 流れる文字：ななめのオレンジの帯 ---------- */
+.x-marquee { position: relative; z-index: 3; margin: clamp(48px, 7vw, 96px) -4vw; padding: 22px 0; background: var(--x-o); border: 0; transform: rotate(-3deg); box-shadow: 0 24px 60px -30px rgba(242, 86, 11, .8); }
+.x-marquee span { font-family: var(--disp); font-weight: 400; font-size: clamp(34px, 5vw, 76px); color: #fff; padding-right: .7em; }
+.x-marquee span.o { color: transparent; -webkit-text-stroke: 2px #fff; }
+
+/* ---------- 文字が明るくなる一文・3つ ---------- */
+.x-scrub { transform: skewX(-6deg); }
+.x-three h3 { font-family: var(--disp); font-weight: 400; font-size: clamp(20px, 1.9vw, 27px); }
+
+/* ---------- 4つの軸：オレンジ一色の帯 ---------- */
+.x-rules { background: var(--x-o); color: #fff; overflow: hidden; }
+.x-rules .x-h2 em { color: var(--x-bg); }
+.x-rules .pillars { display: block; border-top: 2px solid rgba(255, 255, 255, .5); }
+.x-rules .pillar {
+  display: grid; gap: 8px 40px; padding: clamp(24px, 3vw, 36px) 0; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .35); border-radius: 0; background: none; box-shadow: none;
+}
+@media (min-width: 900px) { .x-rules .pillar { grid-template-columns: 1.1fr 1fr; align-items: baseline; } }
+.x-rules .pillar h3 { margin: 0; font-family: var(--disp); font-weight: 400; font-size: clamp(28px, 3.6vw, 52px); line-height: 1.15; color: #fff; transform: skewX(-6deg); transition: transform .5s var(--x-e); }
+.x-rules .pillar p { margin: 0; font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; color: rgba(255, 255, 255, .9); font-weight: 700; }
+.x-rules .pillar::after { display: none; }
+@media (hover: hover) and (pointer: fine) { .x-rules .pillar:hover h3 { transform: skewX(-6deg) translateX(12px); } }
+
+/* ---------- 大会体験・表彰 ---------- */
+.x-panel { border-radius: 10px; }
+.x-panel-txt .t { font-size: clamp(30px, 3vw, 46px); transform: skewX(-6deg); }
+.x-award-hero h3 { font-size: clamp(34px, 3.6vw, 54px); }
+
+/* ---------- 動きを減らす設定 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .x-speed, .fx-ready .hero-echo, .tm li { animation: none !important; }
+  .hero-echo { opacity: 1; }
+}
+.fx-reduce .x-hero .fx-ch > span { opacity: 1 !important; clip-path: none !important; }
+.fx-reduce .bk-pair::after, .fx-reduce .bk-pair::before { clip-path: none !important; transform: none !important; }
+/* rich2.css の2列の作り（左右の余白・縦線）を打ち消す */
+body .x-rules .pillars .pillar, body .x-rules .pillars .pillar:nth-child(odd), body .x-rules .pillars .pillar:nth-child(even) { padding-left: 0; padding-right: 0; border-right: 0; color: #fff; }
+body .x-rules .pillars .pillar p { color: #fff; opacity: .92; }
+body .x-rules .pillars .pillar::before { background: #fff; }
+body .x-rules .pillars { grid-template-columns: 1fr; border-top: 2px solid rgba(255, 255, 255, .6); }
+/* チーム名は読みやすさ優先（太い見出し書体だと画数の多い字がつぶれる） */
+.tm li { font-family: var(--jp); font-weight: 700; font-size: clamp(18px, 1.7vw, 23px); }
