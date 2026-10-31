@@ -46,6 +46,7 @@ def check_notes(p=None):
         t = s.notes_slide.notes_text_frame.text if s.has_notes_slide else ""
         miss = [h for h in REQUIRED if h not in t]
         if k == len(p.slides): miss = [h for h in miss if h != "【つなぎ】"]
+        elif "▶ ここでクリックして、次のスライドへ" not in t: miss.append("「▶ ここでクリックして、次のスライドへ。次のメモは【◯◯】から読む」の行")
         if miss: bad.append(f"{k}枚目: {'・'.join(miss)} が無い")
     if bad: raise ValueError("発表者メモが不足:\n" + "\n".join(bad))
     return True
