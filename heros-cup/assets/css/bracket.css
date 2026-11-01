@@ -35,3 +35,12 @@
   color: #fff; background: var(--c); border-radius: 3px; transform: skewX(-10deg);
 }
 .bk-m li + li::after { content: none; }
+
+/* 交流戦（第3グランド中心。トーナメント表の青に合わせる） */
+.bk-x { --c: #1f5bb5; }
+.bkx-grid { display: grid; gap: 28px; margin-top: 24px; }
+.bkx-list { display: grid; gap: 12px; }
+@media (min-width: 700px) { .bkx-list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .bkx-grid { grid-template-columns: 2fr 1fr; } .bkx-grid .bk-col:last-child .bkx-list { grid-template-columns: 1fr; } }
+.bk-g { margin-left: auto; padding: 2px 8px; border-radius: 3px; font-size: 13px; color: #fff; background: var(--c); }
+.bk-x .bk-m li { font-weight: 500; }
