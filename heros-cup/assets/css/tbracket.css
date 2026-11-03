@@ -1,0 +1,101 @@
+/* =========================================================
+   トーナメント表（ぱっと見で全体が分かる図）2026-11-03
+   ・オーナー送付の紙のトーナメント表と同じ形（下にチーム名を縦書き、上に向かって勝ち上がる）
+   ・パソコン：A・B ブロックを左右に並べ、交流戦を下に。1画面に収まる大きさ
+   ・スマホ：A → B → 交流戦の順に縦に並べ、横スクロールなしで各ブロックが画面幅に収まる
+   ・線は CSS の枠線だけ（画像は使わない）。index.html / first.html の両方で読み込む
+   ========================================================= */
+.tbk {
+  --tb-ink: #12192c; --tb-ink2: rgba(18, 25, 44, .66); --tb-line: rgba(18, 25, 44, .12);
+  --tb-a: #e04f08; --tb-b: #c98a00; --tb-x: #1f5bb5;
+  --tb-num: "Anton", "Zen Kaku Gothic New", sans-serif;
+  --stem: 12px;
+  display: grid; gap: 28px; margin-top: clamp(28px, 4vw, 48px); color: var(--tb-ink);
+}
+.tbk-blocks { display: grid; gap: 28px; }
+@media (min-width: 960px) { .tbk-blocks { grid-template-columns: 1fr 1fr; gap: 40px; } }
+
+.tb { --c: var(--tb-a); --pill-ink: #fff; padding: 18px 14px 20px; border-radius: 8px; background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 14px 32px -24px rgba(18, 40, 90, .4); }
+.tb-b { --c: var(--tb-b); --pill-ink: var(--tb-ink); }
+.tb-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 4px 6px; }
+.tb-head h3 { margin: 0; font-size: 20px; font-weight: 700; color: var(--c); }
+.tb-head span { padding: 3px 10px; border-radius: 3px; font-size: 13px; font-weight: 700; color: var(--pill-ink); background: var(--c); }
+
+/* 木の形：左端に「日にち」の細い列＋チーム8列 */
+.tb-tree { display: grid; grid-template-columns: 22px repeat(8, minmax(0, 1fr)); align-items: stretch; }
+.tb-day { grid-column: 1; display: flex; align-items: center; justify-content: center; margin: 0 4px 0 0; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: .1em; writing-mode: vertical-rl; color: var(--tb-ink2); background: rgba(18, 25, 44, .05); }
+.tb-day small { font-size: 11px; font-weight: 500; letter-spacing: 0; margin-top: 4px; }
+.tb-d2 { grid-row: 2 / 4; margin-bottom: 4px; }
+.tb-d1 { grid-row: 4; }
+
+/* 優勝カップ */
+.tb-win { grid-column: 2 / 10; grid-row: 1; display: flex; flex-direction: column; align-items: center; }
+.tb-win img { width: 54px; height: auto; display: block; }
+.tb-win span { font-size: 12px; font-weight: 700; color: var(--c); }
+
+/* 1試合 ＝「ㄇ」の形。上の縦線（stem）で次の試合へ、左右の足で下の2つへつながる */
+.tb-m { position: relative; padding: calc(var(--stem) + 6px) 0 10px; }
+.tb-m::after { content: ""; position: absolute; left: 50%; top: 0; height: var(--stem); border-left: 2px solid var(--c); transform: translateX(-1px); }
+.tb-m::before { content: ""; position: absolute; left: 25%; right: 25%; top: var(--stem); bottom: 0; border: 2px solid var(--c); border-bottom: 0; }
+.tb-m p { position: relative; margin: 0 25%; text-align: center; line-height: 1.15; font-size: 11px; font-weight: 700; color: var(--tb-ink2); }
+.tb-m p b { display: block; font-family: var(--tb-num); font-weight: 400; font-size: 15px; letter-spacing: .02em; color: var(--tb-ink); }
+.tb-f { grid-column: 2 / 10; grid-row: 2; }
+.tb-f p { font-size: 13px; }
+.tb-f p em { display: inline-block; margin-top: 3px; padding: 2px 8px; border-radius: 3px; font-style: normal; color: var(--pill-ink); background: var(--c); }
+.tb-r2 { grid-row: 3; }
+.tb-r1 { grid-row: 4; border-top: 1px dashed var(--tb-line); }
+.tb-d1 { border-top: 1px dashed var(--tb-line); border-radius: 0 0 3px 3px; }
+
+/* チーム名（縦書き） */
+.tb-t { grid-row: 5; position: relative; display: flex; justify-content: center; margin: 0; padding-top: var(--stem); }
+.tb-t::after { content: ""; position: absolute; left: 50%; top: 0; height: var(--stem); border-left: 2px solid var(--c); transform: translateX(-1px); }
+.tb-t span {
+  display: block; padding: 8px 0; width: 26px; border-radius: 4px; text-align: center;
+  font-size: 13px; font-weight: 700; line-height: 1.05; letter-spacing: .02em;
+  writing-mode: vertical-rl; text-orientation: upright; color: var(--pill-ink); background: var(--c);
+}
+
+/* 交流戦 */
+.tx { --c: var(--tb-x); padding: 18px 14px 20px; border-radius: 8px; background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 14px 32px -24px rgba(18, 40, 90, .4); }
+.tx .tb-head span { color: #fff; }
+.tx-days { display: grid; gap: 16px; margin-top: 8px; }
+.tx-day > p { margin: 0 4px 6px; font-size: 13px; font-weight: 700; color: var(--tb-ink2); }
+.tx-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tx-m { position: relative; padding: 0 0 0; text-align: center; }
+.tx-m > p { margin: 0; line-height: 1.15; font-size: 11px; font-weight: 700; color: var(--tb-ink2); }
+.tx-m > p b { display: block; font-family: var(--tb-num); font-weight: 400; font-size: 15px; color: var(--tb-ink); }
+.tx-m > p i { display: inline-block; margin-top: 3px; padding: 1px 6px; border-radius: 3px; font-style: normal; font-size: 11px; color: #fff; background: var(--c); }
+.tx-m > p i.g1 { background: var(--tb-a); }
+.tx-vs { position: relative; display: grid; grid-template-columns: 1fr 1fr; margin-top: 6px; padding-top: 12px; }
+.tx-vs::before { content: ""; position: absolute; left: 25%; right: 25%; top: 0; height: 10px; border: 2px solid var(--c); border-bottom: 0; }
+.tx-vs span { font-size: 13px; font-weight: 700; line-height: 1.2; color: var(--tb-ink); }
+.tx-vs small { display: block; font-size: 10px; font-weight: 500; color: var(--tb-ink2); }
+@media (min-width: 960px) { .tx-days { grid-template-columns: 4fr 2fr; gap: 24px; } .tx-day:last-child .tx-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 大きい画面は少しだけ大きく */
+@media (min-width: 1100px) {
+  .tbk { --stem: 14px; }
+  .tb, .tx { padding: 22px 18px 24px; }
+  .tb-t span { width: 30px; font-size: 15px; }
+  .tb-m p b, .tx-m > p b { font-size: 17px; }
+  .tb-m p, .tx-m > p { font-size: 12px; }
+  .tb-head h3 { font-size: 22px; }
+  .tb-win img { width: 64px; }
+}
+/* スマホ：1回戦の時刻が「ㄇ」の足にかからない大きさに */
+@media (max-width: 600px) { .tb-r1 p b { font-size: 13px; } .tb-r1 p { font-size: 10px; } }
+/* とても狭いスマホ */
+@media (max-width: 360px) {
+  .tb, .tx { padding: 16px 8px 18px; }
+  .tb-t span { width: 22px; font-size: 12px; }
+  .tb-m p b { font-size: 13px; }
+  .tb-r1 p b { font-size: 12px; }
+}
+
+/* 試合ごとの一覧（文字で見る）は、たたんでおく */
+.tbk-more { margin-top: 8px; }
+.tbk-more > summary { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1.5px solid var(--tb-line); border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer; list-style: none; background: #fff; }
+.tbk-more > summary::-webkit-details-marker { display: none; }
+.tbk-more > summary::after { content: "＋"; color: var(--tb-a); }
+.tbk-more[open] > summary::after { content: "－"; }
+.tbk-more > .bk-list { margin-top: 28px; }
