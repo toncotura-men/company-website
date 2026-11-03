@@ -1,11 +1,12 @@
 /* ボタンの文字を1字ずつに分け、動きの準備をする（見た目は assets/css/btn2.css）
    2026-11-03 オーナー指示「縦に大きすぎる・もっとかっこいいボタンに・他のとこも」
+   2026-11-03 HAKI pro・PUMPS も同じ作りに（オーナー指示「全てこのボタンに統一」）。3サイトで同じ中身のファイルを置く。直すときは3つとも
    ・読み上げ（スクリーンリーダー）には元の文がそのまま読まれるよう aria-label を付ける
    ・スマホは押した瞬間に文字が流れる（kb-roll）
    ・画面に入ると1字ずつ立ち上がる（kb-wait → kb-in） */
 (function () {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var sel = ".x-btn, .btn, .float-entry, .nav-cta, .drawer-cta";
+  var sel = ".x-btn, .btn, .float-entry, .nav-cta, .drawer-cta, .fab";
 
   function split(text) {
     var t = document.createElement("span");
@@ -31,28 +32,27 @@
     if (el.classList.contains("kb")) return;
     var arr = el.querySelector("i, .arr");
     var small = el.querySelector("small");
-    var labelEl = Array.from(el.children).find(function (c) { return c.tagName === "SPAN" && !c.classList.contains("arr"); });
-    var label = labelEl ? labelEl.textContent : Array.from(el.childNodes).filter(function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join("");
-    if (!label.trim()) return;
-    el.setAttribute("aria-label", (label.trim() + (small ? "（" + small.textContent.trim() + "）" : "")));
+    var full = el.textContent.replace(/\s+/g, " ").trim();
+    if (!full) return;
+    el.setAttribute("aria-label", small ? full.replace(small.textContent.trim(), "（" + small.textContent.trim() + "）").replace(/\s+（/, "（") : full);
 
-    var t = split(label);
-    if (labelEl) labelEl.replaceWith(t);
+    // 文字の入れ物（span）があれば、その中身を1字ずつに（入れ物の見た目の決まりはそのまま残す）
+    var labels = Array.from(el.children).filter(function (c) { return c.tagName === "SPAN" && !c.classList.contains("arr"); });
+    if (labels.length) labels.forEach(function (l) { var tx = l.textContent; l.textContent = ""; l.appendChild(split(tx)); });
     else {
+      var tx = Array.from(el.childNodes).filter(function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join("");
       Array.from(el.childNodes).forEach(function (n) { if (n.nodeType === 3) n.remove(); });
-      el.insertBefore(t, el.firstChild);
+      el.insertBefore(split(tx), el.firstChild);
     }
-    if (arr) arrow(arr);
+    if (arr) { arrow(arr); el.appendChild(arr); }
     else if (!small) el.appendChild(arrow());
 
     el.classList.add("kb");
     if (el.classList.contains("x-btn-lg")) el.classList.add("kb-lg");
-    if (el.classList.contains("float-entry")) el.classList.add("kb-f");
+    if (el.classList.contains("float-entry") || el.classList.contains("fab")) el.classList.add("kb-f");
     else if (el.classList.contains("nav-cta")) el.classList.add("kb-n");
     else if (el.classList.contains("drawer-cta")) el.classList.add("kb-d");
-    else if (el.classList.contains("btn-light")) el.classList.add("kb-l");
-    else if (el.classList.contains("btn-ghost")) el.classList.add("kb-g");
-    else el.classList.add("kb-p");
+    el.classList.add("kb-p");
 
     el.addEventListener("pointerdown", function (e) {
       if (e.pointerType === "mouse" || reduce) return;
