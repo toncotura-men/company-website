@@ -22,14 +22,13 @@
 .tb-head span { padding: 3px 10px; border-radius: 3px; font-size: 13px; font-weight: 700; color: var(--pill-ink); background: var(--c); }
 
 /* 木の形：左端に「日にち」の細い列＋チーム8列 */
-.tb-tree { display: grid; grid-template-columns: 22px repeat(8, minmax(0, 1fr)); align-items: stretch; }
-.tb-day { grid-column: 1; display: flex; align-items: center; justify-content: center; margin: 0 4px 0 0; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: .1em; writing-mode: vertical-rl; color: var(--tb-ink2); background: rgba(18, 25, 44, .05); }
-.tb-day small { font-size: 11px; font-weight: 500; letter-spacing: 0; margin-top: 4px; }
-.tb-d2 { grid-row: 2 / 4; margin-bottom: 4px; }
-.tb-d1 { grid-row: 4; }
+.tb-tree { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); align-items: stretch; }
+/* 何日目か（各試合の時刻の上）と、日付（ブロック名の下）。2026-11-03 左の縦の帯をやめた */
+.tb-date { margin: 0 4px 4px; font-size: 13px; font-weight: 500; color: var(--tb-ink2); }
+.tb-m p i { display: block; margin-bottom: 1px; font-style: normal; font-size: 10px; font-weight: 700; letter-spacing: .04em; color: var(--c); }
 
 /* 優勝カップ */
-.tb-win { grid-column: 2 / 10; grid-row: 1; display: flex; flex-direction: column; align-items: center; }
+.tb-win { grid-column: 1 / 9; grid-row: 1; display: flex; flex-direction: column; align-items: center; }
 .tb-win img { width: 54px; height: auto; display: block; }
 .tb-win span { font-size: 12px; font-weight: 700; color: var(--c); }
 
@@ -39,12 +38,11 @@
 .tb-m::before { content: ""; position: absolute; left: calc(25% - 1px); right: calc(25% - 1px); top: var(--stem); bottom: 0; box-sizing: border-box; border: 2px solid var(--c); border-bottom: 0; }
 .tb-m p { position: relative; margin: 0 25%; text-align: center; line-height: 1.15; font-size: 11px; font-weight: 700; color: var(--tb-ink2); }
 .tb-m p b { display: block; font-family: var(--tb-num); font-weight: 400; font-size: 15px; letter-spacing: .02em; color: var(--tb-ink); }
-.tb-f { grid-column: 2 / 10; grid-row: 2; }
+.tb-f { grid-column: 1 / 9; grid-row: 2; }
 .tb-f p { font-size: 13px; }
 .tb-f p em { display: inline-block; margin-top: 3px; padding: 2px 8px; border-radius: 3px; font-style: normal; color: var(--pill-ink); background: var(--c); }
 .tb-r2 { grid-row: 3; }
-.tb-r1 { grid-row: 4; border-top: 1px dashed var(--tb-line); }
-.tb-d1 { border-top: 1px dashed var(--tb-line); border-radius: 0 0 3px 3px; }
+.tb-r1 { grid-row: 4; }
 
 /* チーム名（縦書き） */
 .tb-t { grid-row: 5; position: relative; display: flex; justify-content: center; margin: 0; padding-top: var(--stem); }
