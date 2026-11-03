@@ -6,6 +6,7 @@
      矢印が抜けて次の矢印が入る／主なボタンは光が数秒ごとに走る／押すと少し縮む（スマホは押すと文字が流れる）
    ・背景・斜めの形は ::before に描く（磁石の動き data-magnetic が要素の transform を使うため）
    ・「視差効果を減らす」の設定では動かさない
+   ・2026-11-03 オーナー指示「全てこのボタンに統一」：HAKI pro・PUMPS も同じ中身のファイルを置く（直すときは3つとも）。色は全部オレンジ
    ========================================================= */
 :is(a, button).kb.kb.kb.kb {
   --kb-h: 48px; --kb-fs: 15px; --kb-px: 22px;
@@ -13,7 +14,7 @@
   --kb-e: cubic-bezier(.7, 0, .2, 1);
   position: relative; isolation: isolate; overflow: visible;
   display: inline-flex; flex-direction: row !important; align-items: center; justify-content: center; gap: 12px;
-  min-height: 0; height: var(--kb-h); padding: 0 calc(var(--kb-px) - 4px) 0 var(--kb-px) !important;
+  min-height: 0; height: var(--kb-h); flex-shrink: 0; padding: 0 calc(var(--kb-px) - 4px) 0 var(--kb-px) !important;
   border: 0 !important; border-radius: 0 !important; clip-path: none !important;
   background: none !important; box-shadow: none !important; backdrop-filter: none !important;
   color: var(--kb-ink) !important; font-family: "Zen Kaku Gothic New", sans-serif; font-size: var(--kb-fs) !important;
@@ -28,14 +29,12 @@
     linear-gradient(100deg, var(--kb-bg2), var(--kb-bg) 60%);
   box-shadow: 0 10px 26px -14px var(--kb-glow, rgba(224, 79, 8, .85));
   transition: box-shadow .35s ease, filter .35s ease, background-color .3s ease;
-  transform-origin: center;
+  transform-origin: center; filter: none; opacity: 1; -webkit-mask: none; mask: none;
 }
 .kb.kb.kb.kb::after { content: none; display: none; }
 .kb.kb.kb.kb:active { scale: .96; }
 
 /* 種類 */
-:is(a, button).kb.kb.kb.kb.kb-l { --kb-bg: rgba(255, 255, 255, .06); --kb-bg2: rgba(255, 255, 255, .02); --kb-bd: rgba(255, 255, 255, .45); --kb-glow: transparent; }
-:is(a, button).kb.kb.kb.kb.kb-g { --kb-bg: rgba(255, 255, 255, .7); --kb-bg2: rgba(255, 255, 255, .7); --kb-bd: #e04f08; --kb-ink: #b93d0b; --kb-glow: transparent; }
 :is(a, button).kb.kb.kb.kb.kb-lg { --kb-h: 54px; --kb-fs: 16px; --kb-px: 28px; }
 :is(a, button).kb.kb.kb.kb.kb-n { --kb-h: 38px; --kb-fs: 13px; --kb-px: 16px; gap: 8px; }
 :is(a, button).kb.kb.kb.kb.kb-d { --kb-h: 50px; --kb-fs: 16px; display: flex; width: 100%; }
@@ -66,8 +65,6 @@
   .kb:hover .kb-a > span:first-child { transform: translateX(140%); }
   .kb:hover .kb-a > span + span { transform: translateX(0); }
   .kb.kb.kb.kb:hover::before { filter: brightness(1.08); box-shadow: 0 16px 34px -14px var(--kb-glow, rgba(224, 79, 8, .95)); background-color: transparent; }
-  :is(a, button).kb.kb.kb.kb.kb-l:hover { --kb-bg: rgba(255, 255, 255, .16); --kb-bd: #fff; }
-  :is(a, button).kb.kb.kb.kb.kb-g:hover { --kb-bg: #fff3e9; --kb-bg2: #fff3e9; }
 }
 .kb.kb-roll .kb-c > span:first-child { transform: translateY(-115%); }
 .kb.kb-roll .kb-c > span + span { transform: translateY(0); }
@@ -78,8 +75,11 @@
 .kb.kb-p::before, .kb.kb-f::before { animation: kb-shine 4.2s cubic-bezier(.6, 0, .3, 1) 1.2s infinite; }
 @keyframes kb-shine { 0%, 62% { background-position: -160% 0, 0 0; } 100% { background-position: 260% 0, 0 0; } }
 
-/* 古い飾り（丸い矢印の入れ物・以前の光）を消す */
-.kb.kb.kb i.kb-a { width: 1.3em; height: 1.3em; border-radius: 0; background: none; transform: none; }
+/* 古い飾り（丸い矢印の入れ物・以前の光・色の点）を消す */
+.kb.kb.kb .kb-a, .kb.kb.kb .kb-a:hover { width: 1.3em; height: 1.3em; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; transform: none; color: inherit; }
+.kb.kb.kb .kb-t, .kb.kb.kb span:has(> .kb-t) { color: inherit; }
+/* HAKI pro の右下「相談してみる」は、横に広い画面では出さない（元の決まりのまま） */
+@media (min-width: 1240px) { :is(a, button).kb.kb.kb.kb.fab { display: none; } }
 
 /* スマホ */
 @media (max-width: 640px) {
