@@ -77,7 +77,7 @@ strong { font-weight: 700; }
 .nw { display: inline-block; }
 h1 .nw, h2 .nw, h3 .nw, h4 .nw { vertical-align: top; }
 h1, h2, h3, h4, .phil-statement, .rep-band .q, .rep-quote, .mvv-headline, .hero-message, .page-hero .jp, .bighead .jp, .sec-head p, .hero-lead, .phil-lead, .lead, .cls-copy, .price-note, .tax-note, .rep-copy p {
-  word-break: auto-phrase;
+  word-break: keep-all; /* 2026-11-03 auto-phrase（Chrome だけ）から変更。iPhone の Safari では効かず文字の途中で改行していた */
 }
 h1, h2, h3, .phil-statement, .rep-quote, .mvv-headline, .rep-band .q { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
@@ -1123,3 +1123,7 @@ p, li, dd { text-wrap: pretty; }
   .feature-card::before, .phil-card::before, .spec-item .sn::before, .flow-cell .fn::after { transition: none !important; }
   .flow-row .flow-cell .fn::after { transform: scaleX(1); }
 }
+
+/* 言葉の途中で改行しない（2026-11-03 オーナー指示「改行おかしいところ全部直して」）。
+   本文には言葉の区切りごとに見えない区切り（U+200B）が入っている。そこと空白・句読点でだけ改行する。長すぎる語だけははみ出さないよう折る */
+body { word-break: keep-all; overflow-wrap: anywhere; }

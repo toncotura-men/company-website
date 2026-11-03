@@ -30,7 +30,7 @@ body::before{ content:none; }
 
 h1,h2,h3{
   text-wrap:balance;
-  word-break:auto-phrase;
+  word-break:keep-all; /* 2026-11-03 auto-phrase から変更（Safari で効かない） */
 }
 p,li,dd{ text-wrap:pretty; }
 

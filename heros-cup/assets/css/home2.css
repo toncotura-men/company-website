@@ -174,11 +174,42 @@ body .x-rules .pillars { grid-template-columns: 1fr; border-top: 2px solid rgba(
 .bk-g { margin-left: auto; padding: 2px 8px; border-radius: 3px; font-size: 13px; color: #fff; background: var(--c); }
 .bk-x .bk-m li { font-weight: 500; }
 
-/* トップ「4つの軸」：タップ・カーソルで行が白くなり文字が読めなかった（2026-11-03 オーナー指摘。iPad はタップでも「乗せた」扱いになる）。
-   他のページ用の白くする決まりを打ち消し、オレンジのまま少し暗くするだけにする。文字はいつも白 */
-body .x-rules .pillars .pillar:hover, body .x-rules .pillars .pillar:active, body .x-rules .pillars .pillar:focus-within {
-  background: rgba(0, 0, 0, .07) !important; box-shadow: none !important; color: #fff !important; transform: none !important;
+/* =========================================================
+   トップ「4つの軸」：スポットライトの動き（2026-11-03 オーナー指示「白くなって見にくい・もっと面白い仕組みに」）
+   ・選ばれた行（.is-on）に、紺の板が左からサッと差し込み、大きな番号（01〜04）が下から浮かぶ。見出しは右へ進む
+   ・ほかの行は少し薄くなり、選ばれた1行に目が行く
+   ・選ばれる行：パソコンはカーソルを乗せた行／スマホ・iPad は画面の真ん中を通る行（スクロールで1行ずつ切り替わる）。タップでも選べる
+   ・動きは assets/js/rules.js。白くする古い決まり（他のページ用）は打ち消す。「視差効果を減らす」では動きを止め、色だけ切り替える
+   ========================================================= */
+body .x-rules .pillars .pillar {
+  position: relative; isolation: isolate; -webkit-tap-highlight-color: transparent; cursor: default;
+  background: transparent !important; box-shadow: none !important; transform: none !important;
+  transition: opacity .5s var(--x-e);
 }
-body .x-rules .pillars .pillar:hover h3, body .x-rules .pillars .pillar:hover p,
-body .x-rules .pillars .pillar:active h3, body .x-rules .pillars .pillar:active p { color: #fff !important; }
-body .x-rules .pillars .pillar { -webkit-tap-highlight-color: transparent; transition: background-color .3s ease; }
+body .x-rules .pillars .pillar::after {
+  content: "" !important; display: block !important; position: absolute; z-index: -1; inset: 0 -20px; opacity: 1 !important;
+  background: linear-gradient(100deg, #0a1430 0%, #13224d 100%) !important;
+  transform: scaleX(0); transform-origin: left center; transition: transform .7s cubic-bezier(.7, 0, .2, 1);
+}
+body .x-rules .pillars .pillar h3, body .x-rules .pillars .pillar p { position: relative; z-index: 1; color: #fff !important; transition: transform .6s cubic-bezier(.2, .8, .2, 1), opacity .4s ease; }
+.x-rules .pl-n {
+  position: absolute; z-index: 0; right: 4px; top: 50%; pointer-events: none;
+  font-family: var(--num); font-size: clamp(64px, 11vw, 150px); line-height: 1; letter-spacing: .02em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .35);
+  transform: translateY(-30%) skewX(-8deg); opacity: 0;
+  transition: transform .8s cubic-bezier(.2, .8, .2, 1), opacity .5s ease, color .5s ease, -webkit-text-stroke-color .5s ease;
+}
+/* 選ばれた行 */
+body .x-rules .pillars .pillar.is-on::after { transform: scaleX(1); }
+body .x-rules .pillars .pillar.is-on h3 { transform: skewX(-6deg) translateX(clamp(8px, 1.6vw, 20px)); }
+body .x-rules .pillars .pillar.is-on p { transform: translateX(clamp(8px, 1.6vw, 20px)); }
+.x-rules .pillar.is-on .pl-n { opacity: 1; transform: translateY(-50%) skewX(-8deg); color: var(--x-o); -webkit-text-stroke-color: var(--x-o); }
+/* ほかの行は少し薄く */
+body .x-rules .pillars.has-on .pillar:not(.is-on) { opacity: .72; }
+/* 選ばれた行の上の線は端まで伸びる */
+body .x-rules .pillars .pillar.is-on::before { transform: scaleX(1) !important; }
+body .x-rules .pillars .pillar { padding-right: clamp(150px, 15vw, 230px) !important; }
+@media (max-width: 899px) { .x-rules .pl-n { font-size: clamp(56px, 18vw, 96px); right: 0; } body .x-rules .pillars .pillar { padding-right: 72px !important; } }
+@media (prefers-reduced-motion: reduce) {
+  body .x-rules .pillars .pillar, body .x-rules .pillars .pillar::after, body .x-rules .pillars .pillar h3, body .x-rules .pillars .pillar p, .x-rules .pl-n { transition: none !important; }
+}
