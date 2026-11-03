@@ -15,7 +15,7 @@
 .tbk-blocks { display: grid; gap: 28px; }
 @media (min-width: 960px) { .tbk-blocks { grid-template-columns: 1fr 1fr; gap: 40px; } }
 
-.tb { --c: var(--tb-a); --pill-ink: #fff; padding: 18px 14px 20px; border-radius: 8px; background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 14px 32px -24px rgba(18, 40, 90, .4); }
+.tb { --c: var(--tb-a); --pill-ink: #fff; padding: 18px 14px 20px; border-radius: 6px; background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 14px 32px -24px rgba(18, 40, 90, .4); }
 .tb-b { --c: var(--tb-b); --pill-ink: var(--tb-ink); }
 .tb-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 4px 6px; }
 .tb-head h3 { margin: 0; font-size: 20px; font-weight: 700; color: var(--c); }
@@ -54,7 +54,7 @@
 }
 
 /* 交流戦 */
-.tx { --c: var(--tb-x); padding: 18px 14px 20px; border-radius: 8px; background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 14px 32px -24px rgba(18, 40, 90, .4); }
+.tx { --c: var(--tb-x); padding: 18px 14px 20px; border-radius: 6px; background: #fff; box-shadow: 0 1px 0 rgba(18, 25, 44, .06), 0 14px 32px -24px rgba(18, 40, 90, .4); }
 .tx .tb-head span { color: #fff; }
 .tx-days { display: grid; gap: 16px; margin-top: 8px; }
 .tx-day > p { margin: 0 4px 6px; font-size: 13px; font-weight: 700; color: var(--tb-ink2); }
