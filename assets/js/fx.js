@@ -29,12 +29,14 @@
     var walk = function (node) {
       Array.prototype.slice.call(node.childNodes).forEach(function (n) {
         if (n.nodeType === 3) {
-          var frag = document.createDocumentFragment();
+          // 言葉のまとまり（見えない区切り U+200B・空白で区切られた所）ごとに箱でくくり、言葉の途中で改行しない（2026-11-03）
+          var frag = document.createDocumentFragment(), wd = null;
           Array.from(n.textContent).forEach(function (ch) {
-            if (ch === "\n" || ch === "​") { frag.appendChild(document.createTextNode(ch)); return; }
+            if (ch === "\n" || ch === "\u200b" || ch === " " || ch === "　") { wd = null; frag.appendChild(document.createTextNode(ch)); return; }
+            if (!wd) { wd = document.createElement("span"); wd.className = "fx-wd"; wd.style.display = "inline-block"; wd.style.whiteSpace = "nowrap"; frag.appendChild(wd); }
             var o = document.createElement("span"); o.className = "fx-ch";
             var s = document.createElement("span"); s.textContent = ch; s.style.setProperty("--ci", i++);
-            o.appendChild(s); frag.appendChild(o);
+            o.appendChild(s); wd.appendChild(o);
           });
           n.parentNode.replaceChild(frag, n);
         } else if (n.nodeType === 1 && n.tagName !== "BR") walk(n);
