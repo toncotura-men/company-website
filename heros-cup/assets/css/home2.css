@@ -173,3 +173,12 @@ body .x-rules .pillars { grid-template-columns: 1fr; border-top: 2px solid rgba(
 @media (min-width: 1100px) { .bkx-grid { grid-template-columns: 2fr 1fr; } .bkx-grid .bk-col:last-child .bkx-list { grid-template-columns: 1fr; } }
 .bk-g { margin-left: auto; padding: 2px 8px; border-radius: 3px; font-size: 13px; color: #fff; background: var(--c); }
 .bk-x .bk-m li { font-weight: 500; }
+
+/* トップ「4つの軸」：タップ・カーソルで行が白くなり文字が読めなかった（2026-11-03 オーナー指摘。iPad はタップでも「乗せた」扱いになる）。
+   他のページ用の白くする決まりを打ち消し、オレンジのまま少し暗くするだけにする。文字はいつも白 */
+body .x-rules .pillars .pillar:hover, body .x-rules .pillars .pillar:active, body .x-rules .pillars .pillar:focus-within {
+  background: rgba(0, 0, 0, .07) !important; box-shadow: none !important; color: #fff !important; transform: none !important;
+}
+body .x-rules .pillars .pillar:hover h3, body .x-rules .pillars .pillar:hover p,
+body .x-rules .pillars .pillar:active h3, body .x-rules .pillars .pillar:active p { color: #fff !important; }
+body .x-rules .pillars .pillar { -webkit-tap-highlight-color: transparent; transition: background-color .3s ease; }
