@@ -35,8 +35,8 @@
 
 /* 1試合 ＝「ㄇ」の形。上の縦線（stem）で次の試合へ、左右の足で下の2つへつながる */
 .tb-m { position: relative; padding: calc(var(--stem) + 6px) 0 10px; }
-.tb-m::after { content: ""; position: absolute; left: 50%; top: 0; height: var(--stem); border-left: 2px solid var(--c); transform: translateX(-1px); }
-.tb-m::before { content: ""; position: absolute; left: 25%; right: 25%; top: var(--stem); bottom: 0; border: 2px solid var(--c); border-bottom: 0; }
+.tb-m::after { content: ""; position: absolute; left: calc(50% - 1px); top: 0; width: 0; height: var(--stem); border-left: 2px solid var(--c); }
+.tb-m::before { content: ""; position: absolute; left: calc(25% - 1px); right: calc(25% - 1px); top: var(--stem); bottom: 0; box-sizing: border-box; border: 2px solid var(--c); border-bottom: 0; }
 .tb-m p { position: relative; margin: 0 25%; text-align: center; line-height: 1.15; font-size: 11px; font-weight: 700; color: var(--tb-ink2); }
 .tb-m p b { display: block; font-family: var(--tb-num); font-weight: 400; font-size: 15px; letter-spacing: .02em; color: var(--tb-ink); }
 .tb-f { grid-column: 2 / 10; grid-row: 2; }
@@ -48,10 +48,10 @@
 
 /* チーム名（縦書き） */
 .tb-t { grid-row: 5; position: relative; display: flex; justify-content: center; margin: 0; padding-top: var(--stem); }
-.tb-t::after { content: ""; position: absolute; left: 50%; top: 0; height: var(--stem); border-left: 2px solid var(--c); transform: translateX(-1px); }
+.tb-t::after { content: ""; position: absolute; left: calc(50% - 1px); top: 0; width: 0; height: var(--stem); border-left: 2px solid var(--c); }
 .tb-t span {
-  display: block; padding: 8px 0; width: 26px; border-radius: 4px; text-align: center;
-  font-size: 13px; font-weight: 700; line-height: 1.05; letter-spacing: .02em;
+  display: block; box-sizing: content-box; width: auto; padding: 8px 6px; border-radius: 4px; text-align: center;
+  font-size: 13px; font-weight: 700; line-height: 1.1; letter-spacing: 0; white-space: nowrap;
   writing-mode: vertical-rl; text-orientation: upright; color: var(--pill-ink); background: var(--c);
 }
 
@@ -67,7 +67,7 @@
 .tx-m > p i { display: inline-block; margin-top: 3px; padding: 1px 6px; border-radius: 3px; font-style: normal; font-size: 11px; color: #fff; background: var(--c); }
 .tx-m > p i.g1 { background: var(--tb-a); }
 .tx-vs { position: relative; display: grid; grid-template-columns: 1fr 1fr; margin-top: 6px; padding-top: 12px; }
-.tx-vs::before { content: ""; position: absolute; left: 25%; right: 25%; top: 0; height: 10px; border: 2px solid var(--c); border-bottom: 0; }
+.tx-vs::before { content: ""; position: absolute; left: calc(25% - 1px); right: calc(25% - 1px); top: 0; height: 10px; box-sizing: border-box; border: 2px solid var(--c); border-bottom: 0; }
 .tx-vs span { font-size: 13px; font-weight: 700; line-height: 1.2; color: var(--tb-ink); }
 .tx-vs small { display: block; font-size: 10px; font-weight: 500; color: var(--tb-ink2); }
 @media (min-width: 960px) { .tx-days { grid-template-columns: 4fr 2fr; gap: 24px; } .tx-day:last-child .tx-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -76,7 +76,7 @@
 @media (min-width: 1100px) {
   .tbk { --stem: 14px; }
   .tb, .tx { padding: 22px 18px 24px; }
-  .tb-t span { width: 30px; font-size: 15px; }
+  .tb-t span { padding: 10px 7px; font-size: 15px; }
   .tb-m p b, .tx-m > p b { font-size: 17px; }
   .tb-m p, .tx-m > p { font-size: 12px; }
   .tb-head h3 { font-size: 22px; }
@@ -87,7 +87,7 @@
 /* とても狭いスマホ */
 @media (max-width: 360px) {
   .tb, .tx { padding: 16px 8px 18px; }
-  .tb-t span { width: 22px; font-size: 12px; }
+  .tb-t span { padding: 8px 5px; font-size: 12px; }
   .tb-m p b { font-size: 13px; }
   .tb-r1 p b { font-size: 12px; }
 }
