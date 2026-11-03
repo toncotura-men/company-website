@@ -96,5 +96,6 @@
 - 全ページの本文に、言葉の区切り（BudouX 0.10.2）・句読点の後・かっこの前ごとに見えない区切り（U+200B）を入れ、`body { word-break: keep-all; overflow-wrap: anywhere; }`（style.css・rich2.css の最後）で、そこでだけ改行する
 - **文章を足したり直したりしたら `python3 tools/phrase.py ページ.html` をかける**（pip install budoux==0.10.2。何度かけても同じ結果）。長いカタカナ語は tools/phrase.py の EXTRA に区切りを足す
 - 以前の `word-break: auto-phrase` は Chrome だけで、iPhone の Safari では効かず文字の途中で改行していた。keep-all に置き換えた
+- かっこの直後（「『（など）と、閉じかっこ・句読点の直前には区切りを入れない（2026-11-03 HAKI pro で「なり「／実施」と切れた）
 - 1文字ずつ動く見出し（fx.js の data-split）は、言葉のまとまりごとに `.fx-wd`（途中で改行しない箱）でくくる。ボタン（btn2.js）は区切りを取り除いてから1字ずつにする
 - トップ「4つの軸」は、選ばれた1行に紺の板が左から差し込み、大きな番号（01〜04、Anton）が浮かぶ。ほかの行は少し薄く。パソコンはカーソル、スマホ・iPad は画面の真ん中を通る行（スクロールで切り替わる）とタップ。`heros-cup/assets/js/rules.js` と home2.css の最後
