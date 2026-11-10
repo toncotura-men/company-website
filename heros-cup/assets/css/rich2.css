@@ -202,3 +202,8 @@ body .callout a{ color: var(--r2-o) !important; border-bottom: 1px solid current
 /* 言葉の途中で改行しない（2026-11-03 オーナー指示「改行おかしいところ全部直して」）。
    本文には言葉の区切りごとに見えない区切り（U+200B）が入っている。そこと空白・句読点でだけ改行する。長すぎる語だけははみ出さないよう折る */
 body { word-break: keep-all; overflow-wrap: anywhere; }
+
+/* 第1回 古川製作所 presents（2026-11-10） */
+.phero .presents{margin:0 0 10px;font-size:clamp(15px,1.6vw,19px);font-weight:700;letter-spacing:.06em;color:#fff}
+.phero .presents span,.x-presents span{font-family:Anton,"Zen Kaku Gothic New",sans-serif;font-weight:400;letter-spacing:.14em;color:#F26B21;margin-left:.4em}
+.x-presents{margin:0 0 6px;font-size:clamp(14px,1.4vw,18px);font-weight:700;letter-spacing:.08em;color:#fff}
