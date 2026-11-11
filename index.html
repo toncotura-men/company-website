@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <script>/* github.io で開かれたら haki-pro.com の同じページへ移す（haki-pro.com 経由の表示では動かない） */(function(){if(location.hostname!=="toncotura-men.github.io")return;var p=location.pathname.replace(/^\/company-website\/?/,"");var d=/^heros-cup(\/|$)/.test(p)?"https://haki-pro.com/heros-cup/"+p.replace(/^heros-cup\/?/,""):"https://haki-pro.com/pumps/"+p;location.replace(d+location.search+location.hash);})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#f7f4ee" />
+  <meta name="theme-color" content="#141826" />
   <title>広島の野球スクール PUMPS｜元プロ野球選手が指導・無料体験受付中</title>
   <meta name="description" content="広島市東区の比治山大学で毎週金曜・月4回。元プロ野球選手が代表の野球スクールPUMPSが、6項目の測定で「打つ・投げる・走る」を伸ばします。チーム・個人の出張指導にも対応。無料体験受付中。" />
   <link rel="canonical" href="https://haki-pro.com/pumps/" />
   <link rel="icon" href="assets/img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho+B1:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css?v=71" />
-  <link rel="stylesheet" href="assets/css/home-u.css?v=1" />
+  <link rel="stylesheet" href="assets/css/home.css?v=7" />
   <link rel="stylesheet" href="assets/css/btn2.css?v=2" />
 </head>
-<body class="u-home">
+<body class="x-home">
   <a class="skip" href="#main">本文へ​スキップ</a>
 
   <!-- ===== Header ===== -->
@@ -73,171 +73,154 @@
   <!-- ===== Floating reserve button ===== -->
   <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="reserve" aria-label="無料体験 受付中">無料体​験<small>受付中 ≫</small></a>
 
-  <main id="main" class="u">
-  <!-- ===== ヒーロー：言葉と、PUMPS が毎月お渡しする測定レポート（表示例） ===== -->
-  <section class="u-hero" id="top-hero">
-    <div class="u-wrap u-hero-in">
-      <div class="u-hero-copy">
-        <p class="u-kicker fx-reveal">広島・​比治山大学の​野球スクール PUMPS</p>
-        <h1 class="u-display fx-reveal">才能を、<br />科学する。</h1>
-        <p class="u-lead fx-reveal">元プロ野球選手と​比治山大学が​共同開発した、1年設計の​カリキュラム。6項目の​測定で、​打つ・​投げる・​走るの​伸びを​数字で​確かめます。</p>
-        <div class="u-actions fx-reveal">
-          <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="x-btn"><span>無料体験を​申し込む</span><i aria-hidden="true">​→</i></a>
-          <a href="school.html" class="u-link">比治山スクールを​見る<i aria-hidden="true">​→</i></a>
+  <main id="main" class="x">
+  <!-- ===== ヒーロー ===== -->
+  <section class="x-hero fx-hero" id="top-hero">
+    <div class="x-hero-bg" aria-hidden="true"><i class="x-orb x-orb-a"></i><i class="x-orb x-orb-b"></i><i class="x-grid"></i></div>
+    <div class="x-wrap x-hero-in">
+      <div class="x-hero-copy">
+        <h1 class="x-display" data-split>才能を、<br /><em>科学する。</em></h1>
+        <p class="x-hero-lead" data-in>元プロ野球選手と​比治山大学が​共同開発した、1年設計の​野球スクール。</p>
+        <div class="x-actions" data-in>
+          <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="x-btn" data-magnetic="0.25"><span>無料体験を​申し込む</span><i aria-hidden="true">​→</i></a>
+          <a href="school.html" class="x-link">比治山スクールを​見る<i aria-hidden="true">​→</i></a>
         </div>
       </div>
-
-      <figure class="u-report fx-reveal" aria-label="測定レポートの表示例">
-        <figcaption class="u-report-head">
-          <span class="u-report-t">測定レポート</span>
-          <span class="u-meta">表示​例　小学5年・​外野手</span>
-        </figcaption>
-        <div class="u-report-body">
-          <div class="u-radar"><canvas id="radar-canvas" data-theme="light" data-quiet aria-hidden="true"></canvas></div>
-          <table class="u-tbl">
-            <thead><tr><th scope="col">項目</th><th scope="col">今回</th><th scope="col">前回比</th></tr></thead>
-            <tbody>
-              <tr><th scope="row"><span class="u-code">M-01</span>スイングスピード</th><td>86<small>km/h</small></td><td class="up">+4</td></tr>
-              <tr><th scope="row"><span class="u-code">M-02</span>球速</th><td>72<small>km/h</small></td><td class="up">+3</td></tr>
-              <tr><th scope="row"><span class="u-code">M-03</span>塁間タイム</th><td>4.08<small>秒</small></td><td class="up">−0.12</td></tr>
-              <tr><th scope="row"><span class="u-code">M-04</span>反​応スピード</th><td>0.41<small>秒</small></td><td class="up">−0.03</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="u-report-foot">毎月の​測定で、​前回の​自分と​比べます</p>
-      </figure>
-    </div>
-
-    <div class="u-wrap">
-      <dl class="u-stats" aria-label="スクールの数字">
-        <div class="fx-reveal"><dt>カリキュラム</dt><dd><span data-count="1">1</span><small>年設計</small></dd></div>
-        <div class="fx-reveal"><dt>毎週​金曜に​開講</dt><dd><small>月</small><span data-count="4">4</span><small>回</small></dd></div>
-        <div class="fx-reveal"><dt>科学的に​測定</dt><dd><span data-count="6">6</span><small>項目</small></dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ===== 測る・比べる・活かす ===== -->
-  <section class="u-sec" id="about">
-    <div class="u-wrap u-split">
-      <div class="u-sec-head">
-        <h2 class="u-h2 fx-reveal">強みと​伸びしろを、<br />偏差値で。</h2>
-        <p class="u-p fx-reveal">スイング・​球速・​走力を​数値にし、​強みと​伸びしろを​偏差値で​示します。​次に​何を​伸ばせばいいかが、​はっきり​分かります。</p>
-        <a href="measurement.html" class="u-link fx-reveal">測定・​分析に​ついて<i aria-hidden="true">​→</i></a>
+      <div class="x-hero-mark" data-in aria-hidden="true">
+        <div class="x-rings"><i></i><i></i><i></i></div>
+        <img src="assets/img/pumps-logo-white.png" alt="" class="x-logo" data-tilt="10" width="600" height="240" />
       </div>
-      <ol class="u-steps">
-        <li class="fx-reveal"><span class="n">1</span><span class="t">測る</span><span class="d">​弾道測定器 Rapsodo や VBT デバイスで、​打球・​投球・​動きの​速さを​計測します。</span></li>
-        <li class="fx-reveal"><span class="n">2</span><span class="t">​比べる</span><span class="d">​前回の​自分と、​同じ​学年の​目安と​比べて、​伸びた​ところを​確かめます。</span></li>
-        <li class="fx-reveal"><span class="n">3</span><span class="t">活かす</span><span class="d">​数字から​次の​練習を​決めます。​なぜ​この​数値なのかを、​自分で​考えられるように。</span></li>
-      </ol>
     </div>
   </section>
 
-  <!-- ===== プログラム ===== -->
-  <section class="u-sec u-sec-line" id="menu">
-    <div class="u-wrap">
-      <h2 class="u-h2 fx-reveal">打つ。​投げる。​走る。​測る。</h2>
-      <nav class="u-programs" aria-label="プログラム">
-        <a href="batting.html" class="u-prog fx-reveal"><span class="u-code">M-01</span><span class="t">バッティング</span><span class="d">スイングを​数値に​して、​飛距離を​伸ばす。</span><img src="assets/img/silhouette-bat.png" alt="" width="1135" height="924" /><i aria-hidden="true">→</i></a>
-        <a href="pitching.html" class="u-prog fx-reveal"><span class="u-code">M-02</span><span class="t">ピッチング</span><span class="d">球速と​回転を​測り、​肩と​ひじを​守る。</span><img src="assets/img/silhouette-throw.png" alt="" width="994" height="765" /><i aria-hidden="true">→</i></a>
-        <a href="running.html" class="u-prog fx-reveal"><span class="u-code">M-03</span><span class="t">走塁・​フィジカル</span><span class="d">一歩目の​速さと、​土台の​強さを。</span><img src="assets/img/silhouette-run.png" alt="" width="830" height="851" /><i aria-hidden="true">→</i></a>
-        <a href="measurement.html" class="u-prog fx-reveal"><span class="u-code">M-06</span><span class="t">測定・​分​析</span><span class="d">6項目を​測り、​成長を​数字で​確かめる。</span><span class="u-prog-fig" aria-hidden="true">6<small>項目</small></span><i aria-hidden="true">→</i></a>
-      </nav>
+  <!-- ===== 数字 ===== -->
+  <section class="x-stats" aria-label="スクールの数字">
+    <div class="x-wrap x-stats-in">
+      <p class="fx-reveal"><b><span data-count="1">1</span><small>年</small></b><span>設計の​カリキュラム</span></p>
+      <p class="fx-reveal"><b><small>月</small><span data-count="4">4</span><small>回</small></b><span>毎週​金曜に​開講</span></p>
+      <p class="fx-reveal"><b><span data-count="6">6</span><small>項目</small></b><span>科学的に​測定</span></p>
     </div>
   </section>
 
-  <!-- ===== 理念（2026-10-21 オーナー指示の動きはそのまま） ===== -->
-  <section class="u-sec u-sec-line" id="philosophy">
-    <div class="u-wrap">
-      <h2 class="u-h2 fx-reveal">HAKI pro の​理念</h2>
+  <div class="x-marquee" data-marquee="1" aria-hidden="true">
+    <div><span>HITTING</span><span class="o">PITCHING</span><span>RUNNING</span><span class="o">MEASUREMENT</span><span>HITTING</span><span class="o">PITCHING</span><span>RUNNING</span><span class="o">MEASUREMENT</span></div>
+  </div>
+
+  <!-- ===== データ ===== -->
+  <section class="x-sec x-about x-light" id="about">
+    <div class="x-wrap x-split">
+      <div>
+        <h2 class="x-h2" data-split>データで、<br />野球が<em>​進化する。</em></h2>
+        <p class="x-p fx-reveal">スイング・​球速・​走力を​数値にし、​強みと​伸びしろを​偏差値で​示します。​次に​何を​伸ばせばいいかが、​はっきり​分かります。</p>
+      </div>
+      <div class="x-radar fx-reveal" data-spot><canvas id="radar-canvas" data-theme="light" aria-hidden="true"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ===== 理念 ===== -->
+  <section class="x-sec x-manifesto x-light" id="philosophy">
+    <div class="x-wrap">
+      <p class="x-scrub" data-scrub><span class="nw" data-q>「好き」</span>​を、​本物の​力に​変える。</p>
+      <h2 class="x-h2 x-creed-h fx-reveal">HAKI pro の​理念</h2>
       <nav class="x-creed" aria-label="HAKI pro の理念">
-        <a href="mvv.html#mission" class="x-creed-row fx-reveal"><span class="n" aria-hidden="true"><span>01</span></span><span class="b"><span class="k">​使命</span><span class="s">​<span class="nw" data-q>「好き」</span>​を、<wbr />本物の​力に​変える。</span></span><i aria-hidden="true">→</i></a>
-        <a href="mvv.html#vision" class="x-creed-row fx-reveal"><span class="n" aria-hidden="true"><span>02</span></span><span class="b"><span class="k">目指す​未来</span><span class="s">ここから、<wbr />世界へ。</span></span><i aria-hidden="true">→</i></a>
-        <a href="mvv.html#value" class="x-creed-row fx-reveal"><span class="n" aria-hidden="true"><span>03</span></span><span class="b"><span class="k">5つの​約束</span><span class="s">​私たちが、<wbr />絶対に​ゆずらない​こと。</span></span><i aria-hidden="true">→</i></a>
+        <a href="mvv.html#mission" class="x-creed-row fx-reveal"><span class="n" aria-hidden="true"><span data-speed="0.05">01</span></span><span class="b"><span class="k">​使命</span><span class="s">​<span class="nw" data-q>「好き」</span>​を、<wbr />本物の​力に​変える。</span></span><i aria-hidden="true">→</i></a>
+        <a href="mvv.html#vision" class="x-creed-row fx-reveal"><span class="n" aria-hidden="true"><span data-speed="0.05">02</span></span><span class="b"><span class="k">目指す​未来</span><span class="s">ここから、<wbr />世界へ。</span></span><i aria-hidden="true">→</i></a>
+        <a href="mvv.html#value" class="x-creed-row fx-reveal"><span class="n" aria-hidden="true"><span data-speed="0.05">03</span></span><span class="b"><span class="k">5つの​約束</span><span class="s">​私たちが、<wbr />絶対に​ゆずらない​こと。</span></span><i aria-hidden="true">→</i></a>
       </nav>
+    </div>
+  </section>
+
+  <!-- ===== プログラム（縦スクロールで横に流れる） ===== -->
+  <section class="x-programs x-light" id="menu" data-hscroll>
+    <div class="x-pin">
+      <div class="x-wrap x-programs-head">
+        <h2 class="x-h2" data-split>打つ。​投げる。<br />走る。​測る。</h2>
+        <span class="x-bar" aria-hidden="true"><i data-hscroll-bar></i></span>
+      </div>
+      <div class="x-track" data-hscroll-track>
+        <a href="batting.html" class="x-panel" data-spot><img src="assets/img/silhouette-bat.png" alt="" loading="lazy" /><span class="t">バッティング</span><span class="d">スイングを​数値に​して、​飛距離を​伸ばす。</span><i aria-hidden="true">→</i></a>
+        <a href="pitching.html" class="x-panel" data-spot><img src="assets/img/silhouette-throw.png" alt="" loading="lazy" /><span class="t">ピッチング</span><span class="d">球速と​回転を​測り、​肩と​ひじを​守る。</span><i aria-hidden="true">→</i></a>
+        <a href="running.html" class="x-panel" data-spot><img src="assets/img/silhouette-run.png" alt="" loading="lazy" /><span class="t">走塁・​フィジカル</span><span class="d">一歩目の​速さと、​土台の​強さを。</span><i aria-hidden="true">→</i></a>
+        <a href="measurement.html" class="x-panel x-panel-data" data-spot><span class="big" aria-hidden="true">DATA</span><span class="t">測定・​分​析</span><span class="d">6項目を​測り、​成長を​数字で​確かめる。</span><i aria-hidden="true">→</i></a>
+      </div>
     </div>
   </section>
 
   <!-- ===== 比治山スクール ===== -->
-  <section class="u-sec u-sec-raised" id="school">
-    <div class="u-wrap u-split">
-      <div class="u-sec-head">
-        <h2 class="u-h2 fx-reveal">比治山大学で、<br />毎週​金曜。</h2>
-        <p class="u-p fx-reveal">比治山大学の​野球グラウンドと​アリーナで、​月4回。​大学と​連携して​カリキュラムと​栄養食を​つくっています。</p>
-        <a href="school.html" class="u-link fx-reveal">スクールの​詳細を​見る<i aria-hidden="true">​→</i></a>
-      </div>
-      <div>
-        <div class="u-plans">
-          <div class="u-plan fx-reveal">
-            <h3>ベーシック</h3>
-            <p class="u-price"><span class="yen">¥</span><span data-count="17600" data-comma>17,600</span><small>月額・​税込</small></p>
-            <p class="u-plan-d">月4回の​練習と、​月1回の​科学的測定</p>
-          </div>
-          <div class="u-plan u-plan-adv fx-reveal">
-            <h3>アドバンス<span>おすすめ</span></h3>
-            <p class="u-price"><span class="yen">¥</span><span data-count="24200" data-comma>24,200</span><small>月額・​税込</small></p>
-            <p class="u-plan-d">月2回の​測定と、​比治山大学の​学生と​共同開発した​栄養​食​つき</p>
-          </div>
+  <section class="x-sec x-school x-light" id="school">
+    <div class="x-wrap">
+      <h2 class="x-h2" data-split>大学と、<em>​つくる。</em></h2>
+      <p class="x-p fx-reveal">比治山大学の​野球グラウンドと​アリーナで、​毎週​金曜・​月4回。</p>
+      <div class="x-plans">
+        <div class="x-plan fx-reveal" data-spot>
+          <h3>ベーシック</h3>
+          <p class="x-price"><span class="yen">¥</span><span data-count="17600" data-comma>17,600</span><small>/月​（税込）</small></p>
+          <p class="x-plan-d">月4回の​練習と、​月1回の​科学的測定。</p>
         </div>
-        <p class="u-note fx-reveal">2026年内に​ご入会の​方の​限定価格です。2027年1月以降の​ご入会は​月22,000円／​27,500円​（税込）。​入会金 11,000円​（税込）。</p>
+        <div class="x-plan x-plan-adv fx-reveal" data-spot>
+          <h3>アドバンス<span>おすすめ</span></h3>
+          <p class="x-price"><span class="yen">¥</span><span data-count="24200" data-comma>24,200</span><small>/月​（税込）</small></p>
+          <p class="x-plan-d">月2回の​測定と、​比治山大学の​学生と​共同開発した​栄養​食つき。</p>
+        </div>
       </div>
+      <p class="x-note fx-reveal">2026年内に​ご入会の​方の​限定価格です。2027年1月以降の​ご入会は​月22,000円／​27,500円​（税込）。​入会金 11,000円​（税込）。</p>
+      <a href="school.html" class="x-link fx-reveal">スクールの​詳細を​見る<i aria-hidden="true">​→</i></a>
     </div>
   </section>
 
   <!-- ===== チーム・個人 ===== -->
-  <section class="u-sec" id="audience">
-    <div class="u-wrap">
-      <h2 class="u-h2 fx-reveal">グラウンドまで、​伺います。</h2>
-      <div class="u-audience">
-        <a href="team.html" class="u-aud fx-reveal"><span class="t">チーム・​団体の​方</span><span class="d">グラウンドまで​伺い、​選手全員を​まとめて​測定します。</span><span class="u-link-t">​出張測定に​ついて<i aria-hidden="true">​→</i></span></a>
-        <a href="personal.html" class="u-aud fx-reveal"><span class="t">個人の​方</span><span class="d">ご指定の​場所で、​一人ひとりに​合わせて​指導します。</span><span class="u-link-t">​出張指導に​ついて<i aria-hidden="true">​→</i></span></a>
-      </div>
-    </div>
+  <section class="x-audience x-light" id="audience">
+    <a href="team.html" class="x-half" data-spot>
+      <span class="k">チーム・​団体の​方</span>
+      <span class="d">グラウンドまで​伺い、​選手全員を​まとめて​測定します。</span>
+      <i aria-hidden="true">→</i>
+    </a>
+    <a href="personal.html" class="x-half" data-spot>
+      <span class="k">個人の​方</span>
+      <span class="d">ご指定の​場所で、​一人ひとりに​合わせて​指導します。</span>
+      <i aria-hidden="true">→</i>
+    </a>
   </section>
 
   <!-- ===== 代表 ===== -->
-  <section class="u-sec u-sec-line" id="message">
-    <div class="u-wrap u-msg">
-      <figure class="u-photo fx-reveal"><img src="assets/img/ceo-abe.png" alt="代表 安部友裕" width="900" height="720" /></figure>
+  <section class="x-sec x-message x-light" id="message">
+    <div class="x-wrap x-split">
+      <figure class="x-photo" data-clip><img src="assets/img/ceo-abe.png" alt="代表 安部友裕" width="900" height="720" data-speed="0.12" /></figure>
       <div>
-        <p class="u-quote fx-reveal">根性論ではなく、<br />数字で​寄り添う。</p>
-        <p class="u-who fx-reveal">代表　安部 友裕​（元プロ野球選手）</p>
-        <a href="message.html" class="u-link fx-reveal">代表メッセージを​読む<i aria-hidden="true">​→</i></a>
+        <p class="x-quote" data-split>根性論ではなく、<br />数字で​寄り添う。</p>
+        <p class="x-who fx-reveal">代表　安部 友裕​（元プロ野球選手）</p>
+        <a href="message.html" class="x-link fx-reveal">代表メッセージを​読む<i aria-hidden="true">​→</i></a>
       </div>
     </div>
   </section>
 
-  <!-- ===== お知らせ ===== -->
-  <section class="u-sec u-sec-line u-sec-tight" id="news">
-    <div class="u-wrap u-row">
-      <h2 class="u-h3 fx-reveal">お知らせ</h2>
-      <div>
-        <a href="school.html" class="u-news fx-reveal"><time datetime="2026-04-24">2026.04.24</time><span>比治山大学と​連携協定を​締結しました。</span><i aria-hidden="true">→</i></a>
-      </div>
+  <!-- ===== お知らせ・スポンサー ===== -->
+  <section class="x-sec x-info x-light" id="news">
+    <div class="x-wrap">
+      <p class="x-label x-label-top fx-reveal">お知らせ</p>
+      <a href="school.html" class="x-news fx-reveal"><time datetime="2026-04-24">2026.04.24</time><span>比治山大学と​連携協定を​締結しました。</span><i aria-hidden="true">→</i></a>
     </div>
   </section>
 
-  <!-- ===== スポンサー（ロゴは元の色のまま） ===== -->
-  <section class="u-sec u-sec-line u-sec-tight" id="sponsor">
-    <div class="u-wrap u-row">
-      <h2 class="u-h3 fx-reveal">応援していただいている​企業</h2>
-      <div>
-        <ul class="u-sponsors fx-reveal">
-          <li><img src="assets/img/sponsors/recre.png" alt="株式会社レクレ" width="2000" height="789" /></li>
-          <li><img src="assets/img/sponsors/townpharma.png" alt="T&amp;Tタウンファーマ株式会社" width="2000" height="443" /></li>
-          <li><img src="assets/img/sponsors/popjapan.png?v=2" alt="株式会社ポップジャパン" width="1289" height="267" /></li>
-          <li><img src="assets/img/sponsors/miike.png" alt="株式会社御池鐵工所" width="1015" height="178" /></li>
-        </ul>
-        <a href="sponsor.html" class="u-link fx-reveal">スポンサー一覧を​見る<i aria-hidden="true">​→</i></a>
-      </div>
+  <!-- ===== スポンサー（ロゴは元の色のまま、明るい帯に） ===== -->
+  <section class="x-sponsor-band" id="sponsor">
+    <div class="x-wrap">
+      <h2 class="x-sponsor-h fx-reveal">PUMPS を​応援していただいている​企業</h2>
+      <ul class="x-sponsors fx-reveal">
+        <li><img src="assets/img/sponsors/recre.png" alt="株式会社レクレ" width="2000" height="789" loading="lazy" /></li>
+        <li><img src="assets/img/sponsors/townpharma.png" alt="T&amp;Tタウンファーマ株式会社" width="2000" height="443" loading="lazy" /></li>
+        <li><img src="assets/img/sponsors/popjapan.png?v=2" alt="株式会社ポップジャパン" width="1289" height="267" loading="lazy" /></li>
+        <li><img src="assets/img/sponsors/miike.png" alt="株式会社御池鐵工所" width="1015" height="178" loading="lazy" /></li>
+      </ul>
+      <a href="sponsor.html" class="x-link x-link-dark fx-reveal">スポンサー一覧を​見る<i aria-hidden="true">​→</i></a>
     </div>
   </section>
 
   <!-- ===== 会社概要 ===== -->
-  <section class="u-sec u-sec-line u-sec-tight" id="company">
-    <div class="u-wrap u-row">
-      <h2 class="u-h3 fx-reveal">会社概要</h2>
-      <dl class="u-dl fx-reveal">
+  <section class="x-sec x-company x-light" id="company">
+    <div class="x-wrap">
+      <p class="x-label x-label-top fx-reveal">会社概要</p>
+      <dl class="x-dl fx-reveal">
         <div><dt>会社名</dt><dd>株式会社HAKI pro</dd></div>
         <div><dt>所在地</dt><dd>〒733-0001 広島県​広島市西区大芝2丁目9-2</dd></div>
         <div><dt>スクール会場</dt><dd>〒732-0068 広島県​広島市​東区牛田新町4丁目1-1　比治山大学 野球グラウンド及びアリーナ</dd></div>
@@ -246,17 +229,16 @@
     </div>
   </section>
 
-  <!-- ===== お問い合わせ（紺の帯） ===== -->
-  <section class="u-contact" id="contact">
-    <div class="u-wrap u-contact-in">
-      <div>
-        <h2 class="u-h2 fx-reveal">まずは、​無料体験から。</h2>
-        <p class="u-p fx-reveal">お電話での​お問い合わせは​受け付けて​おりません。​フォームを​ご利用ください。</p>
+  <!-- ===== お問い合わせ ===== -->
+  <section class="x-contact" id="contact">
+    <div class="x-hero-bg" aria-hidden="true"><i class="x-orb x-orb-a"></i></div>
+    <div class="x-wrap">
+      <h2 class="x-display x-display-sm" data-split>まずは、<br /><em>無料体験から。</em></h2>
+      <div class="x-actions">
+        <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="x-btn x-btn-lg" data-magnetic="0.3"><span>無料体験を​申し込む</span><i aria-hidden="true">​→</i></a>
+        <a href="https://pro.form-mailer.jp/fms/39ce6285355128" target="_blank" rel="noopener" class="x-link">お問い合わせフォーム<i aria-hidden="true">→</i></a>
       </div>
-      <div class="u-actions fx-reveal">
-        <a href="https://pro.form-mailer.jp/fms/b7ee603c355055" target="_blank" rel="noopener" class="x-btn"><span>無料体験を​申し込む</span><i aria-hidden="true">​→</i></a>
-        <a href="https://pro.form-mailer.jp/fms/39ce6285355128" target="_blank" rel="noopener" class="u-link">お問い合わせフォーム<i aria-hidden="true">→</i></a>
-      </div>
+      <p class="x-note">お電話での​お問い合わせは​受け付けて​おりません。​フォームを​ご利用ください。</p>
     </div>
   </section>
   </main>
@@ -286,7 +268,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=48" defer></script>
+  <script src="assets/js/main.js?v=47" defer></script>
   <script src="assets/js/btn2.js?v=2" defer></script>
   <script src="assets/js/fx.js?v=2" defer></script>
 </body>
