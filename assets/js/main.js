@@ -109,6 +109,8 @@
     var labels = ["打力", "球速", "走力", "敏捷性", "体幹"];
     var target = [0.86, 0.72, 0.8, 0.66, 0.78];
     var N = 5;
+    // data-quiet（2026-11-11 unslop の作り直し）：線のにじみ（光）と呼吸する明るさをなくす。ゆっくり回る光はオーナー決定なので残す
+    var quiet = canvas.hasAttribute("data-quiet");
     // palette: the radar sits on a dark panel by default, on a light page section
     // when the canvas is marked data-theme="light"
     var C = canvas.getAttribute("data-theme") === "light" ? {
@@ -186,8 +188,8 @@
       for (var q = 0; q <= N; q++) { var idx = q % N, dp = pt(idx, R * target[idx] * pr[idx]); q ? ctx.lineTo(dp[0], dp[1]) : ctx.moveTo(dp[0], dp[1]); }
       ctx.closePath();
       ctx.fillStyle = C.fill; ctx.fill();
-      var breathe = t > T_DONE ? 0.5 + 0.5 * Math.sin((t - T_DONE) / 700) : 0;
-      ctx.strokeStyle = C.line; ctx.lineWidth = 2.4; ctx.shadowColor = C.glow; ctx.shadowBlur = 10 + 8 * breathe; ctx.stroke(); ctx.shadowBlur = 0;
+      var breathe = t > T_DONE && !quiet ? 0.5 + 0.5 * Math.sin((t - T_DONE) / 700) : 0;
+      ctx.strokeStyle = C.line; ctx.lineWidth = quiet ? 1.75 : 2.4; ctx.shadowColor = C.glow; ctx.shadowBlur = quiet ? 0 : 10 + 8 * breathe; ctx.stroke(); ctx.shadowBlur = 0;
       // vertices
       for (var v = 0; v < N; v++) {
         if (pr[v] <= 0) continue;
@@ -200,9 +202,9 @@
       for (var n = 0; n < N; n++) {
         var lp = pt(n, R + M * 0.085), la = clamp((t - T_FRAME * 0.5 - n * STAGGER) / 400);
         ctx.globalAlpha = la;
-        ctx.fillStyle = C.label; ctx.font = "700 " + (M * 0.036) + "px \"Zen Kaku Gothic New\",\"Hiragino Sans\",\"Hiragino Kaku Gothic ProN\",\"Yu Gothic Medium\",Meiryo,sans-serif";
+        ctx.fillStyle = C.label; ctx.font = (quiet ? "500 " : "700 ") + (M * 0.036) + "px \"Zen Kaku Gothic New\",\"Hiragino Sans\",\"Hiragino Kaku Gothic ProN\",\"Yu Gothic Medium\",Meiryo,sans-serif";
         ctx.fillText(labels[n], lp[0], lp[1]);
-        ctx.fillStyle = C.value; ctx.font = "700 " + (M * 0.034) + "px \"Zen Kaku Gothic New\",\"Helvetica Neue\",Arial,sans-serif";
+        ctx.fillStyle = C.value; ctx.font = (quiet ? "500 " : "700 ") + (M * 0.034) + "px \"Zen Kaku Gothic New\",\"Helvetica Neue\",Arial,sans-serif";
         ctx.fillText(Math.round(target[n] * 100 * Math.min(1, pr[n])), lp[0], lp[1] + M * 0.046);
       }
       ctx.globalAlpha = 1;
@@ -211,8 +213,8 @@
       for (var z = 0; z < N; z++) { tot += target[z]; cur += target[z] * Math.min(1, pr[z]); }
       ctx.globalAlpha = f;
       ctx.fillStyle = C.caption; ctx.font = "500 " + (M * 0.03) + "px \"Zen Kaku Gothic New\",\"Helvetica Neue\",Arial,sans-serif";
-      ctx.fillText("OVERALL", cx, cy - M * 0.055);
-      ctx.fillStyle = C.total; ctx.font = "700 " + (M * 0.085) + "px \"Zen Kaku Gothic New\",\"Helvetica Neue\",Arial,sans-serif";
+      ctx.fillText(quiet ? "総合" : "OVERALL", cx, cy - M * 0.055);
+      ctx.fillStyle = C.total; ctx.font = (quiet ? "500 " : "700 ") + (M * 0.085) + "px \"Zen Kaku Gothic New\",\"Helvetica Neue\",Arial,sans-serif";
       ctx.fillText(Math.round(cur / N * 100), cx, cy + M * 0.01);
       ctx.globalAlpha = 1;
     }
