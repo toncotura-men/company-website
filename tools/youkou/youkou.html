@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>HERO's CUP in 三原 大会要項</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Anton&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --navy:#16366e; --orange:#e8590c; --peach:#ffb37a; --ink:#1c1c1c; --sub:#555; --line:#dcdcdc; --beige:#f8f6f1; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Zen Kaku Gothic New", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.7; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; position: relative; padding: 15mm 16mm 18mm; overflow: hidden; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  .foot { position: absolute; left: 16mm; right: 16mm; bottom: 10mm; border-top: 1px solid var(--line); padding-top: 2.5mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--sub); }
+  b, strong { font-weight: 700; }
+  .en { font-family: "Anton", sans-serif; font-weight: 400; letter-spacing: .06em; }
+
+  /* 表紙 */
+  .cover { background: var(--navy); color: #fff; padding: 0; }
+  .cover .in { padding: 30mm 16mm 0; }
+  .cover .kick { color: var(--peach); font-size: 12pt; letter-spacing: .14em; }
+  .cover .pre { margin-top: 14mm; font-size: 13pt; font-weight: 700; }
+  .cover .pre .en { color: var(--peach); font-size: 15pt; margin-left: 2mm; }
+  .cover h1 { font-size: 34pt; font-weight: 700; line-height: 1.25; margin-top: 2mm; }
+  .cover h1 small { display: block; font-size: 21pt; color: var(--orange); }
+  .cover .lead { margin-top: 3mm; font-size: 10.5pt; line-height: 1.9; opacity: .92; }
+  .cover dl { margin-top: 18mm; border-top: 1px solid rgba(255,255,255,.35); }
+  .cover dl div { display: flex; padding: 4mm 0; border-bottom: 1px solid rgba(255,255,255,.35); font-size: 10.5pt; }
+  .cover dt { width: 38mm; color: var(--peach); font-weight: 700; }
+  .cover .band { position: absolute; left: 0; right: 0; bottom: 0; height: 40mm; background: var(--orange); display: flex; justify-content: space-between; align-items: center; padding: 0 16mm; font-weight: 700; }
+  .cover .band span:first-child { font-size: 11pt; }
+  .cover .band span:last-child { font-size: 8.5pt; }
+
+  /* 見出し */
+  h2 { font-size: 15pt; font-weight: 700; border-left: 4px solid var(--orange); padding-left: 4mm; line-height: 1.3; margin: 5.5mm 0 2.5mm; }
+  h2:first-child { margin-top: 0; }
+  h2 .en { color: var(--orange); font-size: 9pt; margin-left: 1.5mm; }
+  h3 { font-size: 10.5pt; font-weight: 700; color: var(--ink); margin: 2.8mm 0 1mm; }
+
+  table.kv { width: 100%; border-collapse: collapse; }
+  table.kv th { width: 36mm; background: var(--beige); text-align: left; font-weight: 700; padding: 2.2mm 4mm; vertical-align: top; border-bottom: 1px solid var(--line); }
+  table.kv td { padding: 2.2mm 4mm; border-bottom: 1px solid var(--line); }
+
+  ul.dot { list-style: none; }
+  ul.dot li { position: relative; padding-left: 6mm; margin: .3mm 0; }
+  ul.dot li::before { content: ""; position: absolute; left: 1.5mm; top: .72em; width: 4px; height: 4px; border-radius: 50%; background: var(--ink); }
+  ul.chk { list-style: none; }
+  ul.chk li { position: relative; padding-left: 7mm; margin: .3mm 0; }
+  ul.chk li::before { content: ""; position: absolute; left: 0; top: .42em; width: 9px; height: 9px; border: 1.3px solid var(--orange); border-radius: 2px; }
+
+  .must { border: 1.5px solid var(--orange); border-radius: 8px; background: #fff7f1; padding: 3.5mm 5mm; margin-top: 2mm; }
+  .must .tag { display: inline-block; background: var(--orange); color: #fff; font-size: 8pt; font-weight: 700; padding: .3mm 3mm; border-radius: 6px; }
+  .must ol { margin: 1.5mm 0 0 6mm; }
+  .must em { font-style: normal; color: var(--orange); font-weight: 700; }
+  .note { font-size: 8pt; color: var(--sub); margin-top: 2mm; }
+
+  /* チーム */
+  .teams { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
+  .teams div { border-bottom: 1px solid var(--line); padding: 1.8mm 0; font-weight: 700; }
+  .teams .en { color: var(--orange); font-size: 11pt; margin-right: 2mm; }
+  .teams small { color: var(--sub); font-weight: 400; font-size: 8pt; margin-left: 1mm; }
+
+  .bk { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
+  .bk .hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2mm; }
+  .bk .hd b { font-size: 11pt; }
+  .bk .hd span { font-size: 8pt; color: var(--sub); }
+  .m { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 2mm; overflow: hidden; }
+  .m p { padding: 1.2mm 3mm; border-top: 1px solid var(--line); font-weight: 700; }
+  .m .t { background: var(--beige); border-top: 0; font-weight: 400; font-size: 8pt; color: var(--sub); }
+  .m .t b { color: var(--ink); margin-right: 2mm; }
+  .nx div { font-size: 8.5pt; padding: 1.2mm 3mm; border-bottom: 1px solid var(--line); }
+  .nx b { display: inline-block; width: 13mm; }
+
+  /* 表（スケジュール・交流戦）：見出しは白地＋太字＋下線のシンプルな形 */
+  table.tt { width: 100%; border-collapse: collapse; }
+  table.tt td { padding: 1.6mm 3mm; border-bottom: 1px solid var(--line); }
+  table.tt .tm { font-family: "Anton", sans-serif; color: var(--orange); font-size: 11pt; width: 18mm; }
+  table.tt .pl { color: var(--sub); font-size: 8.5pt; width: 25mm; }
+  table.tt tr.day td { font-weight: 700; font-size: 10.5pt; border-bottom: 1.5px solid var(--ink); padding-top: 3mm; }
+  table.tt tr.day:first-child td { padding-top: 1mm; }
+  table.tt th { text-align: left; font-weight: 700; padding: 2.2mm 3mm; border-bottom: 1.5px solid var(--ink); }
+
+  .map { position: relative; border-radius: 8px; overflow: hidden; }
+  .map img { display: block; width: 100%; }
+  .map span { position: absolute; transform: translate(-50%,-50%); font-size: 7.5pt; font-weight: 700; color: #fff; padding: .6mm 2.2mm; border-radius: 4px; border: 1px solid rgba(255,255,255,.8); white-space: nowrap; }
+  .map .g { background: var(--orange); }
+  .map .d { background: #1c1c1c; }
+  .map .p { background: #1c1c1c; }
+</style>
+</head>
+<body>
+
+<!-- 1 表紙 -->
+<section class="page cover">
+  <div class="in">
+    <p class="kick en">HERO'S CUP 2026</p>
+    <p class="pre">株式会社 古川製作所<span class="en">presents</span></p>
+    <h1>第1回 HERO's CUP<small>in 三原　大会要項</small></h1>
+    <p class="lead">すべての子どもに「ヒーローになる瞬間」を。<br />勝敗だけでなく、仲間を励まし、全力で走り、挑戦した姿を称える大会です。</p>
+    <dl>
+      <div><dt>日程</dt><dd>2026年11月28日（土）・29日（日）　2日間</dd></div>
+      <div><dt>会場</dt><dd>株式会社 古川製作所グランド（3面使用）<br />広島県三原市沼田西町小原200-65</dd></div>
+      <div><dt>参加</dt><dd>広島県内の小学生軟式野球　16チーム</dd></div>
+      <div><dt>主催</dt><dd>HERO's CUP 実行委員会</dd></div>
+    </dl>
+  </div>
+  <div class="band"><span>参加チームの指導者・保護者の皆さまへ</span><span>必ず最後までお読みください</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+  <h2>開催概要<span class="en">OUTLINE</span></h2>
+  <table class="kv">
+    <tr><th>大会名</th><td>株式会社 古川製作所 presents　第1回 HERO's CUP in 三原</td></tr>
+    <tr><th>日程</th><td>2026年11月28日（土）・29日（日）</td></tr>
+    <tr><th>会場</th><td>株式会社 古川製作所グランド（3面使用）　広島県三原市沼田西町小原200-65</td></tr>
+    <tr><th>参加チーム</th><td>広島県内で活動する小学生軟式野球 16チーム（登録リーグは問いません）</td></tr>
+    <tr><th>登録選手数</th><td>1チーム 9名〜20名</td></tr>
+    <tr><th>ベンチ入り</th><td><b>1試合 最大18名</b>（下記「ベンチ入りと出場のルール」を参照）</td></tr>
+    <tr><th>形式</th><td>A・Bの2ブロックのトーナメント＋交流戦。負けたチームも交流戦にまわり、<b>全チーム1日2試合</b></td></tr>
+    <tr><th>表彰</th><td>Aブロック 優勝・準優勝／Bブロック 優勝・準優勝／HERO賞</td></tr>
+  </table>
+
+  <h2>競技ルール<span class="en">RULES</span></h2>
+  <ul class="dot">
+    <li>少年軟式野球ルールに準じます。</li>
+    <li>試合は<b>60分制・最大6回</b>。60分を過ぎたら新しいイニングには入りません。コールドゲームはありません。</li>
+    <li>投手の投球数は<b>70球まで</b>です。</li>
+    <li>最終回を終えて同点のときは、<b>じゃんけん</b>で決めます。その時点で出場している9人対9人が並び、1対1で順番に対戦し、勝ち数の多いチームの勝ちとします。</li>
+  </ul>
+
+  <h2>ベンチ入りと出場のルール<span class="en">BENCH</span></h2>
+  <div class="must">
+    <span class="tag">必ずお守りください</span>
+    <ol>
+      <li>1試合でベンチに入れる選手は<em>最大18名</em>です。</li>
+      <li>選手が18名以上いるチームは、<em>1試合目に出場しなかった選手を、2試合目に必ずスタメン（先発）で出場</em>させてください。</li>
+      <li>ベンチに入った選手は<em>全員が試合に出場</em>します（最低でも1打席または1イニング）。</li>
+      <li>選手交代は自由で、何度でも交代できます。一度交代した選手の再出場もできます。</li>
+    </ol>
+  </div>
+  <p class="note">※1日2試合あるため、2日とも同じ決まりです（各日の1試合目に出なかった選手は、その日の2試合目にスタメン）。</p>
+  <div class="foot"><span>第1回 HERO's CUP in 三原　大会要項</span><span>2</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+  <h2>HERO'S CUP 特別ルール<span class="en">SPECIAL</span></h2>
+  <h3>1. ベンチは選手だけの場所</h3>
+  <ul class="dot">
+    <li>監督・コーチ・保護者など、大人のベンチ立ち入りは禁止です。指導者はベンチ外の指定エリアでお待ちください。</li>
+    <li>大人が入れるのは緊急時のみです。安全のため、運営スタッフがベンチ横にいます。</li>
+  </ul>
+  <h3>2. 試合直後、両チームからヒーロー</h3>
+  <ul class="dot">
+    <li>勝ち負けに関係なく、両チームから1名ずつHEROインタビューを行います。</li>
+    <li>インタビューを受ける選手は、選手同士の話し合いで決めます。大人は決めません。</li>
+  </ul>
+  <h3>3. HERO審査</h3>
+  <ul class="dot">
+    <li>試合後、両チームがお互いのチームを「挨拶・礼儀／全力疾走／声かけ／フェアプレー／ベンチの雰囲気／最後まで諦めない姿勢」で評価します。</li>
+    <li>評価は勝敗に一切関係しません。</li>
+  </ul>
+  <h3>4. 試合前イベント（仮）</h3>
+  <ul class="dot">
+    <li>試合開始10分前に、各チームの代表指導者1名がスイングスピード対決を行い、速いチームが先攻・後攻を選べます。</li>
+  </ul>
+
+  <h2>当日の進行<span class="en">OPERATION</span></h2>
+  <ul class="chk">
+    <li><b>開会式は全チーム参加</b>です。初日（11月28日）は<b>8:20までに第1グランド内に集合・整列</b>してください（8:30開始）。</li>
+    <li>チーム旗は開会式で使います。チームのプラカードは実行委員会で準備します。</li>
+    <li>各試合開始の<b>10分前</b>には、試合のグランドに集合してください。</li>
+    <li>試合開始の<b>5分前まで</b>に、メンバー表を審判に提出してください。交流戦はメンバー表の交換なし、Aブロックが先攻です。</li>
+    <li>グランド内でのシートノックはできません。ウォーミングアップは「アップ可能エリア」で、まわりの安全を確かめて行ってください。</li>
+    <li>アナウンスで名前を呼ぶのは打者のみで、名字のみ（同じ名字がいる場合を除く）です。</li>
+    <li>チームテントを張る場所は、主テニス場の中を予定しています。<b>テントのペグ打ちはできません。</b>テントの脚に重しを付けて、風で飛ばされないよう対策してください。重しは、ペットボトル・クーラーバッグ・ブロックなどで代用できます。</li>
+    <li>会場は<b>17時までに完全撤去</b>です。</li>
+  </ul>
+
+  <h2>禁止事項・お願い<span class="en">MANNERS</span></h2>
+  <ul class="dot">
+    <li>審判への抗議、判定への不服の言動</li>
+    <li>相手選手へのヤジ</li>
+    <li>過度な指示出し</li>
+  </ul>
+  <p style="margin-top:2mm">第1グランド付近に救護ブースを設け、救護士がいます。持病・アレルギー・服薬など伝えておくべきことがある選手は、当日の受付で必ず運営スタッフにお伝えください。</p>
+  <div class="foot"><span>第1回 HERO's CUP in 三原　大会要項</span><span>3</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+  <h2>参加チーム（16チーム）<span class="en">TEAMS</span></h2>
+  <div class="teams">
+    <div><span class="en">01</span>福木フィールズ少年野球クラブ<small>A</small></div>
+    <div><span class="en">09</span>三原レッドアロー少年野球クラブ<small>B</small></div>
+    <div><span class="en">02</span>三原ファイヤーズ<small>A</small></div>
+    <div><span class="en">10</span>宮内アベンジャーズ<small>B</small></div>
+    <div><span class="en">03</span>福山ウエスト野球クラブ<small>A</small></div>
+    <div><span class="en">11</span>大野友星<small>B</small></div>
+    <div><span class="en">04</span>幸崎パイレーツスポーツ少年団<small>A</small></div>
+    <div><span class="en">12</span>三原レッキーズ少年野球クラブ<small>B</small></div>
+    <div><span class="en">05</span>本郷南方ライナーズ<small>A</small></div>
+    <div><span class="en">13</span>中之町イーグルス<small>B</small></div>
+    <div><span class="en">06</span>キタヒロファイターズ<small>A</small></div>
+    <div><span class="en">14</span>三原ジュニア少年軟式野球クラブ<small>B</small></div>
+    <div><span class="en">07</span>阿品スカイヤーズ<small>A</small></div>
+    <div><span class="en">15</span>段原レッドイーグルス<small>B</small></div>
+    <div><span class="en">08</span>中筋スポーツ少年団軟式野球部<small>A</small></div>
+    <div><span class="en">16</span>三原ベアーズ<small>B</small></div>
+  </div>
+
+  <h2>組み合わせ<span class="en">BRACKET</span></h2>
+  <div class="bk">
+    <div>
+      <div class="hd"><b>Aブロック</b><span>第1グランド</span></div>
+      <div class="m"><p class="t"><b>A-①</b>1日目 9:30</p><p>福木フィールズ少年野球クラブ</p><p>三原ファイヤーズ</p></div>
+      <div class="m"><p class="t"><b>A-②</b>1日目 10:50</p><p>福山ウエスト野球クラブ</p><p>幸崎パイレーツスポーツ少年団</p></div>
+      <div class="m"><p class="t"><b>A-③</b>1日目 12:20</p><p>本郷南方ライナーズ</p><p>キタヒロファイターズ</p></div>
+      <div class="m"><p class="t"><b>A-④</b>1日目 13:40</p><p>阿品スカイヤーズ</p><p>中筋スポーツ少年団軟式野球部</p></div>
+      <div class="nx">
+        <div><b>A'-①</b>2日目 9:30　A-① の勝者 × A-② の勝者</div>
+        <div><b>A'-②</b>2日目 10:50　A-③ の勝者 × A-④ の勝者</div>
+        <div><b>決勝A</b>2日目 12:20　A'-① の勝者 × A'-② の勝者</div>
+      </div>
+    </div>
+    <div>
+      <div class="hd"><b>Bブロック</b><span>第2グランド</span></div>
+      <div class="m"><p class="t"><b>B-①</b>1日目 9:30</p><p>三原レッドアロー少年野球クラブ</p><p>宮内アベンジャーズ</p></div>
+      <div class="m"><p class="t"><b>B-②</b>1日目 10:50</p><p>大野友星</p><p>三原レッキーズ少年野球クラブ</p></div>
+      <div class="m"><p class="t"><b>B-③</b>1日目 12:20</p><p>中之町イーグルス</p><p>三原ジュニア少年軟式野球クラブ</p></div>
+      <div class="m"><p class="t"><b>B-④</b>1日目 13:40</p><p>段原レッドイーグルス</p><p>三原ベアーズ</p></div>
+      <div class="nx">
+        <div><b>B'-①</b>2日目 9:30　B-① の勝者 × B-② の勝者</div>
+        <div><b>B'-②</b>2日目 10:50　B-③ の勝者 × B-④ の勝者</div>
+        <div><b>決勝B</b>2日目 12:20　B'-① の勝者 × B'-② の勝者</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>第1回 HERO's CUP in 三原　大会要項</span><span>4</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+  <h2>タイムスケジュール<span class="en">SCHEDULE</span></h2>
+  <table class="tt">
+    <tr class="day"><td colspan="3">1日目　11月28日（土）</td></tr>
+    <tr><td class="tm">8:20</td><td><b>集合・整列</b>　全16チーム、第1グランド内に集合</td><td class="pl">第1G</td></tr>
+    <tr><td class="tm">8:30</td><td><b>開会式</b>　全チーム参加</td><td class="pl">第1G</td></tr>
+    <tr><td class="tm">9:30</td><td>A-①／B-①</td><td class="pl">第1G・第2G</td></tr>
+    <tr><td class="tm">10:50</td><td>A-②／B-②／交流戦①</td><td class="pl">全3面</td></tr>
+    <tr><td class="tm">12:20</td><td>A-③／B-③／交流戦②</td><td class="pl">全3面</td></tr>
+    <tr><td class="tm">13:40</td><td>A-④／B-④／交流戦③</td><td class="pl">全3面</td></tr>
+    <tr><td class="tm">15:00</td><td>交流戦④</td><td class="pl">第1G</td></tr>
+    <tr><td class="tm">17:00</td><td>完全撤去</td><td class="pl">全体</td></tr>
+    <tr class="day"><td colspan="3">2日目　11月29日（日）</td></tr>
+    <tr><td class="tm">9:30</td><td>A'-①／B'-①</td><td class="pl">第1G・第2G</td></tr>
+    <tr><td class="tm">10:50</td><td>A'-②／B'-②／交流戦⑤</td><td class="pl">全3面</td></tr>
+    <tr><td class="tm">12:20</td><td><b>決勝A／決勝B</b>／交流戦⑥</td><td class="pl">全3面</td></tr>
+    <tr><td class="tm">—</td><td><b>表彰式・閉会式</b>（優勝・準優勝・HERO賞）</td><td class="pl">第1G</td></tr>
+    <tr><td class="tm">17:00</td><td>完全撤去</td><td class="pl">全体</td></tr>
+  </table>
+
+  <h2>交流戦<span class="en">EXCHANGE</span></h2>
+  <p style="margin-bottom:2mm">負けたチーム同士が戦う、正式な試合です。全員出場・HERO審査・ヒーローインタビューも同じように行います。</p>
+  <table class="tt">
+    <tr><th style="width:20mm">日</th><th style="width:20mm">時刻</th><th style="width:28mm">試合</th><th>対戦</th><th style="width:25mm">会場</th></tr>
+    <tr><td>1日目</td><td class="tm">10:50</td><td>交流戦①</td><td>A-① の敗者 × B-① の敗者</td><td class="pl">第3G</td></tr>
+    <tr><td>1日目</td><td class="tm">12:20</td><td>交流戦②</td><td>A-② の敗者 × B-② の敗者</td><td class="pl">第3G</td></tr>
+    <tr><td>1日目</td><td class="tm">13:40</td><td>交流戦③</td><td>A-③ の敗者 × B-③ の敗者</td><td class="pl">第3G</td></tr>
+    <tr><td>1日目</td><td class="tm">15:00</td><td>交流戦④</td><td>A-④ の敗者 × B-④ の敗者</td><td class="pl">第1G</td></tr>
+    <tr><td>2日目</td><td class="tm">10:50</td><td>交流戦⑤</td><td>A'-① の敗者 × B'-① の敗者</td><td class="pl">第3G</td></tr>
+    <tr><td>2日目</td><td class="tm">12:20</td><td>交流戦⑥</td><td>A'-② の敗者 × B'-② の敗者</td><td class="pl">第3G</td></tr>
+  </table>
+  <div class="foot"><span>第1回 HERO's CUP in 三原　大会要項</span><span>5</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+  <h2>会場・レイアウト<span class="en">VENUE</span></h2>
+  <div class="map">
+    <img src="map.jpg" alt="会場の航空写真" />
+    <span class="g" style="left:23.9%;top:25.9%">第3グランド</span>
+    <span class="d" style="left:47%;top:25%">大会本部・救護ブース</span>
+    <span class="p" style="left:76.8%;top:20.2%">駐車場A</span>
+    <span class="p" style="left:72%;top:52%">駐車場B</span>
+    <span class="g" style="left:47.9%;top:59.9%">第1グランド</span>
+    <span class="d" style="left:13%;top:64.1%">アップ可能エリア</span>
+    <span class="g" style="left:27.9%;top:69.8%">第2グランド</span>
+    <span class="d" style="left:52%;top:92.1%">トイレ</span>
+  </div>
+  <p class="note" style="margin-bottom:3mm">配置は目安です。当日は会場の案内と運営スタッフの誘導に従ってください。</p>
+  <table class="kv">
+    <tr><th>会場名</th><td>株式会社 古川製作所グランド（3面使用）</td></tr>
+    <tr><th>住所</th><td>広島県三原市沼田西町小原200-65</td></tr>
+    <tr><th>駐車場</th><td>駐車場A・駐車場B（運営スタッフの誘導に従ってください）</td></tr>
+    <tr><th>設備</th><td>トイレ／アップ可能エリア／大会本部（第1グランド前）・救護ブース</td></tr>
+    <tr><th>飲食</th><td>会場内で比治山冷凍カレーの販売を予定しています</td></tr>
+    <tr><th>撤去</th><td>17時までに完全撤去</td></tr>
+  </table>
+
+  <h2>主催・お問い合わせ<span class="en">CONTACT</span></h2>
+  <table class="kv">
+    <tr><th>主催</th><td>HERO's CUP 実行委員会</td></tr>
+    <tr><th>実行委員長</th><td>安部 友裕（株式会社 HAKI pro）</td></tr>
+    <tr><th>企画・運営</th><td>下定 弘和（株式会社 BRAVE UP）</td></tr>
+    <tr><th>会場協力</th><td>株式会社 古川製作所</td></tr>
+    <tr><th>大会サイト</th><td>https://haki-pro.com/heros-cup/</td></tr>
+  </table>
+  <p class="note">※天候・会場の事情などにより内容を変更する場合があります。変更は大会サイトと参加チームへの連絡でお知らせします。</p>
+  <div class="foot"><span>第1回 HERO's CUP in 三原　大会要項</span><span>6</span></div>
+</section>
+
+</body>
+</html>
