@@ -634,7 +634,7 @@ table.tbl td small{ display:block; color:var(--ink-3); font-size:12.5px; margin-
    Awards
    ============================================================ */
 .awards{ display:grid; gap:18px; }
-@media(min-width:780px){ .awards{ grid-template-columns:repeat(3,1fr); } }
+@media(min-width:780px){ .awards{ grid-template-columns:repeat(2,1fr); max-width:860px; margin-inline:auto; } }
 .award{
   text-align:center; padding:40px 26px 34px; border-radius:12px; background:#fff;
   border:1px solid var(--line); transition:transform .3s, box-shadow .3s;
@@ -772,5 +772,5 @@ table.tbl td small{ display:block; color:var(--ink-3); font-size:12.5px; margin-
 /* 地図の場所の点（ラベルを少しずらす所で、本当の位置を示す） */
 .vdot{ position:absolute; z-index:2; width:12px; height:12px; border-radius:50%; background:#F26B21; border:2px solid #fff; transform:translate(-50%,-50%); box-shadow:0 0 0 1px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.4); }
 @media(max-width:700px){ .vdot{ width:9px; height:9px; border-width:1.5px; } }
-.vp-tent{ left:50%; top:31%; } .vp-up{ left:15%; top:60%; } .vp-wc{ left:40%; top:70.5%; } .vp-hq{ left:58%; top:85%; }
-@media(max-width:700px){ .vp-g2{ left:23% !important; top:76% !important; } .vp-tent{ left:53%; top:36%; } .vp-up{ left:15%; top:57%; } .vp-wc{ left:42%; top:90%; } .vp-hq{ left:70%; top:86%; } }
+.vp-tent{ left:50%; top:31%; } .vp-up{ left:24%; top:35%; } .vp-wc{ left:40%; top:70.5%; } .vp-hq{ left:58%; top:85%; }
+@media(max-width:700px){ .vp-g2{ left:23% !important; top:76% !important; } .vp-tent{ left:53%; top:36%; } .vp-up{ left:20%; top:42%; } .vp-wc{ left:42%; top:90%; } .vp-hq{ left:70%; top:86%; } }

@@ -213,3 +213,5 @@ body .x-rules .pillars .pillar { padding-right: clamp(150px, 15vw, 230px) !impor
 @media (prefers-reduced-motion: reduce) {
   body .x-rules .pillars .pillar, body .x-rules .pillars .pillar::after, body .x-rules .pillars .pillar h3, body .x-rules .pillars .pillar p, .x-rules .pl-n { transition: none !important; }
 }
+/* 表彰は優勝と HERO賞の2つ（2026-11-23 準優勝をなくした） */
+@media (min-width: 900px) { .x-award-row { grid-template-columns: 1fr 1.3fr; } }
